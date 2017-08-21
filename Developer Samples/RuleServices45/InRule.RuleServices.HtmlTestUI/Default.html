@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Rule Services Start Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link type="text/css" href="Content/webstyles.css" rel="Stylesheet"/>
+    <script src="Content/jshelpers.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="page">
+        <div>
+            <div style="float:right;">
+                <div align="right"><a onclick="NavigateToServicesHelp();">[services help]</a></div>
+                <div>Service URL:<input id="serviceUri" type="text" class="text" style="width:300px;margin-left:10px;" /></div>
+            </div>
+            <div id="title">
+                    <h1>InRule Rule Services Start Page</h1>
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div>
+            <fieldset>
+                    <legend>
+                        Welcome to InRule Rule Services!
+                    </legend>
+                    <div>
+                        InRule Rule Services is a reference architecture for providing WCF REST services for rule execution.  This solution contains the following projects:
+                        <ul>
+                            <li><a onclick="NavigateToServicesHelp();">RuleServices</a> - Rule Execution Services operations include: ApplyRules (Get), ExecuteRuleSet (Get), ExecuteRuleSet (Post)</li>
+                            <li><a href="HTMLTestUI.html">HTMLTestUI </a> - Simple html test page.  Construct Rule Service request xml and execute request from javascript.</li>
+                            <li><a href="http://localhost:50002/">ASPMVCTestUI</a> - Demonstrates calling Rule Services via ASP MVC using a Service Reference.</li>
+                        </ul> 
+                    </div>
+            </fieldset>
+            <div>&nbsp;</div>
+            <fieldset>
+                <legend>
+                    Testing Rule Services in Visual Studio 2012
+                </legend>
+                <div>
+                        Save test rule application to irCatalog: 
+                    <ol>
+                        <li>Perform a Complete local install of InRule including irCatalog (see InRule Installation Guide)</li>
+                        <li>Launch irAuthor (<strong>Start --&gt; All Programs --&gt; InRule --&gt; irAuthor</strong>)</li>
+                        <li>Open sample rule application (Download Location/Rule Service/RuleServices45/InRule.RuleServices.SampleRuleApps/<strong>MortgageCalculator.ruleapp</strong>)</li>
+                        <li>Save rule application to irCatalog (<strong>File --&gt; Save As --&gt; Save to Catalog --&gt; Click &#39;OK&#39;</strong>)</li>
+                    </ol>
+                    <p>
+                        Steps for testing:</p>
+                    <ol>
+                        <li>Launch Visual Studio 2012</li>
+                        <li>Open RuleServices Solution (Download Location/Rule Service/RuleServices45/<strong>RulesServices.sln</strong>)</li>
+                        <li>Run the RuleServices solution - (InRule.RuleServices.HtmlTestUI should be set as StartUp Project)
+                            <ol>
+                                <li>The following projects will start: RuleServcies, HTMLTestUI, ASPMVCTestUI</li>
+                            </ol>
+                        </li>
+                        <li>StartPage (default.html) will launch in browser</li>
+                        <li>Test Rule Services by clicking on either the <a href="HTMLTestUI.html">HTMLTestUI </a> or <a href="http://localhost:50002/">ASPMVCTestUI</a><ol>
+                            <li>Optional: Test Rule Services from another client (direct in browser, fiddler, etc.)</li>
+                            </ol>
+                        </li>
+                        <li>Debug - set project to debug as StartUp Project or Attach to Process</li>
+                    </ol>
+                </div>
+                <div>
+                    Notes:  
+                    <ul>
+                        <li>InRule.RuleServices.csproj is configured to start at http://localhost:50001/InRule.RuleServices/RuleExecutionService.svc/</li>
+                        <li>InRule.HtmlTestUI.csproj is configured to start at http://localhost:50003/</li>
+                        <li>InRule.ASPMVCTestUI.csproj is configured to start at http://localhost:50002/</li>
+                        <li>For SOAP - uncomment SOAP behavior section Web.config, minor service interface and caller changes</li>
+                    </ul>     
+                </div>
+            </fieldset>
+            <div>&nbsp;</div>
+            <fieldset>
+                <legend>
+                    Deploying Rule Services to IIS
+                </legend>
+                <div>
+                    Steps for deploying: 
+                    <ol>
+                        <li>XCopy the InRule.RuleServices dll and supporting InRule dlls (found in InRule.RuleServices\bin) to the designated virtual web directory.</li>
+                        <li>Change base address in services web.config and CatalogUri to relevant catalog service</li>
+                    </ol> 
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = function () { SetServiceUrl(document.getElementById('serviceUri')); };
+    </script>
+</body>
+</html>

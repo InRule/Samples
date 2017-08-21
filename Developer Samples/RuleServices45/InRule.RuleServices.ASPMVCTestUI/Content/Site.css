@@ -1,0 +1,408 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+    background-color: #FFF;
+    font-family: Segoe UI;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+a
+{
+    color: #006699;
+}
+a:link {
+    color: #006699;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #006699;
+}
+
+a:hover {
+    color: #006699;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:active {
+    color: #006699;
+}
+
+p, ul {
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+header,
+footer,
+section {
+    display: block;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page {
+    width: 95%;
+    margin-left:  auto;
+    margin-right: auto;
+}
+
+header, #header {
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+header h1, #header h1 {
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #006699;
+    border: none;
+    line-height: 2em;
+    font-size: 32px;
+}
+
+#main {
+    padding: 10px 0px 0px 0px;
+    background-color: #fff;
+}
+
+footer, 
+#footer {
+    background-color: #fff;
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0 0 30px 0;
+    font-size: .9em;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu {
+    border-bottom: 1px #ddd solid;
+    padding: 0 0 0px;
+    position: relative;
+    margin: 0;
+    text-align: left;
+}
+
+ul#menu li {
+    display: inline;
+    list-style: none;
+    background:#eee;
+    
+}
+
+ul#menu li#greeting {
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2em;
+    color: #000;
+}
+
+ul#menu li a {
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2em;
+    background-color: #e8eef4;
+    color: #000;
+    border: 1px solid #ddd;
+}
+
+ul#menu li a:hover {
+    background-color: #B0E0E6;
+    text-decoration: none;
+}
+
+ul#menu li a:active {
+    background-color: #B0E0E6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a {
+    background-color: #B0E0E6;
+    color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color:#006699;
+}
+
+textarea {
+    min-height: 75px;
+    width:100%;
+    height:150px;
+    border : 1px solid #ddd;
+}
+
+input[type="text"], 
+input[type="password"] {
+    border: 1px solid #ddd;
+    padding: 1px;
+    color: #444;
+    width: 300px;
+    font-family: Segoe UI;
+}
+
+span.checkbox
+{
+    font-size:10pt;
+}
+
+select {
+    border: 1px solid #ddd;
+    padding: 1px;
+    color: #444;
+}
+
+input[type="submit"],
+input[type="button"] {
+    font-family: Segoe UI;
+    background: #B0E0E6;
+    border: 1px solid #ddd;
+    margin : 10px 0px 5px 0px;
+    color: #696969;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+}
+
+table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #e8eef4;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+.clear {
+    clear: both;
+}
+
+.error {
+    color: Red;
+}
+
+nav, 
+#menucontainer {
+    margin-top: 20px;
+}
+
+#logindisplay {
+    display: block;
+    text-align: right;
+    margin: 10px;
+    color: black;
+}
+
+#logindisplay a:link {
+    color: black;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited {
+    color: black;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+div.working
+{
+    display:inline;
+    margin:10px;
+    font-size:12;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label, 
+.editor-label {
+    margin: 0.3em 0 0 0;
+}
+
+.display-field, 
+.editor-field {
+    margin: 0.3em 0 0 0;
+}
+
+.text-box {
+    width: 30em;
+}
+
+.text-box.multi-line {
+    height: 6.5em;
+}
+
+.tri-state {
+    width: 6em;
+}
+
+/* DIV-based grids
+------------------------------------------------------------*/
+
+div.container
+{
+    margin: 0.3em 0 0 0;
+    display: table;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    width: 100%;
+}
+
+div.row
+{
+    display: table-row;
+}
+
+div.headercol
+{
+    display: table-cell;
+    text-align: center;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    background: #eee;
+}
+
+
+div.col
+{
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+div.firstcol
+{
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    text-align:center;
+    width:25px;
+}
+
+
+input.gridcell
+{
+    border : 0px;
+    font-family : Segoe UI;
+    width:98%;
+    margin:3px;
+}
+
+div.output
+{
+    border: 1px solid #ddd;
+    font-weight : normal;
+    font-family : Courier;
+    font-size : 10pt;
+    background : #eee;
+    padding : 5px;
+    word-wrap : break-word;
+    margin: 0.3em 0 0 0;
+}
+
+span
+{
+    margin : 5px 5px 5px 5px;
+    word-wrap : break-word; 
+}
+
+

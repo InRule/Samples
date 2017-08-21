@@ -1,0 +1,173 @@
+﻿<!doctype html>
+<html lang="en">
+    <!--
+        To run this sample create a virtual directory in IIS pointing at this directory.
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>InvoiceSample through jQuery JSON</title>
+        <link href="css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet" />
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+		
+        <script>
+            var entityState = {
+                "CustID": "1",
+                "LineItems":
+                    [
+                        {
+                            "ProductID": "2",
+                            "Quantity": "3"
+                        },
+                        {
+                            "ProductID": "4",
+                            "Quantity": "1"
+                        }
+                    ]
+            }
+
+            var ruleApplicationRequest =
+            {
+                "RuleApp": {
+                    "RepositoryServiceUri": "http://localhost/InRuleCatalogService/Service.svc",
+                    "UserName": "Admin",
+                    "Password": "password",
+                    "RepositoryRuleAppRevisionSpec": {
+                        "Guid": "",
+                        "Label": "",
+                        "Revision": "0",
+                        "RuleApplicationName": "InvoiceSample"
+                    }
+                },
+                "RuleEngineServiceOptions": {
+                    "Overrides": ""
+                },
+                "RuleEngineServiceOutputTypes": {
+                    "ActiveNotifications": "true",
+                    "ActiveValidations": "true",
+                    "EntityState": "true",
+                    "Overrides": "true",
+                    "RuleExecutionLog": "true"
+                },
+                "EntityName": "Invoice",
+                "EntityState": JSON.stringify(entityState)
+            };
+
+            $(function() {
+                $("input[type='submit']").button();
+				
+                $(".restData").change(function () {
+                    updateRequestData();
+                });
+				
+                updateRequestData();
+            });
+
+            function updateRequestData() {
+                ruleApplicationRequest.RuleApp.RepositoryServiceUri = $("#repositoryServiceUri").val();
+                ruleApplicationRequest.RuleApp.UserName = $("#userName").val();
+                ruleApplicationRequest.RuleApp.Password = $("#password").val();
+                ruleApplicationRequest.RuleApp.RepositoryRuleAppRevisionSpec.RuleApplicationName = $("#ruleApplicationName").val();
+				
+                var entityState = {
+                    "CustID": "1",
+                    "LineItems":
+                        [
+                            {
+                                "ProductID": "2",
+                                "Quantity": "3"
+                            },
+                            {
+                                "ProductID": "4",
+                                "Quantity": "1"
+                            }
+                        ]
+                }
+
+                ruleApplicationRequest.EntityState = JSON.stringify(entityState);
+				
+                $("#requestData").val(JSON.stringify(ruleApplicationRequest, null, 4));
+            }
+			
+            function submitRestRequest() {
+                //updateRequestData();
+				
+                var url = $("#restServiceUri").val();
+                var data = $("#requestData").val();
+				
+                // send the data using post
+                var jqxhr = $.ajax({
+                    type: "POST",
+                    url: url,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: data,
+                });	
+
+                jqxhr.done(function(data) {
+                    //alert("done")
+                    // put the results into the results div
+                    $("#result").val(JSON.stringify(data, null, 4));
+                });
+				
+                jqxhr.fail(function() {
+                    //alert("post failed");
+                });
+				
+                jqxhr.always(function() {
+                    //alert("always");
+                });
+            }
+
+
+        </script>
+    </head>
+
+    <body>
+        <div id="container">
+        <h1>InvoiceSample through jQuery JSON</h1>
+        <form id="restForm" action="">
+            <p>
+                <label for="restServiceUri">REST Service Uri</label>
+                <input type="text" name="restServiceUri" id="restServiceUri" class="restData" value="http://localhost/InRuleRuleEngineService/HttpService.svc/ApplyRules" />
+            </p>
+            <hr />
+            <p>
+                <label for="repositoryServiceUri">Repository Service Uri</label>
+                <input type="text" name="repositoryServiceUri" id="repositoryServiceUri" class="restData" value="http://localhost/InRuleCatalogService/Service.svc" />
+            </p>
+            <p>
+                <label for="userName">User Name</label>
+                <input type="text" name="userName" id="userName" class="restData" value="Admin" />
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" class="restData" value="password" />
+            </p>
+            <p>
+                <label for="ruleApplicationName">Rule Application Name</label>
+                <input type="text" name="ruleApplicationName" id="ruleApplicationName" class="restData" value="InvoiceSample" />
+            </p>
+            <hr />
+            <p>
+                <label for="requestData" style="vertical-align: top;">Request Data</label>
+                <textarea name="requestData" id="requestData" rows="20">
+						</textarea>
+            </p>
+					
+            <input type="submit" value="Submit" id="submit" name="submit" onClick="submitRestRequest(); return false;" />
+					
+            <hr />
+            <p>
+                <label for="result" style="vertical-align: top;">Result</label>
+                <textarea name="result" id="result" rows="20">
+						</textarea>
+            </p>
+        </form>
+			
+
+			
+    </body>
+		
+</html>

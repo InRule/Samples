@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Basket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Items>
+    <Item>
+      <Name>Pear</Name>
+      <Quantity>2</Quantity>
+    </Item>
+    <Item>
+      <Name>Orange</Name>
+      <Quantity>3</Quantity>
+    </Item>
+    <Item>
+      <Name>Grape</Name>
+      <Quantity>10</Quantity>
+    </Item>
+    <Item>
+      <Name>Apple</Name>
+      <Quantity>1</Quantity>
+    </Item>
+  </Items>
+</Basket>

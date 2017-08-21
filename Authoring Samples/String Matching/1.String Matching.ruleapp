@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="1"
+  PublicRevision="1"
+  Guid="08d01678-567e-4fa2-9e00-0f7d1120e5ac"
+  Id="-1"
+  Name="StringMatchingExamples"
+  RepositoryAssemblyFileVersion="4.5.25.14551"
+  LastValidateContentCode="835520323"
+  IsolatedTestDomain="false"
+  SchemaGuid="89728c4c-c463-497f-98da-c32d14c53086"
+  SchemaRevision="1"
+  SchemaPublicRevision="1"
+  LastValidateDateTimeUtc="2014-03-19T18:18:01.3848435Z">
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">75</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>5d5f525f-171f-4dcf-acf4-6476e0b5cdc4</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2014-01-30T14:33:54.7816263-06:00</CreatedDateTime>
+    <ModifiedDateTime>2014-03-19T13:18:01.3998439-05:00</ModifiedDateTime>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">true</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="ea66774b-3d32-4c2b-b5a4-c013e443b212"
+      Name="Entity1">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="1"
+          PublicRevision="1"
+          Guid="5d5f525f-171f-4dcf-acf4-6476e0b5cdc4"
+          Name="Examples">
+          <FireMode>Auto</FireMode>
+          <RunMode>SequentialRunOnce</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="FireNotificationActionDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="eb59a093-e350-4e5b-848a-4ce70edf503c"
+              Name="WildCardExamples">
+              <NotificationType>Informational</NotificationType>
+              <NotificationMessage>
+                <FormulaParseFormat>Token</FormulaParseFormat>
+                <FormulaText>=======WildCard Examples=======</FormulaText>
+              </NotificationMessage>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="179f62fd-f608-4db9-bdec-768717229268"
+              Name="IsWildCardMatchExamples">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="ActionSetDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="ActionSetDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0"
+                      Value="IsWildcardMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.0"
+                      Value="StringMatchingExamples.Entity1.TargetString.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.1"
+                      Value="IsWildcardMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.2"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0"
+                      Value="FireNotificationActionDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0"
+                      Value="IsWildcardMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0.0"
+                      Value="StringMatchingExamples.Entity1.TargetString.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0.1"
+                      Value="IsWildcardMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0.2"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.3.0"
+                      Value="FireNotificationActionDesigner" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SimpleRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="0f52b9a9-ec75-4d81-bce1-2ade622b73de"
+                Name="IsWildCardMatchExamples">
+                <Condition>
+                  <ReturnType>Boolean</ReturnType>
+                  <FormulaText>true</FormulaText>
+                </Condition>
+                <SubRules>
+                  <RuleElementDef
+                    xsi:type="SimpleRuleDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="56b89159-dfbb-4e06-8d0b-698ed06a2ec0"
+                    Name="Rule1">
+                    <Condition>
+                      <ReturnType>Boolean</ReturnType>
+                      <FormulaText>IsWildcardMatch(TargetString, "a*")</FormulaText>
+                    </Condition>
+                    <SubRules>
+                      <RuleElementDef
+                        xsi:type="FireNotificationActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="fb70257d-13a6-47fa-95e0-2edbfbb4949e"
+                        Name="FireNotification1">
+                        <NotificationType>Informational</NotificationType>
+                        <NotificationMessage>
+                          <FormulaParseFormat>Token</FormulaParseFormat>
+                          <FormulaText>The target string starts with a!</FormulaText>
+                        </NotificationMessage>
+                      </RuleElementDef>
+                    </SubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </RuleElementDef>
+                  <RuleElementDef
+                    xsi:type="SimpleRuleDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="a99a7a67-2ea7-4fc2-ab0e-3793b668cf11"
+                    Name="Rule2">
+                    <Condition>
+                      <ReturnType>Boolean</ReturnType>
+                      <FormulaText>IsWildcardMatch(TargetString, "a??d*")</FormulaText>
+                    </Condition>
+                    <SubRules>
+                      <RuleElementDef
+                        xsi:type="FireNotificationActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="4071c262-d34f-4313-8287-3208e1d4fe38"
+                        Name="Fire_Notification1">
+                        <NotificationType>Informational</NotificationType>
+                        <NotificationMessage>
+                          <FormulaParseFormat>Token</FormulaParseFormat>
+                          <FormulaText>there are two letters between a and d!</FormulaText>
+                        </NotificationMessage>
+                      </RuleElementDef>
+                    </SubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </RuleElementDef>
+                </SubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="FireNotificationActionDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="720680aa-b1f9-4279-8a16-c1baa9a546dd"
+              Name="RegExExamples">
+              <NotificationType>Informational</NotificationType>
+              <NotificationMessage>
+                <FormulaParseFormat>Token</FormulaParseFormat>
+                <FormulaText>=======RegEx Examples=======</FormulaText>
+              </NotificationMessage>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="013aa245-506d-4555-bedd-67f430a20db6"
+              Name="RegExMatchExamples">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="ActionSetDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="ActionSetDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0"
+                      Value="IsRegexMatchCaseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.0"
+                      Value="" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.1"
+                      Value="IsRegexMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.2"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.3"
+                      Value="CaseSensitive" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0"
+                      Value="FireNotificationActionDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0"
+                      Value="IsRegexMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0.0"
+                      Value="" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0.1"
+                      Value="IsRegexMatchDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.1.0.2"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1.3.0"
+                      Value="FireNotificationActionDesigner" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SimpleRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="a8a166e8-6b8c-4df7-bbe3-8455f555cbf4"
+                Name="RegExMatchExamples">
+                <Condition>
+                  <ReturnType>Boolean</ReturnType>
+                  <FormulaText>true</FormulaText>
+                </Condition>
+                <SubRules>
+                  <RuleElementDef
+                    xsi:type="SimpleRuleDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="8d2e73e9-7cc9-41b5-90b9-b6b92ac41a10"
+                    Name="Rule1">
+                    <Condition>
+                      <ReturnType>Boolean</ReturnType>
+                      <FormulaText>IsRegexMatch(TargetString, "[a-z]{26}", true)</FormulaText>
+                    </Condition>
+                    <SubRules>
+                      <RuleElementDef
+                        xsi:type="FireNotificationActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="dfdb0de5-75fe-4b46-bb7f-efad27df8c00"
+                        Name="Fire_Notification3">
+                        <NotificationType>Informational</NotificationType>
+                        <NotificationMessage>
+                          <FormulaParseFormat>Token</FormulaParseFormat>
+                          <FormulaText>The target string contains 26 lower case letters!</FormulaText>
+                        </NotificationMessage>
+                      </RuleElementDef>
+                    </SubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </RuleElementDef>
+                  <RuleElementDef
+                    xsi:type="SimpleRuleDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="b6b011c7-98ab-40b2-92ad-b7cc4eacf5fb"
+                    Name="Rule2">
+                    <Condition>
+                      <ReturnType>Boolean</ReturnType>
+                      <FormulaText>IsRegexMatch(EmailString, "(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})")</FormulaText>
+                    </Condition>
+                    <SubRules>
+                      <RuleElementDef
+                        xsi:type="FireNotificationActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="f6d31117-bbf0-4bed-b85f-3977bb6079ca"
+                        Name="Fire_Notification2">
+                        <NotificationType>Informational</NotificationType>
+                        <NotificationMessage>
+                          <FormulaParseFormat>Token</FormulaParseFormat>
+                          <FormulaText>email address is valid!</FormulaText>
+                        </NotificationMessage>
+                      </RuleElementDef>
+                    </SubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </RuleElementDef>
+                </SubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="102570b8-c781-40bb-bd66-df968b7721f9"
+          Name="TargetString"
+          DataType="String"
+          DisplayName="Target String">
+          <DefaultValue>"abcdefghijklmnopqrstuvwxyz"</DefaultValue>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="97642cff-34ad-44dd-a51a-76ef76ea39c1"
+          Name="EmailString"
+          DataType="String"
+          DisplayName="Email String">
+          <DefaultValue>"johnQ@test.nodomain.com"</DefaultValue>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="66ab5def-d269-40c0-8e55-4e748072733c"
+          Name="LengthExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Length Example">
+          <Calc
+            LastAuthoringView="Syntax">
+            <FormulaText>Length(TargetString)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="08bfe4b8-846e-45d8-be2f-77bfc275fbff"
+          Name="ChrExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Chr Example">
+          <Calc
+            LastAuthoringView="Syntax">
+            <FormulaText>"ASCII decimal code for " &amp; Chr(34) &amp; Chr(126) &amp; Chr(34) &amp;  " is 126."</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="f1752187-3de6-4210-9e57-44950d4b75b6"
+          Name="LeftMidRightExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Left Mid Right Example">
+          <Calc
+            LastAuthoringView="Syntax">
+            <FormulaText>(((("Left3:" &amp; Left(TargetString, 3)) &amp; " Middle3:") &amp; Mid(TargetString, 12, 3)) &amp; " Right3:") &amp; Right(TargetString, 3)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="84b150a5-75e6-4dca-bfa7-cdf9ae43ce78"
+          Name="ProperCaseExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Proper Case Example">
+          <Calc>
+            <FormulaText>ProperCase(EmailString)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="333dec93-a052-4338-a0f1-df844ba192cb"
+          Name="RegexReplaceExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Regex Replace Example">
+          <Calc>
+            <FormulaText>RegexReplace(EmailString, "\w+@", "")</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="84e6bfc9-c869-427b-877a-94b2cf2158a3"
+          Name="ReplaceExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Replace Example">
+          <Calc>
+            <FormulaText>Replace(Replace(EmailString, ".", " DOT "), "@", " AT ")</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="944d85ef-3f91-4b26-af87-bf17ec6165e5"
+          Name="FormatExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="Format Example">
+          <Calc>
+            <FormulaText>"Today is: " &amp; Format(Today(), "D") &amp; "!"</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="a1c41599-2fe5-4016-822c-3572ce3ecf48"
+          Name="InStrExample"
+          DataType="String"
+          IsCalculated="true"
+          DisplayName="In Str Example">
+          <Calc>
+            <FormulaText>"The '@' symbol in the email address is at position: " &amp; Instr(EmailString, "@")</FormulaText>
+          </Calc>
+        </FieldDef>
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+  </Entities>
+</RuleApplicationDef>

@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Mortgage Calculator - Rule Engine Feedback Sample</h1>
+                    <span>This sample builds on the Basic sample, but adds how to get the Rule Execution Log and process Notifications, Validations and Errors (try passing a string in for "Terms in Years").</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Loan Information</h2>
+                    <div class="form-group">
+                        <label for="loanAmount">Loan amount</label>
+                        <input type="text" class="form-control" id="loanAmount" placeholder="loan amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="apr">APR</label>
+                        <input type="text" class="form-control" id="apr" placeholder="apr">
+                    </div>
+                    <div class="form-group">
+                        <label for="termInYears">Term in years</label>
+                        <input type="text" class="form-control" id="termInYears" placeholder="term in years">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2>Payment Summary</h2>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-default" onclick="runRules(); return false;" style="margin-top: 20px">Calculate mortgage</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="montlyPayment">Montly payment</label>
+                        <input type="text" class="form-control" id="montlyPayment" placeholder="monthly payment" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="totalCost">Total loan cost</label>
+                        <input type="text" class="form-control" id="totalCost" placeholder="total loan cost" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Rule execution log</h2>
+                    <div>
+                        <textarea id="log" class="form-control" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Notifications</h2>
+                    <div>
+                        <textarea id="notifications" class="form-control" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Validations</h2>
+                    <div>
+                        <textarea id="validations" class="form-control" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Errors</h2>
+                    <div>
+                        <textarea id="errors" class="form-control" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="MortgageCalculator.min.js"></script>
+    <script language="javascript">
+        function runRules() {
+            // make JavaScript object to pass to InRule 
+            var mortgage = {};
+            mortgage.LoanInfo = {};
+            mortgage.LoanInfo.Principal = document.getElementById('loanAmount').value;
+            mortgage.LoanInfo.APR = document.getElementById('apr').value;
+            mortgage.LoanInfo.TermInYears = document.getElementById('termInYears').value;
+
+            // run rules, entity is not used here, but is available if needed
+            var session = inrule.createRuleSession();
+            var entity = session.createEntity('Mortgage', mortgage);
+            session.applyRules(function(log){
+               if(!log.hasErrors){
+                // write exec log, notifications and validations to form
+                document.getElementById('log').value = log.messages.join('\n');
+                document.getElementById('notifications').value = session.getActiveNotifications().map(function(x){return x.message}).join('\n');
+                document.getElementById('validations').value = session.getActiveValidations().map(function(x){return x.message}).join('\n');
+
+                // get data from updated JavaScript object and write back to form
+                document.getElementById('montlyPayment').value = mortgage.PaymentSummary.MonthlyPayment.toFixed(2);
+                document.getElementById('totalCost').value = mortgage.PaymentSummary.TotalCost.toFixed(2);
+               }
+               else{
+                   document.getElementById('errors').value = log.runtimeErrors.join('\n');
+               }
+            });
+        }
+    </script>
+
+</body>
+</html>

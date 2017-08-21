@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Mortgage Calculator - Advanced Sample</h1>
+                    <span><br/>This sample demonstrates one rule app calling another. The mortgage calculator has been modified to look up the APR based on the term. The lookup is performed using an Execute JavaScript Function action. The function uses JQuery to call to a service that is hosted in NodeJS. The service returns the APR by leveraging another JavaScript rule app.</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Loan Information</h2>
+                    <div class="form-group">
+                        <label for="loanAmount">Loan amount</label>
+                        <input type="text" class="form-control" id="loanAmount" placeholder="loan amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="termInYears">Term in years</label>
+                        <input type="text" class="form-control" id="termInYears" placeholder="term in years">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2>Payment Summary</h2>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-default" onclick="runRules(); return false;" style="margin-top: 20px">Calculate mortgage</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="montlyPayment">Looked up rate</label>
+                        <input type="text" class="form-control" id="rate" placeholder="rate" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="montlyPayment">Montly payment</label>
+                        <input type="text" class="form-control" id="montlyPayment" placeholder="monthly payment" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="totalCost">Total loan cost</label>
+                        <input type="text" class="form-control" id="totalCost" placeholder="total loan cost" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="functions.js"></script>
+    <script src="MortgageCalculator.min.js"></script>
+    <script src="jquery-2.1.4.min.js"></script>
+
+    <script language="javascript">
+        function runRules() {
+            // not passing in the apr as that is going to be looked up during execution
+            var mortgage = {};
+            mortgage.LoanInfo = {};
+            mortgage.LoanInfo.Principal = document.getElementById('loanAmount').value;
+            mortgage.LoanInfo.TermInYears = document.getElementById('termInYears').value;
+            
+            var session = inrule.createRuleSession();
+
+            session.createEntity('Mortgage', mortgage);
+
+            session.applyRules(function (log) {
+                document.getElementById('montlyPayment').value = mortgage.PaymentSummary.MonthlyPayment.toFixed(2);
+                document.getElementById('totalCost').value = mortgage.PaymentSummary.TotalCost.toFixed(2);
+                document.getElementById('rate').value = mortgage.LoanInfo.APR;
+            });
+        }
+    </script>
+</body>
+</html>

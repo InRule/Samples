@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Order xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IsPlaceforEating>true</IsPlaceforEating>
+  <ZIPCode>60661</ZIPCode>
+  <ZIPTax>0</ZIPTax>
+  <OrderItems>
+    <OrderItem>
+      <ItemType>PreparedHot</ItemType>
+      <ItemCost>7</ItemCost>
+    </OrderItem>
+    <OrderItem>
+      <ItemType>SyrupSoftDrink</ItemType>
+      <ItemCost>1.50</ItemCost>
+    </OrderItem>
+  </OrderItems>
+</Order>

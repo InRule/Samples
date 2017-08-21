@@ -1,0 +1,7 @@
+﻿@using InRule.RuleServices.Common.Connectivity
+<div align="right"><a href="http://localhost:50003/">[start page]</a>&nbsp;<a onclick="NavigateToServicesHelp();">[services help]</a></div>
+<div class="editor-field">
+    Service URL: @Html.TextBox("serviceUri", @RuleClient.GetRuleServiceUri())
+</div>
+
+

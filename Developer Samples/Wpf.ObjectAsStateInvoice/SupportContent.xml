@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<SupportContent>
+    <Samples>
+        <Link
+            Name="Object State Invoice"
+            Description = "Simple Object State ruleapp with invoice and line item objects, and includes examples of object instance methods being called from the ruleapp. The ruleapp may be opened from irAuthor and tested from there using irVerify, including loading the supplied xml state file. Alternatively, the included sdk project may be run."/>
+    </Samples>
+</SupportContent>

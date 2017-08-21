@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Apply Rules";
+}
+
+<fieldset>
+    <legend><img src="@Url.Content("~/Content/RaiseEvent32.png")" align="middle"/> Apply Rules (GET)</legend>
+    @using (Ajax.BeginForm("ApplyRules", "RuleExecution", new AjaxOptions { UpdateTargetId = "xmlresponse", HttpMethod = "POST", OnBegin = "DisableForm('ajaxForm')", OnComplete = "EnableForm('ajaxForm')" }, new { ID = "ajaxForm" }))
+    {
+        <div>
+            Inputs:<span style="float:right;"><a onclick="buildTestData(false);">[show sample request]</a></span>
+        </div>
+        <div class="editor-label">
+            @Html.Label("Rule App:")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("RuleApp")
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Entity Name:")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("Entity")
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Entity XML:")
+        </div>
+        <div class="editor-field">
+            @Html.TextArea("EntityXml")
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Return Entity Name:")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("ReturnEntity")
+        </div>
+
+        <div class="editor-label">
+            @Html.Label("Response Type:")
+        </div>
+        <div class="editor-field">
+            <div class="input" id="repsonseTypeContainer">
+                <input type="checkbox" class="checkbox" value="EntityXml" /><span class="checkbox">EntityXml</span>
+                <input type="checkbox" class="checkbox" value="NotificationsXml" /><span class="checkbox">NotificationsXml</span>
+                <input type="checkbox" class="checkbox" value="NotificationsText" /><span class="checkbox">NotificationsText</span>
+                <input type="checkbox" class="checkbox" value="ValidationsXml" /><span class="checkbox">ValidationsXml</span>
+                <input type="checkbox" class="checkbox" value="ValidationsText" /><span class="checkbox">ValidationsText</span>
+                <input type="checkbox" class="checkbox" value="ExecutionLogXml" /><span class="checkbox">ExecutionLogXml</span>
+                <input type="checkbox" class="checkbox" value="ExecutionLogText" /><span class="checkbox">ExecutionLogText</span>
+                <input type="checkbox" class="checkbox" value="PerformanceStatisticsReport" /><span class="checkbox">PerformanceStatisticsReport</span>
+                <input type="checkbox" class="checkbox" value="RuleExecutionReport" checked="checked"/><span class="checkbox">RuleExecutionReport</span>
+                <input type="checkbox" class="checkbox" value="RuleExecutionResponseXml" /><span class="checkbox">RuleExecutionResponseXml</span>
+            </div>
+            @Html.Hidden("ResponseType")
+        </div>
+        
+        <div>
+            <input type="submit" value="execute" onclick="ResponseType.value=GetResponseTypeString(repsonseTypeContainer);" />
+            @Html.Partial("_Working")
+        </div>
+    }
+
+    <div id="xmlresponse">
+        <div class="editor-label">Output:</div>
+        <div class="output">
+            <span id="outputExecuteRules">output will appear here.</span>
+        </div>
+    </div>
+
+
+</fieldset>

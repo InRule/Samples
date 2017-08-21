@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Rule Services ASP MVC Tester";
+}
+
+<fieldset>
+    <legend>
+        <img src="@Url.Content("~/Content/Test32.png")" align="middle" />&nbsp;&nbsp;@ViewBag.Message
+    </legend>
+    <br />
+    <div>
+        <img alt="Apply Rules" src="@Url.Content("~/Content/RaiseEvent32.png")" align="middle" /> @Html.ActionLink("Apply Rules (GET)", "ApplyRules", "RuleExecution")
+    </div>
+    <div>
+        <img alt="Execute Rule Set" src="@Url.Content("~/Content/RaiseEvent32.png")" align="middle" /> @Html.ActionLink("Execute Rule Set (GET)", "ExecuteRuleSet", "RuleExecution")
+    </div>
+    <div>
+        <img alt="Execute Rule Request" src="@Url.Content("~/Content/RaiseEvent32.png")" align="middle" /> @Html.ActionLink("Execute Rule Request (POST)", "ExecuteRuleRequest", "RuleExecution")
+    </div>
+</fieldset>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Mortgage Calculator - Basic Sample</h1>
+                    <span>This sample uses JavaScript to read the data from the form, write the values into a JavaScript object and then calls the rule engine with the object. The results are then written back to the form.</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Loan Information</h2>
+                    <div class="form-group">
+                        <label for="loanAmount">Loan amount</label>
+                        <input type="text" class="form-control" id="loanAmount" placeholder="loan amount">
+                    </div>
+                    <div class="form-group">
+                        <label for="apr">APR</label>
+                        <input type="text" class="form-control" id="apr" placeholder="apr">
+                    </div>
+                    <div class="form-group">
+                        <label for="termInYears">Term in years</label>
+                        <input type="text" class="form-control" id="termInYears" placeholder="term in years">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2>Payment Summary</h2>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-default" onclick="runRules(); return false;" style="margin-top: 20px">Calculate mortgage</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="montlyPayment">Montly payment</label>
+                        <input type="text" class="form-control" id="montlyPayment" placeholder="monthly payment" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="totalCost">Total loan cost</label>
+                        <input type="text" class="form-control" id="totalCost" placeholder="total loan cost" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="MortgageCalculator.min.js"></script>
+    <script language="javascript">
+        function runRules() {
+
+            var mortgage = {};
+            mortgage.LoanInfo = {};
+            mortgage.LoanInfo.Principal = document.getElementById('loanAmount').value;
+            mortgage.LoanInfo.APR = document.getElementById('apr').value;
+            mortgage.LoanInfo.TermInYears = document.getElementById('termInYears').value;
+
+            var session = inrule.createRuleSession();
+            var entity = session.createEntity('Mortgage', mortgage);
+            session.applyRules(function(log){
+                if(!log.hasErrors){
+                    document.getElementById('montlyPayment').value = mortgage.PaymentSummary.MonthlyPayment.toFixed(2);
+                    document.getElementById('totalCost').value = mortgage.PaymentSummary.TotalCost.toFixed(2);
+                }
+                else{
+                     console.log(log.runtimeErrors.join('\n'));
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

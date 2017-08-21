@@ -1,0 +1,98 @@
+﻿<Window x:Class="Wpf.ObjectAsStateInvoice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Object Invoice Sample" Height="396" Width="525" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="Foreground" Value="DarkBlue" />
+            <Setter Property="TextAlignment" Value="Right" />
+        </Style>
+
+        <Style x:Key="ReadOnlyTxt" TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="Foreground" Value="DarkBlue" />
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="Background" Value="AliceBlue" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="DarkBlue" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="Foreground" Value="DarkBlue" />
+            <Setter Property="Width" Value="80" />
+        </Style>
+
+        <Style x:Key="MainContainer" TargetType="Border">
+            <Setter Property="BorderBrush" Value="DarkBlue" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="AliceBlue" />
+        </Style>
+
+        <Style x:Key="BorderHeader" TargetType="Border">
+            <Setter Property="Background" Value="LightBlue" />
+            <Setter Property="CornerRadius" Value="5,5,0,0" />
+        </Style>
+
+    </Window.Resources>
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="140"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Customer ID:" />
+        <TextBox Name="CustomerIdTxt" Grid.Column="1" Text="{Binding Path=CustomerId, UpdateSourceTrigger=PropertyChanged}" TextChanged="InputTxt_TextChanged" />
+        <Label Content="Customer Name:" Grid.Row="1" />
+        <Label Content="(Rule Application Calc)" Grid.Row="1" Grid.Column="2" />
+        <TextBox Name="CustomerNameTxt" Grid.Row="1" Grid.Column="1" Text="{Binding Path=CustomerName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ReadOnlyTxt}"/>
+        <Label Content="Invoice ID:" Grid.Row="2" />
+        <TextBox Name="InvoiceIdTxt" Grid.Row="2" Grid.Column="1" Text="{Binding Path=InvoiceId}" />
+        <Label Content="Invoice Item(s) Total:" Grid.Row="3" />
+        <TextBox Name="InvoiceTotalTxt" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Total}" Style="{StaticResource ReadOnlyTxt}" />
+        <Label Content="(Rule Application Calc)" Grid.Row="3" Grid.Column="2" />
+        <Label Content="Value 1:" Grid.Row="4" />
+        <TextBox Name="Value1Txt" Grid.Row="4" Grid.Column="1" Text="{Binding Path=Value1, UpdateSourceTrigger=PropertyChanged}" TextChanged="InputTxt_TextChanged"/>
+        <Label Content="&lt;-- Change this" Grid.Row="4" Grid.Column="2" />
+        <Label Content="Value 2:" Grid.Row="5" />
+        <TextBox Name="Value2Txt" Grid.Row="5" Grid.Column="1" Text="{Binding Path=Value2, UpdateSourceTrigger=PropertyChanged}" TextChanged="InputTxt_TextChanged"/>
+        <Label Content="&lt;-- Change this" Grid.Row="5" Grid.Column="2" />
+        <Label Content="Value 3:" Grid.Row="6" />
+        <TextBox Name="Value3Txt" Grid.Row="6" Grid.Column="1" Style="{StaticResource ReadOnlyTxt}" Text="{Binding Path=Value3, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="&lt;-- Watch this" Grid.Row="6" Grid.Column="2" />
+        <Label Content="Value 4:" Grid.Row="7" />
+        <TextBox Name="Value4Txt" Grid.Row="7" Grid.Column="1" Style="{StaticResource ReadOnlyTxt}" Text="{Binding Path=Value4, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="&lt;-- Watch this" Grid.Row="7" Grid.Column="2" />
+        <Button Content="Launch Entity Tester" Grid.Row="8" Grid.Column="1" Width="130" HorizontalAlignment="Right" Click="Button_Click" />
+    </Grid>
+</Window>
+

@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.RuleServices.ASPMVCTestUI", "InRule.RuleServices.ASPMVCTestUI\InRule.RuleServices.ASPMVCTestUI.csproj", "{33065959-E1B3-4B3A-AAFB-9EA9551E1782}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CDA4FC2-F480-4548-9A64-D01AD85A00FE} = {4CDA4FC2-F480-4548-9A64-D01AD85A00FE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.RuleServices", "InRule.RuleServices\InRule.RuleServices.csproj", "{4CDA4FC2-F480-4548-9A64-D01AD85A00FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.RuleServices.Common", "InRule.RuleServices.Common\InRule.RuleServices.Common.csproj", "{84A47FF2-CF9E-4B60-9EFE-AF5894C6898E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.RuleServices.HtmlTestUI", "InRule.RuleServices.HtmlTestUI\InRule.RuleServices.HtmlTestUI.csproj", "{ECC63C9B-97CB-4E51-BB5A-73F675F136EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EA14644F-F07A-4D47-A18C-3DFC94CA8137}"
+	ProjectSection(SolutionItems) = preProject
+		InRuleRuleExecutionServices_README.pptx = InRuleRuleExecutionServices_README.pptx
+		InRule.RuleServices.SampleRuleApps\MortgageCalculator.ruleapp = InRule.RuleServices.SampleRuleApps\MortgageCalculator.ruleapp
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.inrule.com:8143/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = InRule.RuleServices.ASPMVCTestUI\\InRule.RuleServices.ASPMVCTestUI.csproj
+		SccProjectName1 = InRule.RuleServices.ASPMVCTestUI
+		SccLocalPath1 = InRule.RuleServices.ASPMVCTestUI
+		SccProjectUniqueName2 = InRule.RuleServices.Common\\InRule.RuleServices.Common.csproj
+		SccProjectName2 = InRule.RuleServices.Common
+		SccLocalPath2 = InRule.RuleServices.Common
+		SccProjectUniqueName3 = InRule.RuleServices.HtmlTestUI\\InRule.RuleServices.HtmlTestUI.csproj
+		SccProjectName3 = InRule.RuleServices.HtmlTestUI
+		SccLocalPath3 = InRule.RuleServices.HtmlTestUI
+		SccProjectUniqueName4 = InRule.RuleServices\\InRule.RuleServices.csproj
+		SccProjectName4 = InRule.RuleServices
+		SccLocalPath4 = InRule.RuleServices
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33065959-E1B3-4B3A-AAFB-9EA9551E1782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33065959-E1B3-4B3A-AAFB-9EA9551E1782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33065959-E1B3-4B3A-AAFB-9EA9551E1782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33065959-E1B3-4B3A-AAFB-9EA9551E1782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CDA4FC2-F480-4548-9A64-D01AD85A00FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CDA4FC2-F480-4548-9A64-D01AD85A00FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CDA4FC2-F480-4548-9A64-D01AD85A00FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CDA4FC2-F480-4548-9A64-D01AD85A00FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84A47FF2-CF9E-4B60-9EFE-AF5894C6898E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84A47FF2-CF9E-4B60-9EFE-AF5894C6898E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84A47FF2-CF9E-4B60-9EFE-AF5894C6898E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84A47FF2-CF9E-4B60-9EFE-AF5894C6898E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC63C9B-97CB-4E51-BB5A-73F675F136EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC63C9B-97CB-4E51-BB5A-73F675F136EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC63C9B-97CB-4E51-BB5A-73F675F136EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC63C9B-97CB-4E51-BB5A-73F675F136EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

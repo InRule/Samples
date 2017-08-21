@@ -1,0 +1,32 @@
+﻿@using InRule.RuleServices.Common.Connectivity
+@model InRule.RuleServices.Common.DataObjects.RuleExecutionResponse
+
+<div id="xmlresponse" class="editor-field">
+
+
+@if (!String.IsNullOrWhiteSpace(Model.Error))
+{
+    <div style="color:Red">ERROR:</div>
+    @Html.TextArea("ErrorOutput", Model.Error, 30, 60, new { style = "color:red", @readonly="readonly" })
+}
+else
+{
+    if (Model.ResponseType.Contains("RuleExecutionResponseXml") || Model.ResponseType.Contains("NotificationsXml") || Model.ResponseType.Contains("ValidationsXml") || Model.ResponseType.Contains("NotSpecified"))
+    {
+        @Html.Raw(RuleClient.GetXmlStringFromObject(Model)).ToHtmlString()  
+    }
+    else
+    {
+        if (!String.IsNullOrWhiteSpace(Model.EntityXml))
+        {
+            @Html.TextArea("EntityXmlOutput", @Model.EntityXml, 20, 60, null)
+        }
+
+        if (!String.IsNullOrWhiteSpace(Model.ResponseText))
+        {
+            @Html.Raw(Model.ResponseText)  
+        }
+    }
+
+}
+</div>

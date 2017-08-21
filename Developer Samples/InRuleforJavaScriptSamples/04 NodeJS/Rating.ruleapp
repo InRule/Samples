@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="1"
+  PublicRevision="1"
+  Guid="9e394bdb-a07f-45cb-ba03-f3e47ff78586"
+  Id="-1"
+  Name="NewRuleApplication"
+  RepositoryAssemblyFileVersion="4.6.999.0"
+  LastValidateContentCode="1807777911"
+  IsolatedTestDomain="false"
+  SchemaGuid="7206978c-40d6-4016-853a-c898a1ec204b"
+  SchemaRevision="1"
+  SchemaPublicRevision="1"
+  LastValidateDateTimeUtc="2015-10-08T20:54:42.9978456Z">
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">100</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>7ed92bbb-1cac-4c54-91a2-293432278339</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2015-10-08T15:31:03.2482033-05:00</CreatedDateTime>
+    <ModifiedDateTime>2015-10-08T15:54:43.0098556-05:00</ModifiedDateTime>
+    <TargetPlatform>JavaScript</TargetPlatform>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <RuntimeErrorHandlingPolicy xmlns="http://www.inrule.com/XmlSchema/Schema">ContinueWithNextRuleSet</RuntimeErrorHandlingPolicy>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="893879e6-e5cd-4420-beaa-8c7be8f8e658"
+      Name="RateMgr"
+      DisplayName="Rate Mgr">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="1"
+          PublicRevision="1"
+          Guid="7ed92bbb-1cac-4c54-91a2-293432278339"
+          Name="RatingRules">
+          <FireMode>Auto</FireMode>
+          <RunMode>SequentialRunOnce</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="DecisionTableDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="1023b350-829a-4eae-8340-c5e945148691"
+              Name="SetRate">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ColumnWidths</Name>
+                    <Guid>30321bef-a782-4c36-975e-25f034c9bf0d</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="Widths"
+                      Value="TermInYears=120,Rate=120" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <Conditions>
+                <ConditionDimensionDef>
+                  <DimensionID>fcea7b46-2710-4bbc-ab5e-4096cbd425b1</DimensionID>
+                  <Name>TermInYears</Name>
+                  <TargetExpression>TermInYears</TargetExpression>
+                  <TargetDataType>String</TargetDataType>
+                  <ConditionValues>
+                    <ConditionValueDef>
+                      <ValueID>8dbabfa7-a698-4ea3-b3e2-a75feac8ca80</ValueID>
+                      <Tokens>
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="Value"
+                          Value="30" />
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="DisplayValue"
+                          Value="30" />
+                      </Tokens>
+                      <ConditionType>EqualTo</ConditionType>
+                    </ConditionValueDef>
+                    <ConditionValueDef>
+                      <ValueID>114a6066-33f3-4d40-9297-f207dab4b3eb</ValueID>
+                      <Tokens>
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="Value"
+                          Value="20" />
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="DisplayValue"
+                          Value="20" />
+                      </Tokens>
+                      <ConditionType>EqualTo</ConditionType>
+                    </ConditionValueDef>
+                    <ConditionValueDef>
+                      <ValueID>10573d5b-73e1-44e1-a41c-649af19355a5</ValueID>
+                      <Tokens>
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="Value"
+                          Value="15" />
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="DisplayValue"
+                          Value="15" />
+                      </Tokens>
+                      <ConditionType>EqualTo</ConditionType>
+                    </ConditionValueDef>
+                  </ConditionValues>
+                  <UseFieldsValueList>false</UseFieldsValueList>
+                </ConditionDimensionDef>
+              </Conditions>
+              <Actions>
+                <ActionDimensionDef>
+                  <DisplayName>Rate</DisplayName>
+                  <DimensionID>57bc91ec-5bd9-41ee-83da-a0e3fb1bb051</DimensionID>
+                  <FieldName>Rate</FieldName>
+                  <ActionValues>
+                    <ActionValueDef>
+                      <ValueID>4ff3e113-f965-4898-bf77-ead540351648</ValueID>
+                      <Tokens>
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="DisplayValue"
+                          Value="4" />
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="Value"
+                          Value="4" />
+                      </Tokens>
+                      <IsFromMasterList>true</IsFromMasterList>
+                    </ActionValueDef>
+                    <ActionValueDef>
+                      <ValueID>35a6d3db-7c3c-4cfa-9915-9d7783b13600</ValueID>
+                      <Tokens>
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="DisplayValue"
+                          Value="4.5" />
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="Value"
+                          Value="4.5" />
+                      </Tokens>
+                      <IsFromMasterList>true</IsFromMasterList>
+                    </ActionValueDef>
+                    <ActionValueDef>
+                      <ValueID>8573062e-e15d-494b-8f89-fbe2fe622002</ValueID>
+                      <Tokens>
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="DisplayValue"
+                          Value="5" />
+                        <anyType
+                          xsi:type="XmlSerializableStringDictionaryItem"
+                          Key="Value"
+                          Value="5" />
+                      </Tokens>
+                      <IsFromMasterList>true</IsFromMasterList>
+                    </ActionValueDef>
+                  </ActionValues>
+                  <UseLanguageRules>false</UseLanguageRules>
+                  <UseFieldsValueList>false</UseFieldsValueList>
+                </ActionDimensionDef>
+              </Actions>
+              <Decisions>
+                <DecisionDef>
+                  <DecisionID>a5835f8d-c69a-46c6-b225-6c0b59141cca</DecisionID>
+                  <ConditionNodes>
+                    <ConditionNodeDef>
+                      <SourceDimensionID>fcea7b46-2710-4bbc-ab5e-4096cbd425b1</SourceDimensionID>
+                      <SourceValueID>8dbabfa7-a698-4ea3-b3e2-a75feac8ca80</SourceValueID>
+                    </ConditionNodeDef>
+                  </ConditionNodes>
+                  <ActionNodes>
+                    <ActionNodeDef>
+                      <SourceDimensionID>57bc91ec-5bd9-41ee-83da-a0e3fb1bb051</SourceDimensionID>
+                      <SourceValueID>8573062e-e15d-494b-8f89-fbe2fe622002</SourceValueID>
+                    </ActionNodeDef>
+                  </ActionNodes>
+                </DecisionDef>
+                <DecisionDef>
+                  <DecisionID>f0815ae9-ae4c-4340-841c-43f07e08e3d1</DecisionID>
+                  <ConditionNodes>
+                    <ConditionNodeDef>
+                      <SourceDimensionID>fcea7b46-2710-4bbc-ab5e-4096cbd425b1</SourceDimensionID>
+                      <SourceValueID>114a6066-33f3-4d40-9297-f207dab4b3eb</SourceValueID>
+                    </ConditionNodeDef>
+                  </ConditionNodes>
+                  <ActionNodes>
+                    <ActionNodeDef>
+                      <SourceDimensionID>57bc91ec-5bd9-41ee-83da-a0e3fb1bb051</SourceDimensionID>
+                      <SourceValueID>35a6d3db-7c3c-4cfa-9915-9d7783b13600</SourceValueID>
+                    </ActionNodeDef>
+                  </ActionNodes>
+                </DecisionDef>
+                <DecisionDef>
+                  <DecisionID>37dfc355-c535-4adf-ac9f-83d4ee65404e</DecisionID>
+                  <ConditionNodes>
+                    <ConditionNodeDef>
+                      <SourceDimensionID>fcea7b46-2710-4bbc-ab5e-4096cbd425b1</SourceDimensionID>
+                      <SourceValueID>10573d5b-73e1-44e1-a41c-649af19355a5</SourceValueID>
+                    </ConditionNodeDef>
+                  </ConditionNodes>
+                  <ActionNodes>
+                    <ActionNodeDef>
+                      <SourceDimensionID>57bc91ec-5bd9-41ee-83da-a0e3fb1bb051</SourceDimensionID>
+                      <SourceValueID>4ff3e113-f965-4898-bf77-ead540351648</SourceValueID>
+                    </ActionNodeDef>
+                  </ActionNodes>
+                </DecisionDef>
+              </Decisions>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="cafb39a2-b581-415d-a24c-0edbdda1ca99"
+          Name="TermInYears"
+          DataType="Integer"
+          DisplayName="Term In Years" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="98b23672-c972-4844-9c88-7f9124b083af"
+          Name="Rate"
+          DataType="Number" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+  </Entities>
+</RuleApplicationDef>

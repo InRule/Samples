@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FormHelpers.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        function NavigateToServicesHelp() {
+            var uri = document.getElementById('serviceUri').value;
+            window.open(uri + "/help");
+        }
+    </script>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div style="float:right;padding-top:30px">
+                <div>
+                    @Html.Partial("_ServiceInfoPartial")
+                </div>
+
+            </div>
+            <div id="title">
+                <h1>InRule Rule Services ASP MVC Tester</h1>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Apply Rules (GET)", "ApplyRules", "RuleExecution")</li>
+                    <li>@Html.ActionLink("Execute Rule Set (GET)", "ExecuteRuleSet", "RuleExecution")</li>
+                    <li>@Html.ActionLink("Execute Rule Request (POST)", "ExecuteRuleRequest", "RuleExecution")</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer></footer>
+    </div>
+</body>
+</html>

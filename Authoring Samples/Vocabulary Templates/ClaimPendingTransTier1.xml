@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Claim xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ClaimID>1</ClaimID>
+  <ClaimNumber>123</ClaimNumber>
+  <Status>O</Status>
+  <LossDate>2016-01-01</LossDate>
+  <ReportDate>2016-01-01</ReportDate>
+  <ClaimTier>1</ClaimTier>
+  <SummaryFormula>++-+</SummaryFormula>
+  <PendingTransactions>
+    <TransactionID>1</TransactionID>
+    <ClaimID>1</ClaimID>
+    <TransactionCategory>P150</TransactionCategory>
+    <TransactionDate>2015-12-30</TransactionDate>
+    <ProcessingStatus>P</ProcessingStatus>
+    <Amount>2093.76</Amount>
+  </PendingTransactions>
+  <PendingTransactions>
+    <TransactionID>2</TransactionID>
+    <ClaimID>1</ClaimID>
+    <TransactionCategory>P230</TransactionCategory>
+    <TransactionDate>2013-12-04</TransactionDate>
+    <ProcessingStatus>P</ProcessingStatus>
+    <Amount>3424</Amount>
+  </PendingTransactions>
+</Claim>

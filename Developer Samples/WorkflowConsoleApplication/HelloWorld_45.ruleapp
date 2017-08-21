@@ -1,0 +1,761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="1"
+  PublicRevision="1"
+  Guid="82e6a55a-eef5-4519-a14f-f1bd4e60bda4"
+  Id="-1"
+  Name="HelloWorld_45"
+  RepositoryAssemblyFileVersion="4.5.15.14137"
+  LastValidateContentCode="-1804752380"
+  IsolatedTestDomain="false"
+  SchemaGuid="529d195d-2631-4d78-a933-d750e0a1a35d"
+  SchemaRevision="1"
+  SchemaPublicRevision="1"
+  LastValidateDateTimeUtc="2013-10-07T16:00:30.9182174Z">
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">75</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>cc15c1a6-43a8-4ba7-8f95-48f535618708</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2013-03-13T14:03:56.7333444-04:00</CreatedDateTime>
+    <ModifiedDateTime>2013-10-07T12:00:30.951222-04:00</ModifiedDateTime>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">true</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="cc15c1a6-43a8-4ba7-8f95-48f535618708"
+      Name="Person">
+      <Attributes>
+        <anyType
+          xsi:type="CollectionItem">
+          <Key>
+            <Name>ReservedAttributeGroupKey</Name>
+            <Guid>9534dbde-b87f-46e3-ba5e-23827237b978</Guid>
+          </Key>
+          <Collection>
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="OriginatedFromExtSchema"
+              Value="True" />
+          </Collection>
+        </anyType>
+      </Attributes>
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="1"
+          PublicRevision="1"
+          Guid="74bee6cd-7df6-400a-801e-e824173431d5"
+          Name="RuleSet">
+          <FireMode>Auto</FireMode>
+          <RunMode>SequentialRunOnce</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="84d74925-c0cb-4474-94f6-831d13fb0512"
+              Name="SalutationRule">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="ActionSetDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="ActionSetDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="IfThenElseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0"
+                      Value="notDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.0"
+                      Value="HelloWorld_45.Person.FirstName.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.1"
+                      Value="IsNullOrEmptyDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.1.0"
+                      Value="HelloWorld_45.Person.FirstName.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1.0.1.1"
+                      Value="IsNullOrEmptyDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0"
+                      Value="SetValueStringAssignableString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.1"
+                      Value="HelloWorld_45.Person.Salutation.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.3"
+                      Value="ConcatStringAndString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.3.0"
+                      Value="ConcatStringAndString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.3.1.0"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.3.0.3.1.1"
+                      Value="HelloWorld_45.Person.FirstName.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.4"
+                      Value="IfThenElseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.5.0"
+                      Value="SetValueStringAssignableString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.5.0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.5.0.1"
+                      Value="HelloWorld_45.Person.Salutation.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.5.0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.5.0.3"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.1"
+                      Value="FireNotificationActionDesigner" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SimpleRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="1509ff03-4cfb-4708-94c0-bb62108c6369"
+                Name="SalutationRule">
+                <Condition>
+                  <ReturnType>Boolean</ReturnType>
+                  <FormulaText>true</FormulaText>
+                </Condition>
+                <SubRules>
+                  <RuleElementDef
+                    xsi:type="ExclusiveRuleDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="f391d54e-1506-40e8-a2d1-a40aab58ca44"
+                    Name="Rule1">
+                    <DefaultSubRulesRoot
+                      Guid="dcf55766-e6ae-4370-89a1-be73dd5c69b4"
+                      Name="Otherwise" />
+                    <Conditions>
+                      <SimpleRuleDef
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="ce1e615f-742c-4cf7-b945-2013cd374634"
+                        Name="If_Then1">
+                        <Condition>
+                          <ReturnType>Boolean</ReturnType>
+                          <FormulaText>Not(IsNullOrEmpty(FirstName))</FormulaText>
+                        </Condition>
+                        <SubRules>
+                          <RuleElementDef
+                            xsi:type="SetValueActionDef"
+                            Revision="1"
+                            PublicRevision="1"
+                            Guid="888fca32-1dbb-4294-8e6b-acc937a9c970"
+                            Name="SetValue1">
+                            <Element>
+                              <FormulaText>Salutation</FormulaText>
+                            </Element>
+                            <Value>
+                              <FormulaText>Concat("Hello, ", FirstName)</FormulaText>
+                            </Value>
+                          </RuleElementDef>
+                        </SubRules>
+                        <HasContextVersionSettings>false</HasContextVersionSettings>
+                      </SimpleRuleDef>
+                    </Conditions>
+                    <DefaultSubRules>
+                      <RuleElementDef
+                        xsi:type="SetValueActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="7d54af98-62fa-4fa4-b694-4d6c5e5d02a6"
+                        Name="Set_Value2">
+                        <Element>
+                          <FormulaText>Salutation</FormulaText>
+                        </Element>
+                        <Value>
+                          <FormulaText>"I'm sorry. Have we met?"</FormulaText>
+                        </Value>
+                      </RuleElementDef>
+                    </DefaultSubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </RuleElementDef>
+                  <RuleElementDef
+                    xsi:type="FireNotificationActionDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="d5ed59de-c787-4b91-8ad2-396aa9d20fb1"
+                    Name="RuleNotification">
+                    <NotificationType>Informational</NotificationType>
+                    <NotificationMessage>
+                      <FormulaParseFormat>Token</FormulaParseFormat>
+                      <FormulaText>Here is the resulting Salutation: &lt;%Salutation%&gt;</FormulaText>
+                    </NotificationMessage>
+                  </RuleElementDef>
+                </SubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="8a8a40db-781c-494f-a205-1254f6f7aacc"
+          Name="FirstName"
+          DataType="String"
+          DisplayName="First Name" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="e6ecd7f8-4891-4b2a-adea-c27be476e03c"
+          Name="Salutation"
+          DataType="String" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+  </Entities>
+  <EndPoints xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EndPointDef
+      xsi:type="AssemblyDef"
+      Revision="1"
+      PublicRevision="1"
+      Guid="06ddc78a-c14f-4cfd-b63e-091dbc58adc5"
+      Name="Model">
+      <Attributes>
+        <anyType
+          xsi:type="CollectionItem">
+          <Key>
+            <Name>ReservedAttributeGroupKey</Name>
+            <Guid>9534dbde-b87f-46e3-ba5e-23827237b978</Guid>
+          </Key>
+          <Collection>
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyShowAllClasses"
+              Value="True" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyShowSystemClasses"
+              Value="False" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyShowAllMethods"
+              Value="True" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyShowObjectBaseMethods"
+              Value="False" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyAutoSelectDependencies"
+              Value="True" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyDefaultIncludeFields"
+              Value="True" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyDefaultIncludeProperties"
+              Value="True" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyDefaultAvailableXmlIgnore"
+              Value="False" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyShowAllFieldsAndProperties"
+              Value="True" />
+            <anyType
+              xsi:type="XmlSerializableStringDictionaryItem"
+              Key="AssemblyAllowSetSerialization"
+              Value="True" />
+          </Collection>
+        </anyType>
+      </Attributes>
+      <DefaultImportDateTimeDataType>DateTime</DefaultImportDateTimeDataType>
+      <ClassInfos>
+        <ClassInfo>
+          <Name>Person</Name>
+          <AssemblyName>Model</AssemblyName>
+          <FullName>Model.Person</FullName>
+          <Methods />
+          <Properties>
+            <ClassPropertyInfo>
+              <Name>FirstName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Salutation</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <Restrictions />
+            </ClassPropertyInfo>
+          </Properties>
+          <Fields />
+          <IsFunctionLibrary>false</IsFunctionLibrary>
+          <IsEntity>true</IsEntity>
+          <IncludeMethods>false</IncludeMethods>
+        </ClassInfo>
+        <ClassInfo>
+          <Name>CultureInfo</Name>
+          <Include>false</Include>
+          <AssemblyName>mscorlib</AssemblyName>
+          <HasDefaultConstructor>false</HasDefaultConstructor>
+          <FullName>System.Globalization.CultureInfo</FullName>
+          <TypeConverterInfo>
+            <TypeConverterFullName>System.ComponentModel.CultureInfoConverter</TypeConverterFullName>
+            <TypeConverterAssemblyName>System</TypeConverterAssemblyName>
+            <SupportedFullTypeNames>
+              <string>System.String</string>
+            </SupportedFullTypeNames>
+          </TypeConverterInfo>
+          <UseIntrinsicType>true</UseIntrinsicType>
+          <Methods />
+          <Properties>
+            <ClassPropertyInfo>
+              <Name>Parent</Name>
+              <Alias>Parent_</Alias>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>CultureInfo</TypeName>
+              <FullTypeName>System.Globalization.CultureInfo</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>LCID</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>KeyboardLayoutId</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Name</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>IetfLanguageTag</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>DisplayName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>NativeName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>EnglishName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TwoLetterISOLanguageName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>ThreeLetterISOLanguageName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>ThreeLetterWindowsLanguageName</Name>
+              <TypeName>String</TypeName>
+              <FullTypeName>System.String</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>CompareInfo</Name>
+              <Include>false</Include>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>CompareInfo</TypeName>
+              <FullTypeName>System.Globalization.CompareInfo</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TextInfo</Name>
+              <Include>false</Include>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>TextInfo</TypeName>
+              <FullTypeName>System.Globalization.TextInfo</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>IsNeutralCulture</Name>
+              <TypeName>Boolean</TypeName>
+              <FullTypeName>System.Boolean</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>CultureTypes</Name>
+              <TypeName>CultureTypes</TypeName>
+              <FullTypeName>System.Globalization.CultureTypes</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <IsTypeEnum>true</IsTypeEnum>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>NeutralCultures</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>SpecificCultures</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>InstalledWin32Cultures</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>AllCultures</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>UserCustomCulture</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>ReplacementCultures</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>WindowsOnlyCultures</Value>
+                </RestrictionInfo>
+                <RestrictionInfo>
+                  <Name>XmlSchemaEnumerationFacet</Name>
+                  <Value>FrameworkCultures</Value>
+                </RestrictionInfo>
+              </Restrictions>
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>NumberFormat</Name>
+              <Include>false</Include>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>NumberFormatInfo</TypeName>
+              <FullTypeName>System.Globalization.NumberFormatInfo</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>DateTimeFormat</Name>
+              <Include>false</Include>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>DateTimeFormatInfo</TypeName>
+              <FullTypeName>System.Globalization.DateTimeFormatInfo</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Calendar</Name>
+              <Include>false</Include>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>Calendar</TypeName>
+              <FullTypeName>System.Globalization.Calendar</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>OptionalCalendars</Name>
+              <Include>false</Include>
+              <TypeIsIntrinsicType>false</TypeIsIntrinsicType>
+              <TypeName>Calendar[]</TypeName>
+              <FullTypeName>System.Globalization.Calendar[]</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <TypeIsArray>true</TypeIsArray>
+              <CollectionMemberTypeName>System.Globalization.Calendar</CollectionMemberTypeName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>UseUserOverride</Name>
+              <TypeName>Boolean</TypeName>
+              <FullTypeName>System.Boolean</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>IsReadOnly</Name>
+              <TypeName>Boolean</TypeName>
+              <FullTypeName>System.Boolean</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+          </Properties>
+          <Fields />
+          <IsFunctionLibrary>false</IsFunctionLibrary>
+          <IsEntity>false</IsEntity>
+          <IncludeMethods>false</IncludeMethods>
+        </ClassInfo>
+        <ClassInfo>
+          <Name>Guid</Name>
+          <Include>false</Include>
+          <AssemblyName>mscorlib</AssemblyName>
+          <HasDefaultConstructor>false</HasDefaultConstructor>
+          <IsStruct>true</IsStruct>
+          <FullName>System.Guid</FullName>
+          <TypeConverterInfo>
+            <TypeConverterFullName>System.ComponentModel.GuidConverter</TypeConverterFullName>
+            <TypeConverterAssemblyName>System</TypeConverterAssemblyName>
+            <SupportedFullTypeNames>
+              <string>System.String</string>
+            </SupportedFullTypeNames>
+          </TypeConverterInfo>
+          <UseIntrinsicType>true</UseIntrinsicType>
+          <Methods />
+          <Properties />
+          <Fields />
+          <IsFunctionLibrary>false</IsFunctionLibrary>
+          <IsEntity>false</IsEntity>
+          <IncludeMethods>false</IncludeMethods>
+        </ClassInfo>
+        <ClassInfo>
+          <Name>TimeSpan</Name>
+          <Include>false</Include>
+          <AssemblyName>mscorlib</AssemblyName>
+          <HasDefaultConstructor>false</HasDefaultConstructor>
+          <IsStruct>true</IsStruct>
+          <FullName>System.TimeSpan</FullName>
+          <TypeConverterInfo>
+            <TypeConverterFullName>System.ComponentModel.TimeSpanConverter</TypeConverterFullName>
+            <TypeConverterAssemblyName>System</TypeConverterAssemblyName>
+            <SupportedFullTypeNames>
+              <string>System.String</string>
+            </SupportedFullTypeNames>
+          </TypeConverterInfo>
+          <UseIntrinsicType>true</UseIntrinsicType>
+          <Methods />
+          <Properties>
+            <ClassPropertyInfo>
+              <Name>Ticks</Name>
+              <TypeName>Int64</TypeName>
+              <FullTypeName>System.Int64</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Days</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Hours</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Milliseconds</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Minutes</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>Seconds</Name>
+              <TypeName>Int32</TypeName>
+              <FullTypeName>System.Int32</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TotalDays</Name>
+              <TypeName>Double</TypeName>
+              <FullTypeName>System.Double</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TotalHours</Name>
+              <TypeName>Double</TypeName>
+              <FullTypeName>System.Double</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TotalMilliseconds</Name>
+              <TypeName>Double</TypeName>
+              <FullTypeName>System.Double</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TotalMinutes</Name>
+              <TypeName>Double</TypeName>
+              <FullTypeName>System.Double</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+            <ClassPropertyInfo>
+              <Name>TotalSeconds</Name>
+              <TypeName>Double</TypeName>
+              <FullTypeName>System.Double</FullTypeName>
+              <AssemblyName>mscorlib</AssemblyName>
+              <ReadOnly>true</ReadOnly>
+              <Restrictions />
+            </ClassPropertyInfo>
+          </Properties>
+          <Fields />
+          <IsFunctionLibrary>false</IsFunctionLibrary>
+          <IsEntity>false</IsEntity>
+          <IncludeMethods>false</IncludeMethods>
+        </ClassInfo>
+      </ClassInfos>
+      <AssemblyName>Model</AssemblyName>
+      <LastImportInfo>
+        <Namespaces />
+        <EntityDefInfos />
+        <LastImportHashCode>0</LastImportHashCode>
+        <LastImportDateTime>2013-10-07T15:58:58.4528418Z</LastImportDateTime>
+        <LastSyncDateTime>2013-10-07T15:58:58.4528418Z</LastSyncDateTime>
+        <LastSyncImportDateTime>2013-10-07T15:58:58.4528418Z</LastSyncImportDateTime>
+      </LastImportInfo>
+      <SchemaIsActivated>true</SchemaIsActivated>
+      <LastImportedFileName>C:\Users\Al Sterling\Documents\Visual Studio 2012\Projects\InRuleAndWorkflowSample\WorkflowConsoleApplication_45\Model\bin\Debug\Model.dll</LastImportedFileName>
+    </EndPointDef>
+  </EndPoints>
+</RuleApplicationDef>

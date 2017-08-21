@@ -1,0 +1,1253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="9"
+  PublicRevision="9"
+  Guid="81e62d7f-a0a3-4314-b8b5-3c67500c53cb"
+  Id="-1"
+  Name="ChicagoFoodTaxGenerator"
+  RepositoryAssemblyFileVersion="4.6.3.14788"
+  LastValidateContentCode="-1923165227"
+  IsolatedTestDomain="false"
+  SchemaGuid="d4540f38-ecf0-4d4d-9333-8d16d9dd547b"
+  SchemaRevision="3"
+  SchemaPublicRevision="3"
+  LastValidateDateTimeUtc="2014-07-17T15:48:20.1706299Z">
+  <Comments xmlns="http://www.inrule.com/XmlSchema/Schema">The Chicago Food Tax Generator rule application was created by InRule ROAD Team member Rob Eaman in July, 2014. Please email questions or comments about this sample to reaman@inrule.com.</Comments>
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">76</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>81e62d7f-a0a3-4314-b8b5-3c67500c53cb</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2014-05-20T16:20:44.339073-05:00</CreatedDateTime>
+    <ModifiedDateTime>2014-07-17T10:48:20.1940604-05:00</ModifiedDateTime>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">true</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="3"
+      PublicRevision="3"
+      Guid="1fb86d8f-1e13-43f1-bbfc-aeefa2f382ce"
+      Name="Order">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="8"
+          PublicRevision="8"
+          Guid="a2e85db0-0204-471e-9059-18cfb6d61b37"
+          Name="OrderSummaryRules">
+          <FireMode>Auto</FireMode>
+          <RunMode>Sequential</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="fb0f41dc-db84-48ed-b72a-ae66179141b1"
+              Name="ComputeZIPTax">
+              <Comments>Sets a 1% ZIPTax to Order Total if two conditions are true: a) the location has chairs (i.e. "Is a place for eating"), and b) the ZIP Code is within the MPEA geographic region. Both criteria must be true to engage the 1% MPEA tax.</Comments>
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="andMarkIIDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="Chicago_Food_Tax_Generator.Order.IsPlaceforEating.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="andMarkIIDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="CompareString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.0"
+                      Value="Chicago_Food_Tax_Generator.Order.ZIPCode.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.1"
+                      Value="Comparison_eq" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.0"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.1"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.2"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.3"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.4"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.5.0"
+                      Value="Chicago_Food_Tax_Generator.ZIPCodeTable_DataTable._SearchCriteria.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.5.0.0"
+                      Value="Chicago_Food_Tax_Generator.ZIPCodeTable_DataTable._SearchCriteria.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2.2.5.0.1"
+                      Value="Chicago_Food_Tax_Generator.Order.ZIPCode.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="SetValueNumberAssignableNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.1"
+                      Value="Chicago_Food_Tax_Generator.Order.ZIPTax.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.3"
+                      Value="PercentageDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.3.0"
+                      Value="IntegerDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.3.1"
+                      Value="PercentageDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.3.2"
+                      Value="Chicago_Food_Tax_Generator.Order.OrderTotal.Implicit" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SimpleRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="774b6770-c359-40ad-9aa0-d036eba3743d"
+                Name="ComputeZIPTax">
+                <Condition
+                  LastAuthoringView="BusinessLangauge">
+                  <ReturnType>Boolean</ReturnType>
+                  <FormulaText>IsPlaceforEating and MPEAZIPCheck()</FormulaText>
+                </Condition>
+                <SubRules>
+                  <RuleElementDef
+                    xsi:type="SetValueActionDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="51fa3a27-372a-4539-83f9-2b1927f007b2"
+                    Name="SetValue1">
+                    <Element>
+                      <FormulaText>ZIPTax</FormulaText>
+                    </Element>
+                    <Value>
+                      <FormulaText>Percent(OrderTotal, 1)</FormulaText>
+                    </Value>
+                  </RuleElementDef>
+                </SubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="aa2a8e7a-c882-49e9-b7b7-a475cb09d493"
+              Name="SetOrderTotal">
+              <Comments>Note: the rounding function is changing the underlying data (reducing to 2 decimal places).</Comments>
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="SetValueNumberAssignableNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="SetValueChicago_Food_Tax_Generator.OrderItem.ItemTypeValueListQuery" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="Chicago_Food_Tax_Generator.Order.OrderTotal.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="SetValueChicago_Food_Tax_Generator.OrderItem.ItemTypeValueListQuery" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3"
+                      Value="PlusDecimal" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="ColAggNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.0"
+                      Value="AggMethod_Sum" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.1"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.ItemTotal.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.2"
+                      Value="ColAggWhereNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.3"
+                      Value="Chicago_Food_Tax_Generator.Order.OrderItems.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.1"
+                      Value="PlusDecimal" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2"
+                      Value="roundtoNumPlaces" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2.0"
+                      Value="Chicago_Food_Tax_Generator.Order.ZIPTax.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2.1"
+                      Value="roundtoNumPlaces" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2.2"
+                      Value="roundtoNumPlaces" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2.3"
+                      Value="NumDecimalPlaces_2" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2.4"
+                      Value="roundtoNumPlaces" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SetValueActionDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="cec1e568-a1f3-4413-ad83-40e93e8e4c32"
+                Name="SetOrderTotal">
+                <Element>
+                  <FormulaText>OrderTotal</FormulaText>
+                </Element>
+                <Value>
+                  <FormulaText>Sum(OrderItems, ItemTotal) + Round(ZIPTax, 2)</FormulaText>
+                </Value>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="45774e24-cb21-4137-8910-c2adef47ab04"
+          Name="IsPlaceforEating"
+          DataType="Boolean"
+          DisplayName="Is a Place for Eating" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="30d56331-9471-4cda-95bd-efc8e602614f"
+          Name="ZIPCode"
+          DataType="String" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="2eae24cd-47cb-438d-8892-7baf6e4bb60a"
+          Name="ZIPTax"
+          DataType="Number">
+          <DefaultValue>0</DefaultValue>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="a1407780-819e-4963-ba0f-1e7342759412"
+          Name="OrderItems"
+          DataType="Entity"
+          IsCollection="true"
+          DataTypeEntityName="OrderItem"
+          DisplayName="Order Items" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="c6b9559d-e6e7-4caf-b507-15e58bc7b7d0"
+          Name="OrderTotal"
+          DataType="Number"
+          DisplayName="Order Total" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+      <Vocabulary
+        Revision="1"
+        PublicRevision="1"
+        Guid="ad1a7394-48fe-4684-8962-beb97e9fc25d"
+        Name="VocabularyDef1">
+        <Templates>
+          <TemplateDef
+            xsi:type="ExpressionTemplateDef"
+            Revision="1"
+            PublicRevision="1"
+            Guid="4abd0655-565d-4b3d-a7b4-a1262c62a552"
+            Name="IsInMPEAArea">
+            <DisplayName>Is In MPEA Area</DisplayName>
+            <MenuGroup>Boolean</MenuGroup>
+            <BusinessLanguagePrototype>is in the MPEA area</BusinessLanguagePrototype>
+            <Placeholders />
+            <TemplateScope>Local</TemplateScope>
+            <ExpressionPrototype>isnotnullorempty(TableLookup(ZIPCodeTable, "ZIPCode", "ZIPCode", ZIPCode, null))</ExpressionPrototype>
+            <FunctionName>MPEAZIPCheck</FunctionName>
+            <SelectionMode>Template</SelectionMode>
+            <Impersonates>
+              <ImpersonationDef
+                xsi:type="DataTypeImpersonationDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="774dee7d-5870-4049-a66c-aa57079c900a"
+                Name="DataTypeImpersonationDef1">
+                <DataType>Boolean</DataType>
+              </ImpersonationDef>
+            </Impersonates>
+          </TemplateDef>
+        </Templates>
+        <TemplateAvailabilitySettings />
+      </Vocabulary>
+    </EntityDef>
+    <EntityDef
+      Revision="2"
+      PublicRevision="2"
+      Guid="7164735b-bf35-4e4e-aac6-dea0c592ac9f"
+      Name="OrderItem"
+      DisplayName="Order Item">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="3"
+          PublicRevision="3"
+          Guid="320cb7bf-6ad8-43bc-b9a1-05fb125a3f1d"
+          Name="ItemSummaryRules">
+          <FireMode>Auto</FireMode>
+          <RunMode>Sequential</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="a1b06720-a910-49b7-9754-3486fd3f5a17"
+              Name="SetItemTax">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="SetValueNumberAssignableNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.TaxRate.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3"
+                      Value="TableLookupChicago_Food_Tax_Generator.ItemListTable_DataTable.ItemTax" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.1"
+                      Value="TableLookupChicago_Food_Tax_Generator.ItemListTable_DataTable.ItemTax" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.3"
+                      Value="TableLookupChicago_Food_Tax_Generator.ItemListTable_DataTable.FoodorBev" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.4"
+                      Value="TableLookupChicago_Food_Tax_Generator.ZIPCodeTable_DataTable.ZIPCode" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.5.0"
+                      Value="Chicago_Food_Tax_Generator.ItemListTable_DataTable._SearchCriteria.ItemName" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.5.0.0"
+                      Value="Chicago_Food_Tax_Generator.ItemListTable_DataTable._SearchCriteria.ItemName" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.5.0.1"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.ItemType.Implicit" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SetValueActionDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="8311e11e-41a0-4768-a3ea-5d3e35c3988f"
+                Name="SetItemTax">
+                <Element>
+                  <FormulaText>TaxRate</FormulaText>
+                </Element>
+                <Value>
+                  <FormulaText>TableLookup(ItemListTable, "ItemTax", "ItemName", ItemType)</FormulaText>
+                </Value>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="226c3cb2-d319-4b11-abce-ce1e1c912976"
+              Name="CalculateTaxAmountRule">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="IfThenElseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="CompareString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.ItemType.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="Comparison_eq" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="SetValueNumberAssignableNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.1"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.TaxAmount.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.3"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.TaxRate.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.4"
+                      Value="IfThenElseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0"
+                      Value="SetValueNumberAssignableNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.1"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.TaxAmount.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.3"
+                      Value="MultiplyDecimal" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.3.0"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.ItemCost.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.3.1"
+                      Value="MultiplyDecimal" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.3.2"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.TaxRate.Implicit" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="ExclusiveRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="426f1ab0-def9-4f49-9334-0a4dc41f0872"
+                Name="CalculateTaxAmountRule">
+                <DefaultSubRulesRoot
+                  Guid="54536bca-d541-492d-bcb6-9e4405bc10e2"
+                  Name="Otherwise" />
+                <Conditions>
+                  <SimpleRuleDef
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="294c6b97-530b-4106-b4f5-cd2c4ed5e521"
+                    Name="Rule1">
+                    <Condition>
+                      <ReturnType>Boolean</ReturnType>
+                      <FormulaText>ItemType = "WaterBottle"</FormulaText>
+                    </Condition>
+                    <SubRules>
+                      <RuleElementDef
+                        xsi:type="SetValueActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="6b1f1adc-f613-48ec-96d3-75dae9890ae9"
+                        Name="SetValue1">
+                        <Element>
+                          <FormulaText>TaxAmount</FormulaText>
+                        </Element>
+                        <Value>
+                          <FormulaText>TaxRate</FormulaText>
+                        </Value>
+                      </RuleElementDef>
+                    </SubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </SimpleRuleDef>
+                </Conditions>
+                <DefaultSubRules>
+                  <RuleElementDef
+                    xsi:type="SetValueActionDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="8e51c0f2-bb18-48ee-b078-e7df43a94c79"
+                    Name="Set_Value2">
+                    <Element>
+                      <FormulaText>TaxAmount</FormulaText>
+                    </Element>
+                    <Value>
+                      <FormulaText>ItemCost * TaxRate</FormulaText>
+                    </Value>
+                  </RuleElementDef>
+                </DefaultSubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="0638fe3f-60a1-4786-b4da-066553711ca4"
+              Name="CalculateItemTotal">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="SetValueNumberAssignableNumber" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.ItemTotal.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="SetValueBooleanAssignableBoolean" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3"
+                      Value="PlusDecimal" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.ItemCost.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.1"
+                      Value="PlusDecimal" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.2"
+                      Value="Chicago_Food_Tax_Generator.OrderItem.TaxAmount.Implicit" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SetValueActionDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="d8a226b2-4b4d-43b6-a44c-2e4890433958"
+                Name="CalculateItemTotal">
+                <Element>
+                  <FormulaText>ItemTotal</FormulaText>
+                </Element>
+                <Value>
+                  <FormulaText>ItemCost + TaxAmount</FormulaText>
+                </Value>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="e2b79737-db57-4f6c-bc68-0ec31e08f220"
+          Name="ItemType"
+          DataType="String"
+          DisplayName="Item Type">
+          <ValueList
+            Guid="66539a90-24cb-47e1-a223-43a27600040a">
+            <Parameters />
+            <SourceValueListName>OrderItem_ItemType_ValueList</SourceValueListName>
+          </ValueList>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="652b4b68-02ed-4ec0-bc60-aef2d6219f77"
+          Name="ItemCost"
+          DataType="Number"
+          DisplayName="Item Cost" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="fd2b1ced-b5a0-4aa1-b45e-b1bb353ad751"
+          Name="TaxAmount"
+          DataType="Number"
+          DisplayName="Tax Amount" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="fb12384b-0aa5-43d5-bc27-23a1d07795bc"
+          Name="TaxRate"
+          DataType="Number"
+          DisplayName="Tax Rate" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="0df6fa8e-07e0-4b2a-b822-3924ba4603c3"
+          Name="ItemTotal"
+          DataType="Number" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+      <CascadedReferences>
+        <CascadedReferenceDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="c1ac1a20-b3f7-42cf-ab2f-519315a6c076">
+          <ParentId>1fb86d8f-1e13-43f1-bbfc-aeefa2f382ce</ParentId>
+          <ChildId>7164735b-bf35-4e4e-aac6-dea0c592ac9f</ChildId>
+          <IsImplicit>true</IsImplicit>
+        </CascadedReferenceDef>
+      </CascadedReferences>
+    </EntityDef>
+  </Entities>
+  <DataElements xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <DataElementDef
+      xsi:type="TableDef"
+      Revision="3"
+      PublicRevision="3"
+      Guid="892ba509-4fd8-4f48-b8ad-5221fb3bd45c"
+      Name="ZIPCodeTable">
+      <TableSettings
+        SourceTableName="">
+        <InlineDataSet>
+          <xs:schema
+            id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+            <xs:element
+              name="NewDataSet"
+              msdata:IsDataSet="true"
+              msdata:Locale="en-US">
+              <xs:complexType>
+                <xs:choice
+                  minOccurs="0"
+                  maxOccurs="unbounded">
+                  <xs:element
+                    name="Table1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element
+                          name="ZIPCode"
+                          type="xs:string"
+                          minOccurs="0" />
+                        <xs:element
+                          name="Notes"
+                          type="xs:string"
+                          minOccurs="0" />
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+          </xs:schema>
+          <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+            <NewDataSet xmlns="">
+              <Table1
+                diffgr:id="Table11"
+                msdata:rowOrder="0">
+                <ZIPCode>60601</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table12"
+                msdata:rowOrder="1">
+                <ZIPCode>60602</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table13"
+                msdata:rowOrder="2">
+                <ZIPCode>60603</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table14"
+                msdata:rowOrder="3">
+                <ZIPCode>60604</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table15"
+                msdata:rowOrder="4">
+                <ZIPCode>60605</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table16"
+                msdata:rowOrder="5">
+                <ZIPCode>60606</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table17"
+                msdata:rowOrder="6">
+                <ZIPCode>60607</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table18"
+                msdata:rowOrder="7">
+                <ZIPCode>60608</ZIPCode>
+                <Notes>Not all addresses in this ZIP are within MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table19"
+                msdata:rowOrder="8">
+                <ZIPCode>60610</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table110"
+                msdata:rowOrder="9">
+                <ZIPCode>60611</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table111"
+                msdata:rowOrder="10">
+                <ZIPCode>60614</ZIPCode>
+                <Notes>Not all addresses in this ZIP are within MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table112"
+                msdata:rowOrder="11">
+                <ZIPCode>60616</ZIPCode>
+                <Notes>Not all addresses in this ZIP are within MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table113"
+                msdata:rowOrder="12">
+                <ZIPCode>60622</ZIPCode>
+                <Notes>Not all addresses in this ZIP are within MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table114"
+                msdata:rowOrder="13">
+                <ZIPCode>60638</ZIPCode>
+                <Notes>Not all addresses in this ZIP are within MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table115"
+                msdata:rowOrder="14">
+                <ZIPCode>60642</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table116"
+                msdata:rowOrder="15">
+                <ZIPCode>60654</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table117"
+                msdata:rowOrder="16">
+                <ZIPCode>60657</ZIPCode>
+                <Notes>Not all addresses in this ZIP are within MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table118"
+                msdata:rowOrder="17">
+                <ZIPCode>60661</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table119"
+                msdata:rowOrder="18">
+                <ZIPCode>60663</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table120"
+                msdata:rowOrder="19">
+                <ZIPCode>60664</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table121"
+                msdata:rowOrder="20">
+                <ZIPCode>60665</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table122"
+                msdata:rowOrder="21">
+                <ZIPCode>60666</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table123"
+                msdata:rowOrder="22">
+                <ZIPCode>60668</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table124"
+                msdata:rowOrder="23">
+                <ZIPCode>60669</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table125"
+                msdata:rowOrder="24">
+                <ZIPCode>60670</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table126"
+                msdata:rowOrder="25">
+                <ZIPCode>60671</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table127"
+                msdata:rowOrder="26">
+                <ZIPCode>60672</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table128"
+                msdata:rowOrder="27">
+                <ZIPCode>60673</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table129"
+                msdata:rowOrder="28">
+                <ZIPCode>60674</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table130"
+                msdata:rowOrder="29">
+                <ZIPCode>60675</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table131"
+                msdata:rowOrder="30">
+                <ZIPCode>60678</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table132"
+                msdata:rowOrder="31">
+                <ZIPCode>60679</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table133"
+                msdata:rowOrder="32">
+                <ZIPCode>60680</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table134"
+                msdata:rowOrder="33">
+                <ZIPCode>60681</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table135"
+                msdata:rowOrder="34">
+                <ZIPCode>60682</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table136"
+                msdata:rowOrder="35">
+                <ZIPCode>60683</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table137"
+                msdata:rowOrder="36">
+                <ZIPCode>60684</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table138"
+                msdata:rowOrder="37">
+                <ZIPCode>60685</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table139"
+                msdata:rowOrder="38">
+                <ZIPCode>60686</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table140"
+                msdata:rowOrder="39">
+                <ZIPCode>60687</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table141"
+                msdata:rowOrder="40">
+                <ZIPCode>60688</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table142"
+                msdata:rowOrder="41">
+                <ZIPCode>60689</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table143"
+                msdata:rowOrder="42">
+                <ZIPCode>60690</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table144"
+                msdata:rowOrder="43">
+                <ZIPCode>60691</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table145"
+                msdata:rowOrder="44">
+                <ZIPCode>60692</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table146"
+                msdata:rowOrder="45">
+                <ZIPCode>60693</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table147"
+                msdata:rowOrder="46">
+                <ZIPCode>60694</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table148"
+                msdata:rowOrder="47">
+                <ZIPCode>60695</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table149"
+                msdata:rowOrder="48">
+                <ZIPCode>60696</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table150"
+                msdata:rowOrder="49">
+                <ZIPCode>60697</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table151"
+                msdata:rowOrder="50">
+                <ZIPCode>60698</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+              <Table1
+                diffgr:id="Table152"
+                msdata:rowOrder="51">
+                <ZIPCode>60699</ZIPCode>
+                <Notes>All addresses within this ZIP are within the MPEA tax zone</Notes>
+              </Table1>
+            </NewDataSet>
+          </diffgr:diffgram>
+        </InlineDataSet>
+        <DatabaseEndPointName />
+        <Filter />
+        <TableSourceType>Inline</TableSourceType>
+      </TableSettings>
+    </DataElementDef>
+    <DataElementDef
+      xsi:type="TableDef"
+      Revision="2"
+      PublicRevision="2"
+      Guid="de38422d-b1c4-4017-9938-9c34a4aa71b2"
+      Name="ItemListTable">
+      <TableSettings
+        SourceTableName="">
+        <InlineDataSet>
+          <xs:schema
+            id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+            <xs:element
+              name="NewDataSet"
+              msdata:IsDataSet="true"
+              msdata:Locale="en-US">
+              <xs:complexType>
+                <xs:choice
+                  minOccurs="0"
+                  maxOccurs="unbounded">
+                  <xs:element
+                    name="Table1">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element
+                          name="FoodorBev"
+                          type="xs:string"
+                          minOccurs="0" />
+                        <xs:element
+                          name="ItemName"
+                          type="xs:string"
+                          minOccurs="0" />
+                        <xs:element
+                          name="ItemTax"
+                          type="xs:decimal"
+                          minOccurs="0" />
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+          </xs:schema>
+          <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+            <NewDataSet xmlns="">
+              <Table1
+                diffgr:id="Table11"
+                msdata:rowOrder="0">
+                <FoodorBev>Food</FoodorBev>
+                <ItemName>PreparedHot</ItemName>
+                <ItemTax>0.0925</ItemTax>
+              </Table1>
+              <Table1
+                diffgr:id="Table12"
+                msdata:rowOrder="1">
+                <FoodorBev>Food</FoodorBev>
+                <ItemName>PreparedCold</ItemName>
+                <ItemTax>0.0925</ItemTax>
+              </Table1>
+              <Table1
+                diffgr:id="Table13"
+                msdata:rowOrder="2">
+                <FoodorBev>Food</FoodorBev>
+                <ItemName>Groceries</ItemName>
+                <ItemTax>0.0225</ItemTax>
+              </Table1>
+              <Table1
+                diffgr:id="Table14"
+                msdata:rowOrder="3">
+                <FoodorBev>Beverage</FoodorBev>
+                <ItemName>SyrupSoftDrink</ItemName>
+                <ItemTax>0.09</ItemTax>
+              </Table1>
+              <Table1
+                diffgr:id="Table15"
+                msdata:rowOrder="4">
+                <FoodorBev>Beverage</FoodorBev>
+                <ItemName>BottleSoftDrink</ItemName>
+                <ItemTax>0.03</ItemTax>
+              </Table1>
+              <Table1
+                diffgr:id="Table16"
+                msdata:rowOrder="5">
+                <FoodorBev>Beverage</FoodorBev>
+                <ItemName>WaterBottle</ItemName>
+                <ItemTax>0.05</ItemTax>
+              </Table1>
+            </NewDataSet>
+          </diffgr:diffgram>
+        </InlineDataSet>
+        <DatabaseEndPointName />
+        <Filter />
+        <TableSourceType>Inline</TableSourceType>
+      </TableSettings>
+    </DataElementDef>
+    <DataElementDef
+      xsi:type="SqlValueListDef"
+      Revision="2"
+      PublicRevision="2"
+      Guid="b3512591-eea2-4df4-bd2c-29b64133c4ed"
+      Name="OrderItem_ItemType_ValueList">
+      <SortDirection>Ascending</SortDirection>
+      <SortMode>None</SortMode>
+      <SourceDataElementName>ItemListTable</SourceDataElementName>
+      <ValueColumnName>ItemName</ValueColumnName>
+      <DisplayNameColumnName>ItemName</DisplayNameColumnName>
+      <Parameters />
+    </DataElementDef>
+  </DataElements>
+  <EndPoints xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EndPointDef
+      xsi:type="DatabaseConnection"
+      Revision="1"
+      PublicRevision="1"
+      Guid="ff27a783-10ec-496a-bc95-1f88753516c1"
+      Name="DatabaseSchema1"
+      DbConnectionTypeName="System.Data.OleDb.OleDbConnection, System.Data">
+      <ConnectionString />
+      <IsSchemaDefining>true</IsSchemaDefining>
+      <SchemaIsActivated>true</SchemaIsActivated>
+    </EndPointDef>
+  </EndPoints>
+</RuleApplicationDef>

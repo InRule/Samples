@@ -1,0 +1,287 @@
+﻿body
+{
+    font-family : Segoe UI;
+}
+textarea
+{
+    width:100%;
+    height:150px;
+    border : 1px solid #ddd;
+}
+textarea.small
+{
+    width:100%;
+    height:50px;
+    border : 1px solid #ddd;
+}
+input.text
+{
+    border : 1px solid #ddd;
+    width : 300px;
+    font-family : Segoe UI;
+}
+
+div
+{
+    margin : 5px;
+}
+
+div.output
+{
+    border: 1px solid #ddd;
+    font-weight : normal;
+    font-family : Courier;
+    font-size : 10pt;
+    background : #eee;
+    padding : 5px;
+    word-wrap : break-word;
+}
+
+a
+{
+    color: #006699;
+}
+a:link {
+    color: #006699;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #006699;
+}
+
+a:hover {
+    color: #006699;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:active {
+    color: #006699;
+}
+
+p, ul {
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #006699;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+header, #header {
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+header h1, #header h1
+{
+    font-weight: bold;
+    padding: 5px 0px;
+    margin: 0;
+    color:  #006699;
+    border: none;
+    line-height: 2em;
+    font-size: 32px;
+}
+
+.page {
+    width: 95%;
+    margin-left:  auto;
+    margin-right: auto;
+}
+
+#main {
+    padding: 10px 0px 0px 0px;
+    background-color: #fff;
+}
+
+footer, 
+#footer {
+    background-color: #fff;
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0 0 30px 0;
+    font-size: .9em;
+}
+
+span
+{
+    margin : 5px 5px 5px 5px;
+    word-wrap : break-word; 
+}
+
+span.checkbox
+{
+    margin : 0px 0px 0px 5px;
+    font-size : 10pt; 
+    vertical-align : top;
+}
+
+fieldset
+{
+    border: 1px solid #ddd;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color:#006699;
+}
+
+input.button {
+    border: 1px solid #ccc;
+    background: #B0E0E6;
+    font-family : Segoe UI;
+    margin : 5px 0px 5px 0px;
+}
+
+input.checkbox
+{
+    }
+
+.nav ul
+{
+    display: block;
+    border-bottom: 1px #ddd solid;
+    padding: 0px 0px 2px;
+    position: relative;
+    margin: 0px;
+    text-decoration:none;
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+.nav li 
+{
+    display:inline;
+    background:#eee;
+    padding: 4px 20px;
+    font-weight: bold;
+    text-decoration:none;
+    border: 1px solid #ddd;
+} 
+
+.nav ul li a:hover {
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.nav ul li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+.nav ul li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+
+div.working
+{
+    display:inline;
+    margin: 10px;
+    font-size:12;
+}
+
+div.input
+{
+    
+}
+
+
+div.container
+{
+    display: table;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    width: 100%;
+}
+
+div.row
+{
+    display: table-row;
+}
+
+div.headercol
+{
+    display: table-cell;
+    text-align: center;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    background: #eee;
+}
+
+
+div.col
+{
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+div.firstcol
+{
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    text-align:center;
+	width:25px;
+}
+
+
+input.gridcell
+{
+    border : 0px;
+    font-family : Segoe UI;
+    width:98%;
+    margin:3px;
+}
+
+
+
+
+
+

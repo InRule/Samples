@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EACBC89B-8FAD-46EB-A63B-67D4C7CB23B8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SalesForceUtility</RootNamespace>
+    <AssemblyName>SalesForceUtility</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="InRule.Common, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\irSDK\bin\InRule.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Repository, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\irSDK\bin\InRule.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Repository.XmlSerializers, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\irSDK\bin\InRule.Repository.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Runtime, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\irSDK\bin\InRule.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SFEnterpriseWSDL\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.convertLeadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.createResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DebuggingInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.deleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DeleteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeAllTabsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeAppMenuItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeAppMenuResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeApprovalLayout.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeApprovalLayoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeAvailableQuickActionResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeAvailableQuickActionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeCompactLayout.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeCompactLayoutsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeCompactLayoutsResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeDataCategoryGroupResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeDataCategoryGroupsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeDataCategoryGroupStructureResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeDataCategoryGroupStructuresResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeFlexiPageResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeFlexiPagesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeGlobalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeGlobalResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeGlobalTheme.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeGlobalThemeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeKnowledgeSettingsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeLayoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeLayoutResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describePrimaryCompactLayoutsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeQuickActionResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeQuickActionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeSearchLayoutResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeSearchLayoutsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeSearchScopeOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeSearchScopeOrderResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeSObjectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeSObjectResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeSObjectsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeSoftphoneLayoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeSoftphoneLayoutResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeSoqlListView.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeSoqlListViewsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeTab.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeTabSetResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeTabsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.DescribeThemeItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.describeThemeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.emptyRecycleBinResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.EmptyRecycleBinResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.executeListViewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.ExecuteListViewResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.getDeletedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.GetDeletedResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.getServerTimestampResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.GetServerTimestampResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.getUpdatedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.GetUpdatedResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.getUserInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.GetUserInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.invalidateSessionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.InvalidateSessionsResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.KnowledgeSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.LeadConvertResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.LimitInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.mergeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.MergeResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.PerformQuickActionResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.performQuickActionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.processResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.ProcessResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.queryAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.queryMoreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.queryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.QueryResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.QuickActionTemplateResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.resetPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.ResetPasswordResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.retrieveQuickActionTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.retrieveResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.SaveResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.searchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.SearchResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.sendEmailMessageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.sendEmailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.SendEmailResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.setPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.SetPasswordResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.sObject.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.undeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.UndeleteResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.updateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.upsertResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SalesForceUtility.SFEnterpriseWSDL.UpsertResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SFEnterpriseWSDL\SF.wsdl" />
+    <None Include="SF.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SFEnterpriseWSDL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFEnterpriseWSDL\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFEnterpriseWSDL\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SFEnterpriseWSDL\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

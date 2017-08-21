@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="1"
+  PublicRevision="1"
+  Guid="4faf1d64-b8e8-447d-96fd-753e38227f1c"
+  Id="-1"
+  Name="WhileLoop"
+  RepositoryAssemblyFileVersion="5.0.22.94"
+  LastValidateContentCode="1001165546"
+  IsolatedTestDomain="false"
+  SchemaGuid="001dff81-3d5b-44a0-87f6-8569cf393395"
+  SchemaRevision="1"
+  SchemaPublicRevision="1"
+  LastValidateDateTimeUtc="2017-07-31T18:20:55.7621159Z">
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">104</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>4faf1d64-b8e8-447d-96fd-753e38227f1c</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2014-01-24T16:32:47.7865229-06:00</CreatedDateTime>
+    <ModifiedDateTime>2017-07-31T13:20:55.7751243-05:00</ModifiedDateTime>
+    <TargetPlatform>InRule</TargetPlatform>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">true</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <RuntimeErrorHandlingPolicy xmlns="http://www.inrule.com/XmlSchema/Schema">ContinueWithNextRuleSet</RuntimeErrorHandlingPolicy>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="d8b7b428-d450-4184-9070-bde19be37a61"
+      Name="Basket">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="1"
+          PublicRevision="1"
+          Guid="4788c52c-307d-4feb-bcae-e8e40b5dca7b"
+          Name="ProcessItems">
+          <FireMode>Auto</FireMode>
+          <RunMode>SequentialRunOnce</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="DeclareVariableActionDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="b81e49de-de5c-4c35-904b-586dd9066a6c"
+              Name="loopIndex"
+              DataType="Integer" />
+            <RuleElementDef
+              xsi:type="SetValueActionDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="8d790d87-5b45-455b-a98d-72f7b5f0778f"
+              Name="SetValue1">
+              <Element>
+                <FormulaText>loopIndex</FormulaText>
+              </Element>
+              <Value>
+                <FormulaText>Count(Items)</FormulaText>
+              </Value>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="WhileRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="c25bde89-06b5-41a0-ba5b-51b78a355bfd"
+              Name="While1">
+              <Condition>
+                <ReturnType>Boolean</ReturnType>
+                <FormulaText>loopIndex &gt; 0</FormulaText>
+              </Condition>
+              <SubRules>
+                <RuleElementDef
+                  xsi:type="SimpleRuleDef"
+                  Revision="1"
+                  PublicRevision="1"
+                  Guid="b0f4fac9-3e31-422c-b9e2-ae7082f19faf"
+                  Name="IfThen1">
+                  <Condition>
+                    <ReturnType>Boolean</ReturnType>
+                    <FormulaText>Items(loopIndex).Name = "Apple"</FormulaText>
+                  </Condition>
+                  <SubRules>
+                    <RuleElementDef
+                      xsi:type="FireNotificationActionDef"
+                      Revision="1"
+                      PublicRevision="1"
+                      Guid="aaf49947-b8c9-4aae-b57c-cbb3a6165b06"
+                      Name="FireNotification1">
+                      <NotificationType>Informational</NotificationType>
+                      <NotificationMessage>
+                        <FormulaParseFormat>Token</FormulaParseFormat>
+                        <FormulaText>Found &lt;%Items(loopIndex).Quantity%&gt; Apple(s)!</FormulaText>
+                      </NotificationMessage>
+                    </RuleElementDef>
+                  </SubRules>
+                  <HasContextVersionSettings>false</HasContextVersionSettings>
+                </RuleElementDef>
+                <RuleElementDef
+                  xsi:type="SetValueActionDef"
+                  Revision="1"
+                  PublicRevision="1"
+                  Guid="06f0c7e1-bd3b-404b-9459-79567ea1c2c2"
+                  Name="SetValue2">
+                  <Element>
+                    <FormulaText>loopIndex</FormulaText>
+                  </Element>
+                  <Value>
+                    <FormulaText>loopIndex - 1</FormulaText>
+                  </Value>
+                </RuleElementDef>
+              </SubRules>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="734cf107-12dd-4440-a742-054d5a513a0c"
+          Name="Field1"
+          DataType="String" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="078ec40e-b260-4fb9-9744-ec8eb232431a"
+          Name="Items"
+          DataType="Entity"
+          IsCollection="true"
+          DataTypeEntityName="Item" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="5a31e636-15da-4113-a4d5-4c77ad1c9027"
+      Name="Item">
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="bf0f27ab-66dc-4588-aaac-2499b692d4f6"
+          Name="Name"
+          DataType="String" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="e8136e62-2ed8-4f4f-98bf-de765a33c7ff"
+          Name="Quantity"
+          DataType="Integer" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+  </Entities>
+</RuleApplicationDef>

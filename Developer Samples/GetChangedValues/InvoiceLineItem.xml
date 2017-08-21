@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Invoice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Customer>
+    <FirstName>Joe</FirstName>
+    <LastName>InRule</LastName>
+  </Customer>
+  <LineItems>
+    <Quantity>1</Quantity>
+    <Price>2</Price>
+  </LineItems>
+  <LineItems>
+    <Quantity>3</Quantity>
+    <Price>4</Price>
+  </LineItems>
+</Invoice>

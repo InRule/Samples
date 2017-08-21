@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Invoice xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <LineItems>
+    <LineItem>
+      <ProductID>1</ProductID>
+      <Quantity>2</Quantity>
+      <ProductName>Garbage Bags</ProductName>
+      <UnitPrice>2.6</UnitPrice>
+      <LineItemTotal>5.2</LineItemTotal>
+    </LineItem>
+    <LineItem>
+      <ProductID>2</ProductID>
+      <Quantity>3</Quantity>
+      <ProductName>Golden Grahms</ProductName>
+      <UnitPrice>4.5</UnitPrice>
+      <LineItemTotal>13.5</LineItemTotal>
+    </LineItem>
+  </LineItems>
+  <CustomerName>Alfred Futterkiste</CustomerName>
+  <CustomerId>1</CustomerId>
+  <InvoiceId>1000</InvoiceId>
+  <Value1>3</Value1>
+  <Value2>4</Value2>
+  <Value3>7</Value3>
+  <Value4>12</Value4>
+</Invoice>

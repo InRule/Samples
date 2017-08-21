@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="InRule.RuleServices.RuleExecutionService" CodeBehind="RuleExecutionService.svc.cs"%>

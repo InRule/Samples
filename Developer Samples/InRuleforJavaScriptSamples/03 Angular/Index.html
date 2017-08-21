@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+<body ng-app="mortgage" ng-controller="mortgageController">
+    <div class="container">
+        <form id="frm">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Mortgage Calculator - Angular Sample</h1>
+                    <span>This sample builds off of the Basic sample, however, all of the data uses Angular data binding and is automatically mapped to the object for us. The results do not need to be mapped either as Angular operates on the same underlying object as the rule engine and will automatically update the page after the engine updates the values.</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Loan Information</h2>
+                    <div class="form-group">
+                        <label for="principal">Loan amount</label>
+                        <input type="text" class="form-control" id="principal" placeholder="principal" ng-model="mortgage.LoanInfo.Principal" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="apr">APR</label>
+                        <input type="text" class="form-control" id="apr" placeholder="apr" ng-model="mortgage.LoanInfo.APR" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="termInYears">Term in years</label>
+                        <input type="text" class="form-control" id="termInYears" placeholder="term in years" ng-model="mortgage.LoanInfo.TermInYears" required />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2>Payment Summary</h2>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-default" ng-click="applyRules();" style="margin-top: 20px">Calculate mortgage</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="montlyPayment">Montly payment</label>
+                        <input type="text" class="form-control" id="montlyPayment" placeholder="monthly payment" readonly="readonly" ng-model="mortgage.PaymentSummary.MonthlyPayment">
+                    </div>
+                    <div class="form-group">
+                        <label for="totalCost">Total loan cost</label>
+                        <input type="text" class="form-control" id="totalCost" placeholder="total loan cost" readonly="readonly" ng-model="mortgage.PaymentSummary.TotalCost">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Payment Schedule</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-8">
+                            
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-default" ng-click="calculatePaymentSchedule();" style="margin-top: 20px">Calculate schedule</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:20px" ng-show="mortgage.Payments">
+                <div class="col-md-3">
+                    <label>Payment number</label>
+                </div>
+                <div class="col-md-3">
+                    <label>Due</label>
+                </div>
+                <div class="col-md-3">
+                    <label>Amount</label>
+                </div>
+                <div class="col-md-3">
+                    <label>Remaining balance</label>
+                </div>
+            </div>
+            <div ng-repeat="payment in mortgage.Payments">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>{{ payment.PaymentNumber }}</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>{{ payment.PaymentDate | date:'MM/dd/yyyy' }}</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>{{ payment.Amount | currency }}</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>{{ payment.RemainingBalance | currency }}</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="MortgageCalculator.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="Controller.js"></script>
+</body>
+</html>

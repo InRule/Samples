@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+    <!--
+        To run this sample create a virtual directory in IIS pointing at this directory.
+    -->
+    <head>
+        <meta charset="utf-8">
+        <title>InvoiceSample through jQuery XML</title>
+        <link href="css/redmond/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet" />
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+		
+        <script>
+            var ruleApplicationRequest = 
+            [
+                "<ApplyRulesRequest xmlns=\"http://www.inrule.com/XmlSchema/Schema\">",
+                " <RuleApp>",
+                "  <Password>password</Password>",
+                "  <RepositoryRuleAppRevisionSpec>",
+                "   <Guid></Guid>",
+                "   <Id>0</Id>",
+                "   <Label></Label>",
+                "   <Revision>0</Revision>",
+                "   <RuleApplicationName>InvoiceSample</RuleApplicationName>",
+                "  </RepositoryRuleAppRevisionSpec>",
+                "  <RepositoryServiceUri>http://localhost/InRuleCatalogService/Service.svc</RepositoryServiceUri>",
+                "  <UserName>Admin</UserName>",
+                " </RuleApp>",
+                " <RuleEngineServiceOptions>",
+                "  <Overrides></Overrides>",
+                " </RuleEngineServiceOptions>",
+                " <RuleEngineServiceOutputTypes>",
+                "  <ActiveNotifications>true</ActiveNotifications>",
+                "  <ActiveValidations>true</ActiveValidations>",
+                "  <EntityState>true</EntityState>",
+                "  <Overrides>true</Overrides>",
+                "  <RuleExecutionLog>true</RuleExecutionLog>",
+                " </RuleEngineServiceOutputTypes>",
+                " <EntityState>&lt;Invoice&gt;&lt;CustID&gt;1&lt;/CustID&gt;&lt;LineItems&gt;&lt;ProductID&gt;1&lt;/ProductID&gt;&lt;Quantity&gt;1&lt;/Quantity&gt;&lt;/LineItems&gt;&lt;/Invoice&gt;</EntityState>",
+                " <EntityName>Invoice</EntityName>",
+                "</ApplyRulesRequest>",
+            ].join("");
+
+            $(function() {
+                $("input[type='submit']").button();
+				
+                $(".restData").change(function () {
+                    updateRequestData();
+                });
+				
+                updateRequestData();
+            });
+
+            function updateRequestData() {				
+                $("#requestData").val(ruleApplicationRequest);
+            }
+			
+            function submitRestRequest() {
+                //updateRequestData();
+				
+                var url = $("#restServiceUri").val();
+                var data = $("#requestData").val();
+				
+                // send the data using post
+                var jqxhr = $.ajax({
+                    type: "POST",
+                    url: url,
+                    dataType: "xml",
+                    contentType: "application/xml; charset=utf-8",
+                    data: data,
+                });	
+
+                jqxhr.done(function(data) {
+                    //alert("done")
+                    // put the results into the results div
+                    var xmlString = (new XMLSerializer()).serializeToString(data);
+                    $("#result").val(xmlString);
+                });
+				
+                jqxhr.fail(function() {
+                    //alert("post failed");
+                });
+				
+                jqxhr.always(function() {
+                    //alert("always");
+                });
+            }
+				
+
+        </script>
+    </head>
+
+    <body>
+        <div id="container">
+        <h1>InvoiceSample through jQuery XML</h1>
+        <form id="restForm" action="">
+            <p>
+                <label for="restServiceUri">REST Service Uri</label>
+                <input type="text" name="restServiceUri" id="restServiceUri" class="restData" value="http://localhost/InRuleRuleEngineService/HttpService.svc/ApplyRules" />
+            </p>
+            <hr />
+            <p>
+                <label for="repositoryServiceUri">Repository Service Uri</label>
+                <input type="text" name="repositoryServiceUri" id="repositoryServiceUri" class="restData" value="http://localhost/InRuleCatalogService/Service.svc" />
+            </p>
+            <p>
+                <label for="userName">User Name</label>
+                <input type="text" name="userName" id="userName" class="restData" value="Admin" />
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" class="restData" value="password" />
+            </p>
+            <p>
+                <label for="ruleApplicationName">Rule Application Name</label>
+                <input type="text" name="ruleApplicationName" id="ruleApplicationName" class="restData" value="InvoiceSample" />
+            </p>
+            <hr />
+            <p>
+                <label for="requestData" style="vertical-align: top;">Request Data</label>
+                <textarea name="requestData" id="requestData" rows="20">
+						</textarea>
+            </p>
+					
+            <input type="submit" value="Submit" id="submit" name="submit" onClick="submitRestRequest(); return false;" />
+					
+            <hr />
+            <p>
+                <label for="result" style="vertical-align: top;">Result</label>
+                <textarea name="result" id="result" rows="20">
+						</textarea>
+            </p>
+        </form>
+			
+
+			
+    </body>
+		
+</html>

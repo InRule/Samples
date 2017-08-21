@@ -1,0 +1,17 @@
+﻿@model String
+
+<div id="xmlresponse" class="editor-field">
+    <div class="editor-label">Output:</div>
+    <div class="output">
+        <span id="outputExecuteRules">
+        @if (Model.ToLower().Contains("<div"))
+        {
+            @Html.Raw(Model)
+        }
+        else
+        {
+            @Html.Raw(Model).ToHtmlString()
+        }
+        </span>
+    </div>
+</div>

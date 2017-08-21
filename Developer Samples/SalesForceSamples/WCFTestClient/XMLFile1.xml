@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DecisionResponse>
+  <EntityInstance>
+    <Case>
+      <Contact>
+        <MailingState>PA</MailingState>
+      </Contact>
+      <cberg__Loan_Type__c />
+      <cberg__Loan_Stage__c>Initial</cberg__Loan_Stage__c>
+      <cberg__Loan_Channel__c>Mobile</cberg__Loan_Channel__c>
+    </Case>
+  </EntityInstance>
+</DecisionResponse>

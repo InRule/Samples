@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RuleExecutionRequest xmlns="http://inrule.com/RuleServices">
+  <RuleApp>MortgageCalculator</RuleApp>
+  <RuleSet></RuleSet>
+  <Parameters></Parameters>
+  <Entity>Mortgage</Entity>
+  <EntityXml></EntityXml>
+  <ReturnEntity></ReturnEntity>
+  <ResponseType></ResponseType>
+</RuleExecutionRequest>

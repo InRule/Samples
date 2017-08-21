@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="1"
+  PublicRevision="1"
+  Guid="4faf1d64-b8e8-447d-96fd-753e38227f1c"
+  Id="-1"
+  Name="AutoRuleSetInChildContext"
+  RepositoryAssemblyFileVersion="4.5.21.14385"
+  LastValidateContentCode="928852863"
+  IsolatedTestDomain="false"
+  SchemaGuid="001dff81-3d5b-44a0-87f6-8569cf393395"
+  SchemaRevision="1"
+  SchemaPublicRevision="1"
+  LastValidateDateTimeUtc="2014-01-29T20:37:48.4165761Z">
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">75</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>64530ae7-3a6f-4d5c-a3de-e2d501a5a887</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2014-01-24T16:32:47.7865229-06:00</CreatedDateTime>
+    <ModifiedDateTime>2014-01-29T14:37:48.4325775-06:00</ModifiedDateTime>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">true</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="d8b7b428-d450-4184-9070-bde19be37a61"
+      Name="Basket">
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="734cf107-12dd-4440-a742-054d5a513a0c"
+          Name="Field1"
+          DataType="String" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="078ec40e-b260-4fb9-9744-ec8eb232431a"
+          Name="Items"
+          DataType="Entity"
+          IsCollection="true"
+          DataTypeEntityName="Item" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="5a31e636-15da-4113-a4d5-4c77ad1c9027"
+      Name="Item">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="1"
+          PublicRevision="1"
+          Guid="64530ae7-3a6f-4d5c-a3de-e2d501a5a887"
+          Name="ConditionalIterationExample">
+          <FireMode>Auto</FireMode>
+          <RunMode>SequentialRunOnce</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="c42f9ad8-5e53-4780-94fe-45ec92d33f7c"
+              Name="AppleRule">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="CompareString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="AutoRuleSetInChildContext.Item.Name.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="Comparison_eq" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="FireNotificationActionDesigner" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="SimpleRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="f7d16d3a-4df8-43e1-a335-1f19084620be"
+                Name="AppleRule">
+                <Condition>
+                  <ReturnType>Boolean</ReturnType>
+                  <FormulaText>Name = "Apple"</FormulaText>
+                </Condition>
+                <SubRules>
+                  <RuleElementDef
+                    xsi:type="FireNotificationActionDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="a0722b97-205e-41e2-9f19-52aeb411b96e"
+                    Name="Fire_Notification">
+                    <NotificationType>Informational</NotificationType>
+                    <NotificationMessage>
+                      <FormulaParseFormat>Token</FormulaParseFormat>
+                      <FormulaText>Found &lt;%Quantity%&gt; Apple(s)!</FormulaText>
+                    </NotificationMessage>
+                  </RuleElementDef>
+                </SubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="bf0f27ab-66dc-4588-aaac-2499b692d4f6"
+          Name="Name"
+          DataType="String" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="e8136e62-2ed8-4f4f-98bf-de765a33c7ff"
+          Name="Quantity"
+          DataType="Integer" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+  </Entities>
+</RuleApplicationDef>
