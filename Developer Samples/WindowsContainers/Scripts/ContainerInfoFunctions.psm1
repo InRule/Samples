@@ -1,65 +1,3 @@
-function Start-RulesEnvironment {
-    [CmdletBinding(SupportsShouldProcess = $true)]
-    param(
-        [string]$InRuleVersion = "latest", 
-        [string[]]$ComposeFilePath = ".\docker-compose.yml",
-        [string]$Name = "inrule",
-        [bool]$deleteOnStop = $true
-        )
-
-    write-verbose "Using a service name of $Name"
-    write-warning "Names containing invalid characters will be changed, e.g. 'service-name' becomes 'servicename'"
-
-    $ErrorActionPreference = 'Stop'
-    #$composePath = Resolve-Path -Path $ComposeFilePath
-    #write-verbose "using path $composePath"
-    $composeFileArgs = $ComposeFilePath | foreach { "-f " + (Resolve-Path $_) }
-    $passDeleteArg = ""
-    if ($deleteOnStop -eq $true) {
-        $passDeleteArg = "-d"
-    }
-    Invoke-Expression "docker-compose $composeFileArgs --project-name $Name up $passDeleteArg" | write-verbose
-    
-    #$svcIds = docker-compose ps -q
-    write-debug "using alternate method of retrieving containers for this environment"
-    $cons = (Invoke-Expression "docker-compose -p $Name ps -q")
-    
-    $cons | ForEach-Object {
-            write-verbose "Setting HOST file info for $_" 
-            Set-ContainerHostName -ContainerNameOrId $_ -Verbose 
-        }
-    return $svcIds
-}
-
-function Stop-RulesEnvironment {
-    [CmdletBinding(SupportsShouldProcess = $true)]
-    param(        
-        [string]$EnvironmentName = "inrule"
-    )
-    write-verbose "Stopping rule environment $EnvironmentName"
-
-    $svcIds = invoke-expression "docker-compose -p $EnvironmentName ps -q"
-    if ($svcIds -eq $null -or $svcIds.Length -lt 1) {
-        Write-warning "No containers running, therefore there is nothing to stop."
-        return
-    }
-    if ($PSCmdlet.ShouldProcess("Remove HOSTS entries")) {
-        $svcIds | ForEach-Object {         
-            Clear-ContainerHostName -ContainerNameOrId $_ -Verbose
-            write-verbose "Cleared $_ from HOSTS"
-        }
-    }    
-    
-    write-verbose "Stopping services $svcIds"
-
-    
-    if ($PSCmdlet.ShouldProcess("docker-compose down")) {
-        write-verbose "Calling docker-compose down"
-        invoke-expression "docker-compose -p $EnvironmentName down"
-    }
-    write-verbose "Stopped services."
-}
-
 Function Get-ContainerIpAddress {
     param([string]$ContainerNameOrId)
     return docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $ContainerNameOrId
@@ -71,7 +9,7 @@ Function Get-ContainerName {
     return (docker inspect -f '{{.Name}}' $ContainerNameOrId).TrimStart('/')
 }
 
-function Set-ContainerHostName {
+Function Set-ContainerHostName {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [string]$ContainerNameOrId,
@@ -120,7 +58,7 @@ $ErrorActionPreference = "Stop"
     return $hostEntry
 }
 
-function Clear-ContainerHostName {
+Function Clear-ContainerHostName {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [string]$ContainerNameOrId,
@@ -161,61 +99,4 @@ function Clear-ContainerHostName {
     }
 
     return $hostEntry
-}
-
-function Start-RulesEnvironment {
-    [CmdletBinding(SupportsShouldProcess = $true)]
-    param(
-        [string]$InRuleVersion = "latest",
-        [string]$ComposeFilePath = ".\docker-compose.yml",
-        [string]$Name = "inrule" # TODO: perform xform to abide by docker service name restrictions - lower case, no '-', etc
-        )
-
-    write-verbose "Using a service name of $Name"
-    write-warning "Names containing invalid characters will be changed, e.g. 'service-name' becomes 'servicename'"
-
-    $ErrorActionPreference = 'Stop'
-    $composePath = Resolve-Path -Path $ComposeFilePath
-    write-verbose "using path $composePath"
-    
-    Invoke-Expression "docker-compose -f $composePath --project-name $Name up -d" | write-verbose
-    
-    #$svcIds = docker-compose ps -q
-    write-debug "using alternate method of retrieving containers for this environment"
-    $cons = (Invoke-Expression "docker-compose -p $Name ps -q")
-    
-    $cons | ForEach-Object {
-            write-verbose "Setting HOST file info for $_" 
-            Set-ContainerHostName -ContainerNameOrId $_ -Verbose 
-        }
-    return $svcIds
-}
-
-function Stop-RulesEnvironment {
-    [CmdletBinding(SupportsShouldProcess = $true)]
-    param(        
-        [string]$EnvironmentName = "inrule"
-    )
-    write-verbose "Stopping rule environment $EnvironmentName"
-
-    $svcIds = invoke-expression "docker-compose -p $EnvironmentName ps -q"
-    if ($svcIds -eq $null -or $svcIds.Length -lt 1) {
-        Write-warning "No containers running, therefore there is nothing to stop."
-        return
-    }
-    if ($PSCmdlet.ShouldProcess("Remove HOSTS entries")) {
-        $svcIds | ForEach-Object {         
-            Clear-ContainerHostName -ContainerNameOrId $_ -Verbose
-            write-verbose "Cleared $_ from HOSTS"
-        }
-    }    
-    
-    write-verbose "Stopping services $svcIds"
-
-    
-    if ($PSCmdlet.ShouldProcess("docker-compose down")) {
-        write-verbose "Calling docker-compose down"
-        invoke-expression "docker-compose -p $EnvironmentName down"
-    }
-    write-verbose "Stopped services."
 }
