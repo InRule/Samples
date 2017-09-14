@@ -2,20 +2,21 @@
 
 ## Image descriptions
 
-* [inrule-server](/inrule-server) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary
- WCF and IIS components are present and available in the target container.
+* [inrule-server](/inrule-server) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary WCF and IIS components are present and available in the target container.
 
 * The [inrule-catalog](/inrule-catalog) container image encapsulates the InRule irCatalog service, providing source control facilities to rules authors and runtime services alike.
 
-* Runtime rule execution is handled by [inrule-runtime](/inrule-runtime).
- This is the irServer Rule Execution Service, and offers both a REST- and a SOAP- based endpoint for executing rules against data passed into it.
+* Runtime rule execution is handled by [inrule-runtime](/inrule-runtime). This is the irServer Rule Execution Service, and offers both a REST- and a SOAP- based endpoint for executing rules against data passed into it.
+
+* Catalog management is provided by [inrule-catalog-manager](/inrule-catalog-manager/). RuleApplications can be viewed, labeled, and promoted. Users can be created and modified along with permissions.
 
 * Catalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
 
 ### Image repository and registry
 
-If you do not have access to the ROAD team's private Docker Registry (roaddock-on.azurecr.io), images can be built using the respective dockerfiles in this repository.
-For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment**
+Images can be built using the respective dockerfiles in this repository. Because the images produced embed the InRule License key into them, you should refrain from making images publically available.
+
+<!-- For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment** -->
 Please see the instructions for each respective image for information on how to build an image.
 
 ## Installation and configuration
@@ -25,8 +26,7 @@ you can find instructions on how to get started with Containers [here](http://ht
 Once you've followed all of the steps in a respective setup guide and verified things are working properly, you'll be ready to use the InRule images!
 
 > Note: make sure to switch your running Dockerd from Linux to Windows containers!
-
-
+<!-- 
 ## Using Docker Compose to provision a rule execution environment
 
 ### About the compose file
@@ -97,11 +97,13 @@ docker-compose up
 docker-compose down
 ```
 
-#### Accessing the rule execution service from outside the container environment
+-->
+
+### Accessing the rule execution service from outside the container environment
 
 At the moment, host-to-container does not support name resolution in Docker for Windows, so it is necessary to interact with containers via IP address.
 Below is an example of how to obtain the IP address of a runtime execution service in a container named `docker_rex_1`. Looking at the `IPAddress` entry, we see that our service
-has been assigned an IP address of `172.26.212.72`. I can verify that my service is up and running by navigating to `http://172.26.212.72/InRuleRuleEngineService/Service.svc`
+has been assigned an IP address of `172.26.212.72`. I can verify that my service is up and running by navigating to `http://172.26.212.72/Service.svc`
 
 ```powershell
 PS:\> docker inspect docker_rex_1

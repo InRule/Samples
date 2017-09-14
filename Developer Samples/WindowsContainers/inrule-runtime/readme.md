@@ -26,6 +26,11 @@
 
 ## Running the image
 
+Once the container starts it will be listening on the designated ports (80 by default). Requests can be sent either to the SOAP service or the REST service using these endpoints:
+
+SOAP: `http://<container name or ip>/Service.svc`
+REST: `http://<container name or ip>/HttpService.svc`
+
 ### Basic usage connecting to external catalog
 
 ```cmd
