@@ -1,0 +1,18 @@
+# escape=`
+
+FROM microsoft/windowsservercore:latest
+
+LABEL	maintainer="jelster@inrule.com" `
+		vendor="InRule Technology, Inc." `
+        com.inrule.version=""
+
+SHELL ["powershell", "-Command"]
+
+ADD . c:\temp\
+WORKDIR c:\temp\
+RUN .\InRuleServerDSC.ps1 -Wait;
+COPY [".\\InRuleLicense.xml", "C:\\Program Data\\InRule\\Shared Licenses"]
+RUN New-EventLog -LogName InRule -Source "InRule.Repository","InRule.Repository.Service","InRule.Runtime","InRule.Runtime.Service","InRule.Authoring.irAuthor","InRule.Admin.CatalogManager"
+
+# REMARK: Temporary workaround for Windows DNS client weirdness
+#RUN powershell set-itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord

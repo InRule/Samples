@@ -1,0 +1,31 @@
+# escape=`
+
+FROM inruleservices.azurecr.io/server/inrule-server:latest
+
+LABEL	maintainer="jelster@inrule.com" `
+		vendor="InRule Technology, Inc." `
+        com.inrule.version="" `
+        com.inrule.product="irServer"
+
+ARG irRuntimeDir
+ARG ContainerDir
+
+ENV CatalogUri="http://cat/InRuleCatalogService/Service.svc" `    
+ContainerDir=${ContainerDir:-"C:\inrule-runtime"}
+
+ADD ${irRuntimeDir:-irServer} ${ContainerDir}
+
+RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
+
+RUN Import-Module "WebAdministration";`
+    set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value $env:ContainerDir
+
+EXPOSE 80:80
+EXPOSE 443:443
+
+COPY *.ps1 c:\temp\
+WORKDIR C:\temp
+
+ENTRYPOINT .\Set-RuntimeConfig.ps1 -catalogServiceUri $env:CatalogUri -installPath $env:ContainerDir -Verbose;
+
+CMD .\Start.ps1

@@ -24,3 +24,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+
+# Container image build source artifacts supplied by user
+**/InruleLicense.xml
+**/*/irCatalog/*
+**/*/irServer/*
+**/*/CatalogManagerWeb/*
