@@ -18,7 +18,7 @@ ___
 
 ## Issues
 
-The list of outstanding InRule Samples feature requests and bugs can be found on our on our [GitHub Issue Tracker][issues]. Pick an unassigned issue that you think you can accomplish and add a comment that you are attempting to do it.
+The list of outstanding InRule Samples feature requests and bugs can be found on our [GitHub Issue Tracker][issues]. Pick an unassigned issue that you think you can accomplish and add a comment that you are attempting to do it.
 
 Feel free to propose issues that aren't described!
 
