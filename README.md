@@ -54,6 +54,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Load XML state into an entity | Developer Samples | CreateRuleSession-Catalog <br>CreateRuleSession-FileSystem <br>GetChangedValues <br>GetEntityXml |
 | Query value list | Authoring Samples | Chicago Food Tax Generator |
+| Windows Container Samples | Developer Samples | WindowsContainers
 | Salesforce | Developer Samples | SalesforceSamples |
 | String operations | Authoring Samples | String Matching |
 | Unbound entities | Developer Samples | AddCollectionMembers <br>CreateEntityFromXml <br>CreateRuleSession-Catalog <br>CreateRuleSession-FileSystem <br>CreateRuleSession-InMemory <br>DynamicValueAccess <br>GetChangedValues <br>GetEntityXml <br>LaunchIrVerify <br>RulesInCode |
