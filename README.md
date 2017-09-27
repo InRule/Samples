@@ -1,7 +1,8 @@
 # InRule Technology
+
 ## Samples
 
-Here you will find a collection of samples to demonstrate some InRule features.
+Here you will find a collection of samples to demonstrate some InRule features. If you'd like to Contribute, [please follow our guidelines](CONTRIBUTING.md)
 
 * **Authoring Samples** contains some sample Rule Applications for rule authors.
 * **Developer Samples** contains a collection of samples which illustrate the use of irSDK<sup>&reg;</sup>, the InRule Software Development Kit.
