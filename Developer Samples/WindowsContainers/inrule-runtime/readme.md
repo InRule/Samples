@@ -3,7 +3,7 @@
 ## Important notes on building the image
 
 * You must have a valid license for irCatalog.
-* Prior to building the image, copy the irServer RuleEngineService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RuleEngineService\IisService`) into this repository's [irServer](/irServer/) directory.
+* Prior to building the image, copy the irServer RuleEngineService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RuleEngineService\IisService`) into this repository's `/irServer/` directory.
 * See [inrule-server](/inrule-server/) documentation for information on licensing
 
 ## About this image
@@ -59,4 +59,4 @@ docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P --link=cat 
 
 In order to connect to the service, you'll need the IP address of the container. Get it using a command similar to the following:
 
-    `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' cat`
+    `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' rex`

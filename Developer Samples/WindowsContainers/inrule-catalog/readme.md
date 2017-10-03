@@ -2,13 +2,13 @@
 
 ## Important notes on building the image
 
-* You must have a valid license for irCatalog.
-* Prior to building the image, copy the irServer RepositoryService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RepositoryService\IisService`) into this repository's [irCatalog directory](/irCatalog/)
+* The irCatalog service is a WCF service hosted by IIS. The DOCKERFILE will copy the assets into the image, and expects a flat folder structure.
+* Prior to building the image, copy the irServer RepositoryService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RepositoryService\IisService\`) into the repository's irCatalog directory (/irCatalog/)
 * See [inrule-server](/inrule-server/) documentation for information on licensing
 
 ### List of required environment properties
 
-* CatalogUserName - the SQL login that the service will use to connect to the DB
+* CatalogUser - the SQL login that the service will use to connect to the DB
 * CatalogPassword - the SQL password that the service will use to connect to the DB. **Not encrypted, viewable in logs**
 * CatalogDbHost - defaults to `db` (assumes `--link db` passed to `docker run`). May require manually setting if host name resolution fails
 
