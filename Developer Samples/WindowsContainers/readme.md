@@ -22,7 +22,7 @@ Please see the instructions for each respective image for information on how to 
 ## Installation and configuration
 
 All of the images in this repository are Windows-based. Depending on whether you are using Windows 10 or Windows Server,
-you can find instructions on how to get started with Containers [here](http://https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start).
+you can find instructions on how to get started with Containers [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start).
 Once you've followed all of the steps in a respective setup guide and verified things are working properly, you'll be ready to use the InRule images!
 
 > Note: make sure to switch your running Dockerd from Linux to Windows containers!

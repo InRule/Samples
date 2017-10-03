@@ -36,5 +36,5 @@ This image should not need to be run
 ## Further reading
 
 * [About Windows Containers](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/about/index)
-* [Containers with Windows 10](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start)
+* [Containers with Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10)
 * [Container Samples](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/samples/)
