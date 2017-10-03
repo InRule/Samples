@@ -38,6 +38,12 @@ if ($endpointAssemblyPath -ne $null -and $endpointAssemblyPath -ne "") {
     $cfgXml.configuration.'inrule.repository'.endPoints.assemblyEndpoint.SetAttribute("endPointAssemblyPath", $endpointAssemblyPath)
 }
 
+if (test-path $restRuleApplication) {
+    write-verbose "RestRuleApp file path resolved: $restRuleApplication"
+    $cfgXml.Configuration.'inrule.runtime.service'.restRuleApplication.SetAttribute("path", $restRuleApplication)    
+}
+
+
 if ($PSCmdlet.ShouldProcess("Save configuration string changes to config")) {
     $cfgXml.Save($configFilePath)
 }
