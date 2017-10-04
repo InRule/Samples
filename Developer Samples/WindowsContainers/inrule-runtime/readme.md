@@ -18,11 +18,11 @@
 
 #### Using defaults
 
-```docker build -t inrule-runtime .```
+```docker build -t server/inrule-runtime:5.0.14 .```
 
 #### Specifying an alternative path for source artifacts
 
-```docker build --build-arg irRuntimeDir=c:\users\jsmith\downloads\irServer -t inrule-runtime .```
+```docker build --build-arg irRuntimeDir=c:\users\jsmith\downloads\irServer -t server/inrule-runtime:5.0.12 .```
 
 ## Running the image
 
@@ -35,7 +35,7 @@ REST: `http://<container name or ip>/HttpService.svc`
 
 ```cmd
 
-docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Service.svc' inrule-runtime:latest
+docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Service.svc' server/inrule-runtime:latest
 
 ```
 
@@ -43,7 +43,7 @@ docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Se
 
 ```cmd
 
-docker run -d --link cat --env CatalogUri='https://cat/Service.svc' inrule-runtime:latest
+docker run -d --link cat --env CatalogUri='https://cat/Service.svc' server/inrule-runtime:latest
 
 ```
 
@@ -51,7 +51,7 @@ Using a volume mount for file-based ruleapps and a container link to a container
 
 ```cmd
 
-docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P --link=cat inrule-runtime:latest
+docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P --link=cat server/inrule-runtime:latest
 
 ```
 
