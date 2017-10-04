@@ -2,13 +2,13 @@
 
 ## Image descriptions
 
-* [inrule-server](/inrule-server) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary WCF and IIS components are present and available in the target container.
+* [inrule-server](inrule-server/) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary WCF and IIS components are present and available in the target container.
 
-* The [inrule-catalog](/inrule-catalog) container image encapsulates the InRule irCatalog service, providing source control facilities to rules authors and runtime services alike.
+* The [inrule-catalog](inrule-catalog/) container image encapsulates the InRule irCatalog service, providing source control facilities to rules authors and runtime services alike.
 
-* Runtime rule execution is handled by [inrule-runtime](/inrule-runtime). This is the irServer Rule Execution Service, and offers both a REST- and a SOAP- based endpoint for executing rules against data passed into it.
+* Runtime rule execution is handled by [inrule-runtime](inrule-runtime/). This is the irServer Rule Execution Service, and offers both a REST- and a SOAP- based endpoint for executing rules against data passed into it.
 
-* Catalog management is provided by [inrule-catalog-manager](/inrule-catalog-manager/). RuleApplications can be viewed, labeled, and promoted. Users can be created and modified along with permissions.
+* Catalog management is provided by [inrule-catalog-manager](inrule-catalog-manager/). RuleApplications can be viewed, labeled, and promoted. Users can be created and modified along with permissions.
 
 * Catalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
 
@@ -16,8 +16,18 @@
 
 Images can be built using the respective dockerfiles in this repository. Because the images produced embed the InRule License key into them, you should refrain from making images publically available.
 
+### Building the images
+
+To build all of the sample images using the included build script, first clone the repository into a working directory. Next, run the [build.ps1](/build.ps1) script in an elevated Powershell prompt, passing in the name of the tag you'd like to use:
+
+`.\build.ps1 -tag '5.0.24'`
+
+If you want to also have the images tagged as 'latest', pass `-SetLatestTag` to the script:
+
+`.\build.ps1 -tag '5.0.24' -setLatestTag`
+
 <!-- For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment** -->
-Please see the instructions for each respective image for information on how to build an image.
+Please see the instructions for each respective image for information on how to build the individual images.
 
 ## Installation and configuration
 
