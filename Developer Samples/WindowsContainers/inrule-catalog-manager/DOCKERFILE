@@ -1,0 +1,24 @@
+# escape=`
+
+FROM server/inrule-server:latest
+
+LABEL	maintainer="jelster@inrule.com" `
+		vendor="InRule Technology, Inc." `
+        com.inrule.version="" `
+        com.inrule.product="Web Catalog Manager"
+        
+ARG catManDir
+ENV catalogUri=http://cat/InRuleCatalogService/Service.svc
+
+COPY /${catManDir:-CatalogManagerWeb} /inrule-catalog-manager
+COPY *.ps1 c:\temp\
+
+RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci c:\inrule-catalog-manager -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
+
+RUN Import-Module WebAdministration;set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value C:\inrule-catalog-manager
+
+WORKDIR /temp
+EXPOSE 80:80
+
+ENTRYPOINT .\Set-WebCatManConfig.ps1 -catalogUri $env:CatalogUri -cfgBasePath c:\inrule-catalog-manager;
+CMD .\Start.ps1 -catalogUri "$env:catalogUri" -cfgBasePath "c:\inrule-catalog-manager"
