@@ -64,3 +64,5 @@ If you would like to request additional samples from InRule, please write an iss
 | Value of a field | Developer Samples | AddCollectionMembers <br>CreateRuleSession-InMemory |
 | Vocabulary Templates | Authoring Samples | Chicago Food Tax Generator<br>Vocabulary Templates |
 | While loop | Authoring Samples | Iteration |
+
+Random change so I can make a pull request for DCO
