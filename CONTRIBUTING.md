@@ -54,6 +54,16 @@ You should use a verbose enough name for your branch so it is clear what it is
 about.  Now you can commit your changes and regularly merge in the upstream
 develop as described below.
 
+Each commit must include a Developer Certificate of Origin (DCO), in the form of 
+a "Signed-off-by:" line in your commit comments:
+
+    This is my commit message
+
+    Signed-off-by: Random J Developer <random@developer.example.org>
+
+For more information on DCO's, see https://github.com/probot/dco. 
+The full text of the DCO is at https://developercertificate.org/.
+
 When you are ready to generate a pull request, either for preliminary review,
 or for consideration of merging into the project you must first push your local
 topic branch back up to GitHub::
