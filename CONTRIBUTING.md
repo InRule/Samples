@@ -63,6 +63,7 @@ a "Signed-off-by:" line in your commit comments:
 
 For more information on DCO's, see https://github.com/probot/dco. 
 The full text of the DCO is at https://developercertificate.org/.
+All commits must be signed off before your pull request can be processed.
 
 When you are ready to generate a pull request, either for preliminary review,
 or for consideration of merging into the project you must first push your local
