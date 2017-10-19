@@ -61,6 +61,10 @@ a "Signed-off-by:" line in your commit comments:
 
     Signed-off-by: Random J Developer <random@developer.example.org>
 
+You can add the signoff using the `-s` flag on your git commit:
+
+    git commit -s -m 'This is my commit message'
+
 For more information on DCO's, see https://github.com/probot/dco. 
 The full text of the DCO is at https://developercertificate.org/.
 All commits must be signed off before your pull request can be processed.
