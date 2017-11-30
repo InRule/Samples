@@ -5,8 +5,6 @@
 You must have a valid license for InRule to use these images. By using these images you agree to the InRule EULA.
 Contact support@inrule.com to check for and obtain the appropriate license file.
 
-**Important!** Place the InRuleLicense.xml file you received from InRule Support into the same directory as the DOCKERFILE.
-
 ## Environment
 
 Windows Server Core Base OS image
@@ -15,13 +13,9 @@ Windows Server Core Base OS image
 
 This image serves as a base image for other inrule server-based components. It ensures that the necessary pre-requisites have been fulfilled (e.g., IIS is installed, WCF is configured, etc) and that InRule event log sources are created.
 
-When the image is built, it will copy the InRule license file to the container's `"C:\Program Data\InRule\Shared Licenses` folder.
-
 ## Usage
 
 ### Docker build
-
-#### Make sure your license file is in the same directory as the dockerfile prior to building the image
 
 ```docker build -t inrule-server .```
 
