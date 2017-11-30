@@ -1,6 +1,6 @@
 param(
     [string]$tag,
-    [string]$registryRootRepos = "/server",
+    [string]$registryRootRepos = "server",
     [string]$baseBinariesPath = ".",
     [switch]$setLatestTag = $false
 )
@@ -14,6 +14,11 @@ $ErrorActionPreference = "Stop"
 write-host "Building inrule-server base image."
 set-location "$PSScriptRoot\inrule-server" 
 docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-server:$tag .
+
+if ($setLatestTag -eq $true ) {
+    write-host "Setting image $version to latest..."
+    docker image tag ${registryRootRepos}/inrule-server:$tag ${registryRootRepos}/inrule-server:latest
+}
 
 Write-Host "Building inrule-catalog image."
 set-location "$PSScriptRoot\inrule-catalog"
@@ -32,8 +37,6 @@ if ($setLatestTag -eq $true ) {
     docker image tag ${registryRootRepos}/inrule-catalog:$tag ${registryRootRepos}/inrule-catalog:latest
 
     docker image tag ${registryRootRepos}/inrule-runtime:$tag ${registryRootRepos}/inrule-runtime:latest
-
-    docker image tag ${registryRootRepos}/inrule-server:$tag ${registryRootRepos}/inrule-server:latest
 
     docker image tag ${registryRootRepos}/inrule-catalog-manager:$tag ${registryRootRepos}/inrule-catalog-manager:latest
 }
