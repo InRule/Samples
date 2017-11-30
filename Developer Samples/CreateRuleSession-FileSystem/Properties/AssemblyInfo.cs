@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("InRule Technology, Inc.")]
-[assembly: AssemblyCopyright("Copyright © 2017, InRule Technology, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2018, InRule Technology, Inc.")]
 [assembly: AssemblyTrademark("InRule® is a registered trademark of InRule Technology.  All Rights Reserved.")]
 [assembly: AssemblyCulture("")]
 
