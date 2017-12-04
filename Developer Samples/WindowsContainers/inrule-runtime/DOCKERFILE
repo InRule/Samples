@@ -10,7 +10,9 @@ LABEL	maintainer="jelster@inrule.com" `
 ARG irRuntimeDir
 ARG ContainerDir
 
-ENV CatalogUri="http://cat/InRuleCatalogService/Service.svc" `    
+ENV CatalogUri="http://cat/InRuleCatalogService/Service.svc" `
+CatalogUser="" `
+CatalogPass="" `
 ContainerDir=${ContainerDir:-"C:\inrule-runtime"}
 
 ADD ${irRuntimeDir:-irServer} ${ContainerDir}
@@ -26,6 +28,6 @@ EXPOSE 443:443
 COPY *.ps1 c:\temp\
 WORKDIR C:\temp
 
-ENTRYPOINT .\Set-RuntimeConfig.ps1 -catalogServiceUri $env:CatalogUri -installPath $env:ContainerDir -Verbose;
+ENTRYPOINT .\Set-RuntimeConfig.ps1 -catalogServiceUri $env:CatalogUri -catalogUser $env:CatalogUser -catalogPass $env:CatalogPass -installPath $env:ContainerDir -Verbose;
 
 CMD .\Start.ps1

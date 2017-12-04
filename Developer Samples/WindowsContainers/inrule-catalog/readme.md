@@ -4,13 +4,13 @@
 
 * The irCatalog service is a WCF service hosted by IIS. The DOCKERFILE will copy the assets into the image, and expects a flat folder structure.
 * Prior to building the image, copy the irServer RepositoryService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RepositoryService\IisService\`) into the repository's irCatalog directory (/irCatalog/)
-* See [inrule-server](/inrule-server/) documentation for information on licensing
+* See [inrule-server](../inrule-server/) documentation for information on licensing
 
 ### List of required environment properties
 
 * CatalogUser - the SQL login that the service will use to connect to the DB
 * CatalogPassword - the SQL password that the service will use to connect to the DB. **Not encrypted, viewable in logs**
-* CatalogDbHost - defaults to `db` (assumes `--link db` passed to `docker run`). May require manually setting if host name resolution fails
+* CatalogDbHost - defaults to `db`
 
 Note that the catalog database must already be present with schema before the catalog service will be fully operational.
 
@@ -32,10 +32,12 @@ The `-v` option tells Docker to mount the contents of the given host directory -
 
 You can build this image from source using a command similar to the following example:
 
-`docker build -t server/inrule-catalog:5.0.14 .`
+`docker build -t server/inrule-catalog:5.0.26 .`
 
 ## Running the image
 
-`docker run -d --name cat -e CatalogUserName=sa -e CatalogPassword=<SA_PASSWORD> --link db server/inrule-catalog:latest`
+Place the `InRuleLicense.xml` file in a location where the IIS process inside the docker container will be able to read it (e.g. not under a user's home directory)
 
-When running this image, you'll need to supply all required and any optional environment parameters. Use of a link to a container running the InRuleCatalog DB is recommended, but not required.
+`docker run -d --name cat -e CatalogUser=sa -e CatalogPassword=<SA_PASSWORD> -e CatalogDbHost=<DB_HOST> -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' server/inrule-catalog:latest`
+
+When running this image, you'll need to supply all required and any optional environment parameters.
