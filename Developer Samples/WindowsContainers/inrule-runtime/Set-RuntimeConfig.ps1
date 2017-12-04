@@ -30,8 +30,8 @@ if ($null -eq $catSvc) {
 }
 
 $catSvc.SetAttribute("catalogServiceUri", $catalogServiceUri)
-$catSvc.SetAttribute("userName", "")
-$catSvc.SetAttribute("password", "")
+$catSvc.SetAttribute("userName", $catalogUser)
+$catSvc.SetAttribute("password", $catalogPass)
 
 if ($endpointAssemblyPath -ne $null -and $endpointAssemblyPath -ne "") {
     write-verbose "Setting endpointAssemblyPath to $endpointAssemblyPath in config"
