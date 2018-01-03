@@ -6,7 +6,7 @@ public class Program
 	private static void Main()
 	{
 		// Load rule application from file system
-		using (var session = new RuleSession(new FileSystemRuleApplicationReference("InvoiceLineItem.ruleapp")))
+		using (var session = new RuleSession(new FileSystemRuleApplicationReference("InvoiceLineItem.ruleappx")))
 		{
 			// Create Invoice entity
 			var invoiceEntity = session.CreateEntity("Invoice");
