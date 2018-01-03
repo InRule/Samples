@@ -16,7 +16,7 @@ If you would like to request additional samples from InRule, please write an iss
 
 | Topic | Start here | Look here |
 |-------|------------|-----------|
-| Add an existing entity to a collection | Developer Samples | CreateEntityFromXml |
+| Add an existing entity to a collection | Developer Samples | AddCollectionMembers <br> CreateEntityFromXml |
 | Authoring Tutorial | Authoring Samples | irAuthor Beginner Tutorial |
 | Auto Rule Sets | Authoring Samples | Iteration |
 | Business Language rules | Authoring Samples | Chicago Food Tax Generator |
@@ -30,8 +30,8 @@ If you would like to request additional samples from InRule, please write an iss
 | Call a web service | Developer Samples | WebServiceCall |
 | Create a rule application in code | Developer Samples | CreateRuleSession-InMemory <br>RulesInCode |
 | Create a rule session from a catalog rule application | Developer Samples | CreateRuleSession-Catalog |
-| Create a rule session from a file system rule application | Developer Samples | CreateEntityFromXml <br>CreateRuleSession-FileSystem <br>DynamicValueAccess <br>GetChangedValues <br>GetEntityXml <br>launchIrVerify <br>UseDictionaryAsState <br>UseExpandoObjectAsState |
-| Create a rule session from an in-memory rule application | Developer Samples | AddCollectionMembers <br>CreateRuleSession-InMemory <br>RulesInCode |
+| Create a rule session from a rule application file | Developer Samples | AddCollectionMembers <br>CreateEntityFromXml <br>CreateRuleSession-FileSystem <br>DynamicValueAccess <br>GetChangedValues <br>GetEntityXml <br>launchIrVerify <br>UseDictionaryAsState <br>UseExpandoObjectAsState |
+| Create a rule session from an in-memory rule application | Developer Samples | CreateRuleSession-InMemory <br>RulesInCode |
 | Create an unbound entity using XML | Developer Samples | CreateEntityFromXml |
 | Custom cache policy | Developer Samples | RuleApplicationCache |
 | Database schema | Authoring Samples | Chicago Food Tax Generator |

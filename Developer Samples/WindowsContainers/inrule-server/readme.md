@@ -1,3 +1,7 @@
+# InRule Samples
+
+## Sample Title
+
 # README for the inrule-server DOCKER image
 
 ## Notes regarding licensing
