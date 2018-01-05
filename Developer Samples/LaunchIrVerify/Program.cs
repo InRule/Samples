@@ -15,6 +15,7 @@ class Program
 
 		// Load rule application from file system
 		var session = new RuleSession(new FileSystemRuleApplicationReference("InvoiceLineItem.ruleappx"));
+	    session.Settings.LogOptions = EngineLogOptions.RuleValues;
 
 		// Create Invoice entity
 		var invoiceEntity = session.CreateEntity("Invoice");

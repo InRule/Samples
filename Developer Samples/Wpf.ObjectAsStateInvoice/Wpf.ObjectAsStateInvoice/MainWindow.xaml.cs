@@ -61,6 +61,7 @@ namespace Wpf.ObjectAsStateInvoice
             try
             {
                 _ruleSession = new RuleSession(ruleAppDef);
+                _ruleSession.Settings.LogOptions = EngineLogOptions.RuleValues;
             }
             catch (CompileException ex)
             {

@@ -1,3 +1,7 @@
+# InRule Samples
+
+## Sample Title
+
 # README for the inrule-runtime DOCKER image
 
 ## Important notes on building the image

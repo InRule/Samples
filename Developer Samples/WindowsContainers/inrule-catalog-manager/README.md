@@ -1,3 +1,7 @@
+# InRule Samples
+
+## Sample Title
+
 # README for Web Catalog Manager DOCKERFILE
 
 ## Important notes on building the image
