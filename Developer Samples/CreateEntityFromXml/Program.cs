@@ -6,7 +6,7 @@ internal class Program
 	private static void Main()
 	{
 		// Load rule application from file system
-		using (var session = new RuleSession(new FileSystemRuleApplicationReference("InvoiceLineItem.ruleapp")))
+		using (var session = new RuleSession(new FileSystemRuleApplicationReference("InvoiceLineItem.ruleappx")))
 		{
 			// Create XML for line items
 			var lineItem1Xml = "<LineItem><Quantity>1</Quantity><Price>2</Price></LineItem>";
