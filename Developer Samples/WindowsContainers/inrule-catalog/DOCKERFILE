@@ -1,6 +1,6 @@
 # escape=`
 
-FROM server/inrule-server:latest
+FROM inrule/inrule-server:latest
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `

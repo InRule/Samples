@@ -1,6 +1,6 @@
 param(
     [string]$tag,
-    [string]$registryRootRepos = "server",
+    [string]$registryRootRepos = "inrule",
     [string]$baseBinariesPath = ".",
     [switch]$setLatestTag = $false
 )
