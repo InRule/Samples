@@ -24,9 +24,6 @@ RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:
 RUN Import-Module "WebAdministration";`
     set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value $env:ContainerDir
 
-#RUN Import-Module "WebAdministration";`
-#    new-item 'IIS:\Sites\Default Web Site\InRuleCatalogService' -physicalPath C:\InRule\ -type Application -Verbose;
-
 EXPOSE 80:80
 EXPOSE 443:443
 EXPOSE 1433:1433
