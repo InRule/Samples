@@ -1,8 +1,6 @@
 # InRule Samples
 
-## Sample Title
-
-# InRule Docker images
+## InRule Docker images
 
 ## Image descriptions
 
@@ -14,11 +12,11 @@
 
 * Catalog management is provided by [inrule-catalog-manager](inrule-catalog-manager/). RuleApplications can be viewed, labeled, and promoted. Users can be created and modified along with permissions.
 
-* Catalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
+* Although most flavors of SQL are supported (SQL Server, MySQL, Oracle, etc.) irCatalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
 
 ### Image repository and registry
 
-Images can be built using the respective dockerfiles in this repository. Because the images produced embed the InRule License key into them, you should refrain from making images publically available.
+Images can be built using the respective dockerfiles in this repository. Take care to protect your license key file by avoiding pushing images containing a license key file to public repositories
 
 ### Building the images
 
