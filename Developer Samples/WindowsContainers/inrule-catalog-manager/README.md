@@ -1,8 +1,6 @@
 # InRule Samples
 
-## Sample Title
-
-# README for Web Catalog Manager DOCKERFILE
+## README for Web Catalog Manager DOCKERFILE
 
 ## Important notes on building the image
 
@@ -55,6 +53,6 @@ This will start a container running the Web Catalog Manager site using the defau
 
 ```cmd
 
-docker run -d --env CatalogUri=https://acme-catalog.cloudapp.net/Service.svc server/inrule-catalog-manager:latest
+docker run -d --env CatalogUri=https://acme-catalog.cloudapp.net/Service.svc inrule/inrule-catalog-manager:latest
 
 ```

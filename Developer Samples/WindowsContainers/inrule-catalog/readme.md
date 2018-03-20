@@ -1,8 +1,6 @@
 # InRule Samples
 
-## Windows Containers
-
-This README describes the irCatalog Docker file.
+## README for the irCatalog Docker file
 
 ### Important notes on building the image
 
@@ -36,12 +34,12 @@ The `-v` option tells Docker to mount the contents of the given host directory -
 
 You can build this image from source using a command similar to the following example:
 
-`docker build -t server/inrule-catalog:5.0.26 .`
+`docker build -t inrule/inrule-catalog:5.0.26 .`
 
 ### Running the image
 
 Place the `InRuleLicense.xml` file in a location where the IIS process inside the docker container will be able to read it (e.g. not under a user's home directory)
 
-`docker run -d --name cat -e CatalogUser=sa -e CatalogPassword=<SA_PASSWORD> -e CatalogDbHost=<DB_HOST> -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' server/inrule-catalog:latest`
+`docker run -d --name cat -e CatalogUser=sa -e CatalogPassword=<SA_PASSWORD> -e CatalogDbHost=<DB_HOST> -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-catalog:latest`
 
 When running this image, you'll need to supply all required and any optional environment parameters.
