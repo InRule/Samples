@@ -3,6 +3,7 @@ param(
     [string]$tag,
     [string]$registryRootRepos = "inrule",
     [switch]$setLatestTag = $false,
+    [switch]$skipServerBuild = $false,
     [string]$defaultInRuleInstallFolder = "C:\Program Files (x86)\InRule\"
 )
 Push-Location $PSScriptRoot
