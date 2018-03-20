@@ -1,8 +1,6 @@
 # InRule Samples
 
-## Sample Title
-
-# InRule Docker images
+## InRule Docker images
 
 ## Image descriptions
 
@@ -14,15 +12,21 @@
 
 * Catalog management is provided by [inrule-catalog-manager](inrule-catalog-manager/). RuleApplications can be viewed, labeled, and promoted. Users can be created and modified along with permissions.
 
-* Catalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
+* Although most flavors of SQL are supported (SQL Server, MySQL, Oracle, etc.) irCatalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
 
 ### Image repository and registry
 
-Images can be built using the respective dockerfiles in this repository. Because the images produced embed the InRule License key into them, you should refrain from making images publically available.
+Images can be built using the respective dockerfiles in this repository. Take care to protect your license key file by avoiding pushing images containing a license key file to public repositories
 
 ### Building the images
 
-To build all of the sample images using the included build script, first clone the repository into a working directory. Next, run the [build.ps1](/build.ps1) script in an elevated Powershell prompt, passing in the name of the tag you'd like to use:
+Here are the steps to building these images from their base assets. To build the sample images using the included build script:
+
+1. Clone the repository into a working directory
+
+2. Copy into the repository's respective directories the contents of the related irServer directory. Always copy the *lowest* directory level. For example, for the `inrule-catalog` image, copy the assets installed by default to `%Program Files (x86)%\InRule\irServer\RepositoryService\IisService\` into the `\inrule-catalog\irCatalog` folder. Repeat the process for the other two service components (inrule-runtime and inrule-catalog-manager).
+
+3. Run the [build.ps1](/build.ps1) script in an elevated Powershell prompt at the root of this repository, passing in the name of the tag you'd like to use:
 
 `.\build.ps1 -tag '5.0.24'`
 
@@ -30,6 +34,12 @@ If you want to also have the images tagged as 'latest', pass `-SetLatestTag` to 
 
 `.\build.ps1 -tag '5.0.24' -setLatestTag`
 
+To skip building the `inrule-server` base image, pass the `skipServerBuild` switch to the build script.
+
+<!-- Unless otherwise specified, InRule assets (e.g., irCatalog, irServer components) will be copied into their respective directories by the build script. The default installation location of `C:\Program Files (x86)\InRule\irServer` is used for this, but can be overridden by providing a value for the `defaultInRuleInstallFolder` parameter:
+
+`.\build.ps1 -tag '5.0.26 -defaultInRuleInstallFolder 'z:\inrule\'`
+-->
 <!-- For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment** -->
 Please see the instructions for each respective image for information on how to build the individual images.
 
