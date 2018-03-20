@@ -1,6 +1,6 @@
 # escape=`
 
-FROM microsoft/windowsservercore:latest
+FROM microsoft/dotnet-framework:4.7.1-windowsservercore-1709
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
@@ -12,6 +12,3 @@ ADD . c:\temp\
 WORKDIR c:\temp\
 RUN .\InRuleServerDSC.ps1 -Wait;
 RUN New-EventLog -LogName InRule -Source "InRule.Repository","InRule.Repository.Service","InRule.Runtime","InRule.Runtime.Service","InRule.Authoring.irAuthor","InRule.Admin.CatalogManager"
-
-# REMARK: Temporary workaround for Windows DNS client weirdness
-#RUN powershell set-itemproperty -path 'HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters' -Name ServerPriorityTimeLimit -Value 0 -Type DWord
