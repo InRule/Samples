@@ -11,10 +11,15 @@ if ($tag -ne "latest") {
     $version = $tag
 }
 $ErrorActionPreference = "Stop"
-write-host "Building inrule-server base image."
-set-location "$PSScriptRoot\inrule-server" 
-docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-server:latest .
-
+if ($skipServerBuild -eq $false) { 
+    write-host "Building inrule-server base image."
+    set-location "$PSScriptRoot\inrule-server" 
+    docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-server:$tag .
+    if ($setLatestTag -eq $true ) {
+        write-host "Setting image $version to latest..."
+        docker image tag ${registryRootRepos}/inrule-server:$tag ${registryRootRepos}/inrule-server:latest    
+    } 
+}
 $hostCatalogPath = resolve-path "$defaultInRuleInstallFolder\irServer\RepositoryService\IisService\"
 Write-Host "Building inrule-catalog image using assets at $hostCatalogPath"
 Copy-Item $hostCatalogPath\** -Recurse -Force -Destination "$PSScriptRoot\inrule-catalog\irCatalog\" -Verbose
