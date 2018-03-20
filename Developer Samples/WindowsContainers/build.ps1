@@ -1,6 +1,6 @@
 param(
     [string]$tag,
-    [string]$registryRootRepos = "server",
+    [string]$registryRootRepos = "inrule",
     [switch]$setLatestTag = $false,
     [string]$defaultInRuleInstallFolder = "C:\Program Files (x86)\InRule\"
 )
