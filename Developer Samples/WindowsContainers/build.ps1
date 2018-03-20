@@ -7,9 +7,10 @@ param(
 Push-Location $PSScriptRoot
 
 $version = $null
-if ($tag -ne "latest") {    
-    $version = $tag
-}
+Write-Host "Attempting to determine the version number for assets located at $defaultInRuleInstallFolder"
+$version = (Get-ChildItem $defaultInRuleInstallFolder\*\InRule.Common.dll -recurse)[0].VersionInfo.ProductVersion
+Write-Host "Using InRule version $version"
+
 $ErrorActionPreference = "Stop"
 if ($skipServerBuild -eq $false) { 
     write-host "Building inrule-server base image."
@@ -39,7 +40,7 @@ set-location "$PSScriptRoot\inrule-catalog-manager"
 docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-catalog-manager:$tag .
 
 if ($setLatestTag -eq $true ) {
-    write-host "Setting image $version to latest..."
+    write-host "Setting image $tag to latest..."
     docker image tag ${registryRootRepos}/inrule-catalog:$tag ${registryRootRepos}/inrule-catalog:latest
 
     docker image tag ${registryRootRepos}/inrule-runtime:$tag ${registryRootRepos}/inrule-runtime:latest
