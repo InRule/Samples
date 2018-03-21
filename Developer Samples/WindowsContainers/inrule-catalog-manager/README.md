@@ -23,7 +23,7 @@ Typically, there's no need to modify this value in your builds.
 
 ```cmd
 
-docker build -t server/inrule-catalog-manager:5.0.14 .
+docker build -t inrule/inrule-catalog-manager:5.0.14 .
 
 ```
 
@@ -31,7 +31,7 @@ docker build -t server/inrule-catalog-manager:5.0.14 .
 
 ```cmd
 
-docker build --build-arg catManDir=c:\users\jsmith\downloads\irServer -t server/inrule-catalog-manager:5.0.12 .
+docker build --build-arg catManDir=c:\users\jsmith\downloads\irServer -t inrule/inrule-catalog-manager:5.0.12 .
 
 ```
 
@@ -43,7 +43,7 @@ Once started, you can open a web browser and navigate to the IP address of the c
 
 ```cmd
 
-docker run server/inrule-catalog-manager:latest
+docker run inrule/inrule-catalog-manager:latest
 
 ```
 
