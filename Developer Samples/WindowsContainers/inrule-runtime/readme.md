@@ -1,8 +1,6 @@
 # InRule Samples
 
-## Sample Title
-
-# README for the inrule-runtime DOCKER image
+## README for the inrule-runtime DOCKER image
 
 ## Important notes on building the image
 
@@ -22,11 +20,11 @@
 
 #### Using defaults
 
-```docker build -t server/inrule-runtime:5.0.26 .```
+```docker build -t inrule/inrule-runtime:5.0.26 .```
 
 #### Specifying an alternative path for source artifacts
 
-```docker build --build-arg irRuntimeDir=c:\users\jsmith\downloads\irServer -t server/inrule-runtime:5.0.12 .```
+```docker build --build-arg irRuntimeDir=c:\users\jsmith\downloads\irServer -t inrule/inrule-runtime:5.0.12 .```
 
 ## Running the image
 
@@ -41,7 +39,7 @@ Place the `InRuleLicense.xml` file in a location where the IIS process inside th
 
 ```cmd
 
-docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Service.svc' -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' server/inrule-runtime:latest
+docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Service.svc' -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
 
 ```
 
@@ -49,7 +47,7 @@ docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Se
 
 ```cmd
 
-docker run -d --link cat --env CatalogUri='https://cat/Service.svc' -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' server/inrule-runtime:latest
+docker run -d --link cat --env CatalogUri='https://cat/Service.svc' -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
 
 ```
 
@@ -57,7 +55,7 @@ Using a volume mount for file-based ruleapps and a container link to a container
 
 ```cmd
 
-docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P --link=cat -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' server/inrule-runtime:latest
+docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P --link=cat -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
 
 ```
 
@@ -65,7 +63,7 @@ Using a volume mount for endpoint assemblies and a container link to a container
 
 ```cmd
 
-docker run -d --rm --name=rex -v c:\inrule-assemblies\:c:\inrule-runtime\bin\EndpointAssemblies\ -P --link=cat -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' server/inrule-runtime:latest
+docker run -d --rm --name=rex -v c:\inrule-assemblies\:c:\inrule-runtime\bin\EndpointAssemblies\ -P --link=cat -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
 
 ```
 

@@ -1,8 +1,6 @@
 # InRule Samples
 
-## Sample Title
-
-# README for Web Catalog Manager DOCKERFILE
+## README for Web Catalog Manager DOCKERFILE
 
 ## Important notes on building the image
 
@@ -25,7 +23,7 @@ Typically, there's no need to modify this value in your builds.
 
 ```cmd
 
-docker build -t server/inrule-catalog-manager:5.0.14 .
+docker build -t inrule/inrule-catalog-manager:5.0.14 .
 
 ```
 
@@ -33,7 +31,7 @@ docker build -t server/inrule-catalog-manager:5.0.14 .
 
 ```cmd
 
-docker build --build-arg catManDir=c:\users\jsmith\downloads\irServer -t server/inrule-catalog-manager:5.0.12 .
+docker build --build-arg catManDir=c:\users\jsmith\downloads\irServer -t inrule/inrule-catalog-manager:5.0.12 .
 
 ```
 
@@ -45,7 +43,7 @@ Once started, you can open a web browser and navigate to the IP address of the c
 
 ```cmd
 
-docker run server/inrule-catalog-manager:latest
+docker run inrule/inrule-catalog-manager:latest
 
 ```
 
@@ -55,6 +53,6 @@ This will start a container running the Web Catalog Manager site using the defau
 
 ```cmd
 
-docker run -d --env CatalogUri=https://acme-catalog.cloudapp.net/Service.svc server/inrule-catalog-manager:latest
+docker run -d --env CatalogUri=https://acme-catalog.cloudapp.net/Service.svc inrule/inrule-catalog-manager:latest
 
 ```

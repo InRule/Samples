@@ -34,12 +34,12 @@ If you want to also have the images tagged as 'latest', pass `-SetLatestTag` to 
 
 `.\build.ps1 -tag '5.0.24' -setLatestTag`
 
-To skip building the `inrule-server` base image, pass the `skipServerBuild` switch to the build script.
-
-<!-- Unless otherwise specified, InRule assets (e.g., irCatalog, irServer components) will be copied into their respective directories by the build script. The default installation location of `C:\Program Files (x86)\InRule\irServer` is used for this, but can be overridden by providing a value for the `defaultInRuleInstallFolder` parameter:
+Unless otherwise specified, InRule assets (e.g., irCatalog, irServer components) will be copied into their respective directories by the build script. The default installation location of `C:\Program Files (x86)\InRule\irServer` is used for this, but can be overridden by providing a value for the `defaultInRuleInstallFolder` parameter:
 
 `.\build.ps1 -tag '5.0.26 -defaultInRuleInstallFolder 'z:\inrule\'`
--->
+
+To skip building the `inrule-server` base image, pass the `skipServerBuild` switch to the build script.
+
 <!-- For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment** -->
 Please see the instructions for each respective image for information on how to build the individual images.
 
