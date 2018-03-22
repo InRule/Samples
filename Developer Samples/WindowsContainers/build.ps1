@@ -32,23 +32,29 @@ if ($skipServerBuild -eq $false) {
 }
 
 $hostCatalogPath = resolve-path "$defaultInRuleInstallFolder\irServer\RepositoryService\IisService\"
-set-location "$PSScriptRoot\inrule-catalog"
+$catalogBuildPath = "$PSScriptRoot\inrule-catalog"
+set-location $catalogBuildPath
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog image using assets at $hostCatalogPath")) {
-    Copy-Item $hostCatalogPath\** -Recurse -Force -Destination "$PSScriptRoot\inrule-catalog\irCatalog\"
+    Remove-Item -Path $catalogBuildPath\irCatalog\ -Include *.* -Recurse -Force
+    Copy-Item $hostCatalogPath\** -Recurse -Force -Destination "$catalogBuildPath\irCatalog\" 
     docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-catalog:$tag .
 }
 
 $hostRuntimePath = resolve-path $defaultInRuleInstallFolder\irServer\RuleEngineService\IisService
-set-location "$PSScriptRoot\inrule-runtime"
+$runtimeBuildPath = "$PSScriptRoot\inrule-runtime"
+set-location $runtimeBuildPath
 if ($PSCmdlet.ShouldProcess("Building inrule-runtime image using assets at $hostRuntimePath")) {
-    Copy-Item -Path $hostRuntimePath\** -Recurse -Force -Destination "$PSScriptRoot\inrule-runtime\irServer"
+    Remove-Item -Path $runtimeBuildPath\irServer\ -Include *.* -Recurse -Force
+    Copy-Item -Path $hostRuntimePath\** -Recurse -Force -Destination "$runtimeBuildPath\irServer"
     docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-runtime:$tag .
 }
 
 $hostCatManPath = resolve-path $defaultInRuleInstallFolder\irServer\CatalogManagerWeb
-set-location "$PSScriptRoot\inrule-catalog-manager"
+$catmanBuildPath = "$PSScriptRoot\inrule-catalog-manager"
+set-location $catmanBuildPath
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog-manager image using assets at $hostCatManPath")) {
-    Copy-Item -Path $hostCatManPath\** -Recurse -Force -Destination "$PSScriptRoot\inrule-catalog-manager\CatalogManagerWeb"
+    Remove-Item -Path $catmanBuildPath\CatalogManagerWeb -Include *.* -Recurse -Force
+    Copy-Item -Path $hostCatManPath\** -Recurse -Force -Destination "$catmanBuildPath\CatalogManagerWeb"
     docker build --label "com.inrule.version=$version" -t ${registryRootRepos}/inrule-catalog-manager:$tag .
 }
 
