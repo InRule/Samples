@@ -1,0 +1,10 @@
+{
+  "name": "mortgage-calculator",
+  "version": "1.0.0",
+  "description": "Mortgage calculator rule application",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
