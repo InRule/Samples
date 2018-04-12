@@ -14,7 +14,6 @@
 *.userprefs
 
 # Build results
-packages
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -25,6 +24,14 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
 
 # Container image build source artifacts supplied by user
 **/InruleLicense.xml
