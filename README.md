@@ -34,7 +34,6 @@ If you would like to request additional samples from InRule, please write an iss
 | Create a rule session from an in-memory rule application | Developer Samples | CreateRuleSession-InMemory <br>RulesInCode |
 | Create an unbound entity using XML | Developer Samples | CreateEntityFromXml |
 | Custom cache policy | Developer Samples | RuleApplicationCache |
-| Database schema | Authoring Samples | Chicago Food Tax Generator |
 | Embed authoring controls in a WPF application | Developer Samples | EmbedAuthoringControl |
 | Embed authoring controls in a WinForms application | Developer Samples | EmbeddedWinFormInRule |
 | Entity XML | Developer Samples | GetEntityXml |
