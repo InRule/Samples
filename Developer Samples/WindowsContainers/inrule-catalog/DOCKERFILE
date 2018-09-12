@@ -14,8 +14,9 @@ EXPOSE 1433:1433
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
-        com.inrule.version="" `
-        com.inrule.product="irCatalog"
+        com.inrule.version="${reposTag}" `
+        com.inrule.product="irCatalog" `
+        com.inrule.product.flavor="AppServices"
 
 ENV ContainerDir=${ContainerDir:-"C:\inrule-catalog"}
 ENV inrule:repository:service:connectionString="Server=tcp:db,1433;User ID=sa;Password=asdf1234qwerty!;Initial Catalog=InRuleCatalog;"

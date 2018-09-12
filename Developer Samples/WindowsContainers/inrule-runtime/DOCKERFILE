@@ -12,8 +12,9 @@ FROM inrule/inrule-server:latest as deploy
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
-        com.inrule.version="" `
-        com.inrule.product="irServer"
+        com.inrule.version="${reposTag}" `
+        com.inrule.product="irServer"`
+        com.inrule.product.flavor="AppServices"
 
 EXPOSE 80:80
 EXPOSE 443:443
