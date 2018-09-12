@@ -1,35 +1,33 @@
 # escape=`
 
-FROM inrule/inrule-server:latest
+FROM inrule/inrule-server:latest AS build-stage
+
+ARG reposTag=v5.1.1
+WORKDIR C:\assets\
+ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Catalog.Service.zip c:\assets
+RUN Expand-Archive -Path InRule.Catalog.Service.zip -Destination c:\assets
+
+FROM inrule/inrule-server:latest as deploy
+EXPOSE 80:80
+EXPOSE 443:443
+EXPOSE 1433:1433
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
         com.inrule.version="" `
         com.inrule.product="irCatalog"
 
-ARG irCatalogDir
-ARG ContainerDir
+ENV ContainerDir=${ContainerDir:-"C:\inrule-catalog"}
+ENV inrule:repository:service:connectionString="Server=tcp:db,1433;User ID=sa;Password=asdf1234qwerty!;Initial Catalog=InRuleCatalog;"
+COPY --from=build-stage c:\assets ${ContainerDir}\
 
-ENV CatalogDbHost="db" `
-    CatalogUser="sa" `
-    CatalogPassword="_" `
-    CatalogDbName="InRuleCatalog" `
-    ContainerDir=${ContainerDir:-"C:\inrule-catalog"}
-
-ADD ${irCatalogDir:-irCatalog} ${ContainerDir}
-COPY *.ps1 c:\temp\
+WORKDIR C:\temp 
+COPY *.ps1 .\
 
 RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
 
-RUN Import-Module "WebAdministration";`
-    set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value $env:ContainerDir
+RUN Import-Module "WebAdministration";set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value $env:ContainerDir
 
-EXPOSE 80:80
-EXPOSE 443:443
-EXPOSE 1433:1433
-
-WORKDIR C:\temp 
-
-ENTRYPOINT .\Set-CatalogConfig.ps1 -catalogDbHostName $env:CatalogDbHost -catalogUserName $env:CatalogUser -catalogPassword $env:CatalogPassword -catalogInstallPath $env:ContainerDir -catalogDbName $env:CatalogDbName;
-
+# HACK to disable TLS in WCF bindings until SSL is supported
+RUN (Get-Content C:\inrule-catalog\web.config) | foreach { $_.Replace('Transport', 'None') } | set-content "c:\inrule-catalog\web.config" -force
 CMD .\Start.ps1;

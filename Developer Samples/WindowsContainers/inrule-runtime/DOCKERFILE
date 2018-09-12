@@ -1,33 +1,36 @@
 # escape=`
 
-FROM inrule/inrule-server:latest
+FROM inrule/inrule-server:latest AS build-stage
+
+ARG reposTag=v5.1.1
+WORKDIR C:\assets\
+ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Runtime.Service.zip c:\assets
+RUN Expand-Archive -Path InRule.Runtime.Service.zip -Destination c:\assets
+
+FROM inrule/inrule-server:latest as deploy
+
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
         com.inrule.version="" `
         com.inrule.product="irServer"
 
-ARG irRuntimeDir
-ARG ContainerDir
+EXPOSE 80:80
+EXPOSE 443:443
 
-ENV CatalogUri="http://cat/InRuleCatalogService/Service.svc" `
-CatalogUser="" `
-CatalogPass="" `
-ContainerDir=${ContainerDir:-"C:\inrule-runtime"}
+ENV inrule:runtime:service:catalog:catalogServiceUri="http://cat/InRuleCatalogService/Service.svc" `
+inrule:runtime:service:catalog:userName="" `
+inrule:runtime:service:catalog:password="" `
+ContainerDir="C:\inrule-runtime"
 
-ADD ${irRuntimeDir:-irServer} ${ContainerDir}
+COPY --from=build-stage c:\assets ${ContainerDir}\
+WORKDIR C:\temp
+COPY *.ps1 .\
 
 RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
 
 RUN Import-Module "WebAdministration";`
     set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value $env:ContainerDir
-
-EXPOSE 80:80
-EXPOSE 443:443
-
-COPY *.ps1 c:\temp\
-WORKDIR C:\temp
-
-ENTRYPOINT .\Set-RuntimeConfig.ps1 -catalogServiceUri $env:CatalogUri -catalogUser $env:CatalogUser -catalogPass $env:CatalogPass -installPath $env:ContainerDir -Verbose;
-
+# HACK to disable TLS in WCF bindings until SSL is supported
+RUN (Get-Content $env:ContainerDir\web.config) | foreach { $_.Replace('Transport', 'None') } | set-content "$env:ContainerDir\web.config" -force
 CMD .\Start.ps1
