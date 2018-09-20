@@ -42,6 +42,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Execution log settings | Developer Samples | GetChangedValues |
 | Execution log value changes | Developer Samples | GetChangedValues |
 | Explicitly cache a Rule Application | Developer Samples | RuleApplicationCache |
+| Get InRule Application Logs | Developer Samples | LibraryLogger |
 | Implicitly cache a Rule Application | Developer Samples | RuleApplicationCache |
 | InRule for WF | Developer Samples | WorkflowConsoleApplication |
 | Inline tables | Authoring Samples | Chicago Food Tax Generator |
