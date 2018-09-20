@@ -35,15 +35,15 @@
   <ItemGroup>
     <Reference Include="InRule.Common, Version=5.0.777.0, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Code\InRule\Flagship\Bin\InRule.Common.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\InRule.Common.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository, Version=5.0.777.0, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Code\InRule\Flagship\Bin\InRule.Repository.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\InRule.Repository.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Runtime, Version=5.0.777.0, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Code\InRule\Flagship\Bin\InRule.Runtime.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\InRule.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.7.1\lib\net46\Serilog.dll</HintPath>
