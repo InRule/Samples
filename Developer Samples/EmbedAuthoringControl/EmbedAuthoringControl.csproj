@@ -41,19 +41,19 @@
   <ItemGroup>
     <Reference Include="InRule.Authoring, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\InRule.Authoring.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Authoring.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Authoring.Editors, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\InRule.Authoring.Editors.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Authoring.Editors.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Common, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\InRule.Common.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Common.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\InRule.Repository.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Repository.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

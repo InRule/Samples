@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="InRule.Common">
-      <HintPath>..\..\irSDK\bin\InRule.Common.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

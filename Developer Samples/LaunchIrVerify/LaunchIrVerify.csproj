@@ -42,13 +42,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="InRule.Repository">
-      <HintPath>..\..\irSDK\bin\InRule.Repository.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Repository.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Runtime">
-      <HintPath>..\..\irSDK\bin\InRule.Runtime.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Runtime.Testing">
-      <HintPath>..\..\irSDK\bin\InRule.Runtime.Testing.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Runtime.Testing.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
