@@ -35,19 +35,19 @@
   <ItemGroup>
     <Reference Include="InRule.Common, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\irSDK\bin\InRule.Common.dll</HintPath>
+      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Common.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\irSDK\bin\InRule.Repository.dll</HintPath>
+      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Repository.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository.XmlSerializers, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\irSDK\bin\InRule.Repository.XmlSerializers.dll</HintPath>
+      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Repository.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Runtime, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\irSDK\bin\InRule.Runtime.dll</HintPath>
+      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
