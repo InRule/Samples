@@ -5,7 +5,7 @@
 ## Important notes on building the image
 
 * You must have a valid license for irCatalog.
-* Prior to building the image, copy the irServer RuleEngineService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RuleEngineService\IisService`) into this repository's `/irServer/` directory.
+
 * See [inrule-server](../inrule-server/) documentation for information on licensing
 
 ## About this image
@@ -16,22 +16,15 @@
 
 ## Building the image
 
-### Docker build
-
-#### Using defaults
-
-```docker build -t inrule/inrule-runtime:5.0.26 .```
-
-#### Specifying an alternative path for source artifacts
-
-```docker build --build-arg irRuntimeDir=c:\users\jsmith\downloads\irServer -t inrule/inrule-runtime:5.0.12 .```
+* The DOCKERFILE requires a build argument specifying the specific tag to use when acquiring assets from the [InRule assets repos]( https://github.com/InRule/AzureAppServices/releases/download)
 
 ## Running the image
 
 Once the container starts it will be listening on the designated ports (80 by default). Requests can be sent either to the SOAP service or the REST service using these endpoints:
 
 SOAP: `http://<container name or ip>/Service.svc`
-REST: `http://<container name or ip>/HttpService.svc`
+
+REST (preferred): `http://<container name or ip>/HttpService.svc`
 
 Place the `InRuleLicense.xml` file in a location where the IIS process inside the docker container will be able to read it (e.g. not under a user's home directory)
 
@@ -43,27 +36,26 @@ docker run -d -p 80:80 --env CatalogUri='https://contoso-catalog.cloudapp.net/Se
 
 ```
 
-### Basic usage connecting to a linked container catalog
+### Basic usage connecting to a linked container catalog, specifying catalog credentials
 
 ```cmd
 
-docker run -d --link cat --env CatalogUri='https://cat/Service.svc' -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
+docker run -d --env inrule:runtime:service:catalog:catalogServiceUri="http://cat/Service.svc" --env inrule:runtime:service:catalog:userName="<username>" --env inrule:runtime:service:catalog:password="<password>" -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
+```
+
+Using a volume mount for file-based ruleapps and a container link to a default container (cat) running irCatalog:
+
+```cmd
+
+docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P  -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
 
 ```
 
-Using a volume mount for file-based ruleapps and a container link to a container running irCatalog:
+Using a volume mount for endpoint assemblies:
 
 ```cmd
 
-docker run -d --rm --name=rex -v c:\inrule-ruleapps\:c:\RuleApps\ -P --link=cat -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
-
-```
-
-Using a volume mount for endpoint assemblies and a container link to a container running irCatalog:
-
-```cmd
-
-docker run -d --rm --name=rex -v c:\inrule-assemblies\:c:\inrule-runtime\bin\EndpointAssemblies\ -P --link=cat -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
+docker run -d --rm --name=rex -v c:\inrule-assemblies\:c:\inrule-runtime\bin\EndpointAssemblies\ -P -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' inrule/inrule-runtime:latest
 
 ```
 
