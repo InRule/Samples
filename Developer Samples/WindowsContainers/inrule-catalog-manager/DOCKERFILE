@@ -1,24 +1,34 @@
 # escape=`
 
-FROM inrule/inrule-server:latest
+FROM inrule/inrule-server:latest AS build-stage
+ARG reposTag=v5.1.1
+WORKDIR C:\assets\
+ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Catalog.Manager.Web.zip c:\assets
+
+RUN Expand-Archive -Path InRule.Catalog.Manager.Web.zip -Destination c:\assets
+
+FROM inrule/inrule-server:latest as deploy
+
+EXPOSE 80:80
+EXPOSE 443:443
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
-        com.inrule.version="" `
-        com.inrule.product="Web Catalog Manager"
+        com.inrule.version="${reposTag}" `
+        com.inrule.product="Web Catalog Manager"`
+        com.inrule.product.flavor="AppServices"
         
-ARG catManDir
-ENV catalogUri=http://cat/InRuleCatalogService/Service.svc
+ENV catManDir=c:\inrule-catalog-manager
+ENV InRule:Catalog:Uri=http://cat/Service.svc
 
-COPY /${catManDir:-CatalogManagerWeb} /inrule-catalog-manager
-COPY *.ps1 c:\temp\
+COPY --from=build-stage c:\assets ${catManDir}\
+WORKDIR c:\temp
+COPY *.ps1 .\
 
-RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci c:\inrule-catalog-manager -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
+RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci ${catManDir} -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
 
-RUN Import-Module WebAdministration;set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value C:\inrule-catalog-manager
+RUN Import-Module "WebAdministration";set-itemproperty -path 'IIS:\Sites\Default Web Site\' -Name physicalPath -Value $env:catManDir
 
-WORKDIR /temp
-EXPOSE 80:80
-
-ENTRYPOINT .\Set-WebCatManConfig.ps1 -catalogUri $env:CatalogUri -cfgBasePath c:\inrule-catalog-manager;
-CMD .\Start.ps1 -catalogUri "$env:catalogUri" -cfgBasePath "c:\inrule-catalog-manager"
+# HACK to disable TLS in WCF bindings until SSL is supported
+RUN (Get-Content $env:catManDir\web.config) | foreach { $_.Replace('Transport', 'None') } | set-content "$env:catManDir\web.config" -force
+CMD .\Start.ps1

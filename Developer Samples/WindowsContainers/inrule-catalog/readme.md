@@ -4,21 +4,19 @@
 
 ### Important notes on building the image
 
-* The irCatalog service is a WCF service hosted by IIS. The DOCKERFILE will copy the assets into the image, and expects a flat folder structure.
-* Prior to building the image, copy the irServer RepositoryService IisService assets (default is usually `C:\Program Files (x86)\InRule\irServer\RepositoryService\IisService\`) into the repository's irCatalog directory (/irCatalog/)
+* The DOCKERFILE requires a build argument specifying the specific tag to use when acquiring assets from the [InRule assets repos]( https://github.com/InRule/AzureAppServices/releases/download)
+
 * See [inrule-server](../inrule-server/) documentation for information on licensing
 
-#### List of required environment properties
+#### Environment Variables
 
-* CatalogUser - the SQL login that the service will use to connect to the DB
-* CatalogPassword - the SQL password that the service will use to connect to the DB. **Not encrypted, viewable in logs**
-* CatalogDbHost - defaults to `db`
+* Specify the irCatalog database connection string with the  `inrule:repository:service:connectionString` environment variable
 
 Note that the catalog database must already be present with schema before the catalog service will be fully operational.
 
 ### (optional) Building the database
 
-The [microsoft/mssql-server-windows-express](https://hub.docker.com/r/microsoft/mssql-server-windows-express/) image can be used to quickly stand up an InRuleCatalog database instance.
+The [microsoft/mssql-server-windows-express](https://hub.docker.com/r/microsoft/mssql-server-windows-express/) image can be used to quickly stand up an InRuleCatalog database instance. For convenience purposes, a pre-built image pre-populated with the irCatalog database schema is available for selected versions of irCatalog (v5.1.1+) on [Docker Hub](https://hub.docker.com/r/inrule/inrule-catalog-db/). Note that this image is currently (as of v5.1.1) unsupported.
 
 #### Docker run command to start a SQL DB container
 

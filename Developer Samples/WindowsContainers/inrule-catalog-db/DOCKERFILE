@@ -1,0 +1,17 @@
+# escape=`
+
+FROM microsoft/windowsservercore:latest as builder
+ARG reposTag=v5.1.1
+WORKDIR C:\assets\
+
+ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Catalog.Service.Database.zip c:\assets
+
+RUN Expand-Archive -Path InRule.Catalog.Service.Database.zip -Destination c:\assets
+
+FROM microsoft/microsoft/mssql-server-windows-express:latest as publish
+ENV accept_eula=Y
+ENV sa_password='_'
+
+COPY --from=builder C:\assets c:\temp\
+WORKDIR c:\temp
+
