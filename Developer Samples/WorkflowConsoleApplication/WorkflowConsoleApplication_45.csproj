@@ -59,10 +59,10 @@
   <ItemGroup>
     <Reference Include="InRule.Activities, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\Workflow\InRule.Activities.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\Workflow\InRule.Activities.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Runtime">
-      <HintPath>..\..\irSDK\bin\InRule.Runtime.dll</HintPath>
+      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationFramework" />
