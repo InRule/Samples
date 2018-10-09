@@ -17,6 +17,8 @@ services:
         depends_on:
             - cat
         image: inrule/inrule-catalog-manager:v5.1.1
+        ports:
+            - "80"
     db:
         image: inrule/inrule-catalog-db:v5.1.1
         ports:

@@ -1,0 +1,11 @@
+version: '2.4'
+
+services: 
+    rex:
+      volumes:
+        - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
+    cat:
+      volumes:
+        - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'         
+    webcatman:
+         
