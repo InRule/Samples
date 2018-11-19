@@ -1,5 +1,4 @@
 <div class="readme blob instapaper_body" id="readme">
-
 <article class="markdown-body entry-content" itemprop="text">
 
 # [](#inrule-samples)InRule Samples
