@@ -6,6 +6,10 @@ services:
         - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
     cat:
       volumes:
-        - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'         
+        - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
     webcatman:
-         
+
+    db:
+      image: inrule/inrule-catalog-db:v5.1.1-samples
+      environment:
+          - sa_password=fqMz?xzrN1

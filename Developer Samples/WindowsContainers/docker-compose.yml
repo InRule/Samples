@@ -7,19 +7,24 @@ services:
         image: inrule/inrule-runtime:v5.1.1
         ports:
             - "80"
+        restart: always
     cat:
         depends_on:
             - db
         image: inrule/inrule-catalog:v5.1.1
         ports:
             - "80"
+        restart: always
     webcatman:
+        ports:
+            - "80"
         depends_on:
             - cat
         image: inrule/inrule-catalog-manager:v5.1.1
-        ports:
-            - "80"
+        restart: always
+    
     db:
         image: inrule/inrule-catalog-db:v5.1.1
         ports:
             - "1433"
+        restart: always

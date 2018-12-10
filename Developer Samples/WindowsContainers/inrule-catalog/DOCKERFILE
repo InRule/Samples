@@ -35,4 +35,4 @@ RUN (Get-Content C:\inrule-catalog\web.config) | foreach { $_.Replace('Transport
  
 # HACK to add new appSettings configuration until environment variable support is added
 ENTRYPOINT .\Set-CatalogConfig.ps1 -verbose;
-CMD .\Start.ps1
+CMD .\Start.ps1;
