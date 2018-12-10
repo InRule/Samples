@@ -7,22 +7,24 @@ services:
         image: inrule/inrule-runtime:latest
         ports:
             - "80"
+        restart: always
     cat:
         depends_on:
             - db
         image: inrule/inrule-catalog:latest
         ports:
             - "80"
+        restart: always
     webcatman:
-        depends_on:
-            - cat
         ports:
             - "80"
-        image: inrule/inrule-catalog-manager:latest
+        depends_on:
+            - cat
+        image: inrule/inrule-catalog-manager:v5.1.1
+        restart: always
+    
     db:
         image: inrule/inrule-catalog-db:latest
         ports:
             - "1433"
-        environment:
-            - ACCEPT_EULA=Y
-            - MSSQL_PID=Developer
+        restart: always
