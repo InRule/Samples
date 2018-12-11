@@ -20,7 +20,7 @@ services:
             - "80"
         depends_on:
             - cat
-        image: inrule/inrule-catalog-manager:v5.1.1
+        image: inrule/inrule-catalog-manager:v5.2.0
         restart: always
     
     db:
