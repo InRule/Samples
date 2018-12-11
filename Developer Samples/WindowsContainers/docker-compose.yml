@@ -2,6 +2,7 @@ version: '2.4'
 
 services: 
     rex:
+        isolation: process
         depends_on:
             - cat
         image: inrule/inrule-runtime:v5.2.0
@@ -9,6 +10,7 @@ services:
             - "80"
         restart: always
     cat:
+        isolation: process
         depends_on:
             - db
         image: inrule/inrule-catalog:v5.2.0
@@ -16,6 +18,10 @@ services:
             - "80"
         restart: always
     webcatman:
+        isolation: process
+        depends_on:
+            - cat
+        image: inrule/inrule-catalog-manager:v5.1.1
         ports:
             - "80"
         depends_on:
