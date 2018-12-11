@@ -2,7 +2,7 @@
 
 FROM inrule/inrule-server:latest AS build-stage
 
-ARG reposTag=v5.1.1
+ARG reposTag
 WORKDIR C:\assets\
 ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Runtime.Service.zip c:\assets
 RUN Expand-Archive -Path InRule.Runtime.Service.zip -Destination c:\assets

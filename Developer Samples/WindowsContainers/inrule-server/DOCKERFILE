@@ -1,6 +1,6 @@
 # escape=`
 
-FROM microsoft/dotnet-framework:4.7.1-windowsservercore-1709
+FROM microsoft/dotnet-framework:4.7.2-runtime-20181113-windowsservercore-1803
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
