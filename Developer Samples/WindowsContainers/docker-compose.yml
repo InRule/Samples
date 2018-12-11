@@ -22,7 +22,6 @@ services:
             - cat
         image: inrule/inrule-catalog-manager:v5.2.0
         restart: always
-    
     db:
         image: inrule/inrule-catalog-db:latest
         ports:
