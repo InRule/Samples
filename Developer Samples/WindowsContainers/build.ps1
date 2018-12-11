@@ -18,10 +18,12 @@ if ($requiresHyperVIsolation -eq $true) {
 
 $imagesBuild = @()
 
+$imagesBuild = @()
+
 if ($skipServerBuild -eq $false) { 
     write-host "Building inrule-server base image."    
     if ($PSCmdlet.ShouldProcess("Building inrule-server base image")) {
-        docker build $hyperVIsolationParameter -t ${registryRootRepos}/inrule-server:$baseServerTagName  -f "$PWD\inrule-server\DOCKERFILE" "$PWD\inrule-server"
+        docker build --label "com.inrule.version=$tag" -t ${registryRootRepos}/inrule-server:$tag  -f "$PWD\inrule-server\DOCKERFILE" "$PWD\inrule-server"
         
         if ($LASTEXITCODE -ne 0) {
             throw 'non-zero return from docker build. aborting.'
@@ -54,7 +56,7 @@ if ($PSCmdlet.ShouldProcess("Building inrule-catalog-db image")) {
 
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog image")) {
    
-    docker build $hyperVIsolationParameter --build-arg $reposTagBuildArg --build-arg $baseImageBuildArg -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
+    docker build --build-arg reposTag=$tag --label "com.inrule.version=$tag" -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
     
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
