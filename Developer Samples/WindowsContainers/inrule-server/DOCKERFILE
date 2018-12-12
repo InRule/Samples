@@ -1,6 +1,6 @@
 # escape=`
 
-FROM microsoft/aspnet:4.7.2-20181113-windowsservercore-1803
+FROM mcr.microsoft.com/dotnet/framework/aspnet:4.7.2-windowsservercore-1803
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
