@@ -16,10 +16,10 @@ services:
             - "80"
         restart: always
     webcatman:
-        ports:
-            - "80"
         depends_on:
             - cat
+        ports:
+            - "80"
         image: inrule/inrule-catalog-manager:v5.2.0
         restart: always
     db:
