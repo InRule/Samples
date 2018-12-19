@@ -2,6 +2,20 @@
 
 ## InRule Docker images
 
+### *** Important note regarding licensing ***
+
+Some of the images in this repository require a valid InRule license file to be supplied on the host machine. Machine-specific (including evaluation licenses) will result in runtime errors when used for these purposes; please request and use an azure-appropriate license file. Azure license files can be obtained from your InRule Support Admin, or by contacting [support@inrule.com](mailto:support@inrule.com) with your customer information. See the individual image descriptions and README's for information on how to make this license file available to containers running on a host machine.
+
+#### Troubleshooting license-related exceptions
+
+##### Exception
+
+"An unexpected server exception has occurred: The license for [PRODUCT NAME] is not valid. The machine's name ([CONTAINER HOSTNAME]) does not match the licensed machine name."
+
+##### Explanation and resolution
+
+This exception is thrown when attempting to mount a machine-specific license file into a container. Contact Support or your InRule Support Admin to obtain a valid Azure license key file. 
+
 ## Image descriptions
 
 * [inrule-server](inrule-server/) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary WCF and IIS components are present and available in the target container.
@@ -107,11 +121,11 @@ Environment-specific variables are listed below each with a short description:
 #### Start the environment
 
 ```cmd
-docker-compose up
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up
 ```
 
 #### Stopping the environment
 
 ```cmd
-docker-compose down
+docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml down
 ```
