@@ -5,7 +5,13 @@ services:
       volumes:
         - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
     cat:
+      environment:
+        - inrule:repository:service:connectionString=Server=tcp:db,1433;User ID=sa;Password=fqMz?xzrN1;Initial Catalog=InRuleCatalog;
       volumes:
-        - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'         
+        - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
     webcatman:
-         
+
+    db:
+      image: inrule/inrule-catalog-db:v5.2.0-samples
+      environment:
+          - sa_password=fqMz?xzrN1
