@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("InRule Technology, Inc.")]
 [assembly: AssemblyProduct("EmbedAuthoringControl")]
-[assembly: AssemblyCopyright("Copyright © 2018, InRule Technology, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2019, InRule Technology, Inc.")]
 [assembly: AssemblyTrademark("InRule® is a registered trademark of InRule Technology.  All Rights Reserved.")]
 [assembly: AssemblyCulture("")]
 
