@@ -20,7 +20,7 @@ services:
             - cat
         ports:
             - "80"
-        image: inrule/inrule-catalog-manager:v5.2.0
+        image: inrule/inrule-catalog-manager:latest
         restart: always
     db:
         image: inrule/inrule-catalog-db:latest
