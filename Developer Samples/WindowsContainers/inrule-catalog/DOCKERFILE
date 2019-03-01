@@ -6,7 +6,7 @@ ARG reposTag
 WORKDIR C:\assets\
 ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Catalog.Service.zip c:\assets
 RUN Expand-Archive -Path InRule.Catalog.Service.zip -Destination c:\assets
-RUN Remove-Item .\InRule.Catalog.Service.zip, .\InRuleLicense.xml
+RUN Remove-Item .\InRule.Catalog.Service.zip
 
 FROM inrule/inrule-server:latest as deploy
 EXPOSE 80:80

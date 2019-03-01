@@ -12,6 +12,6 @@ services:
     webcatman:
 
     db:
-      image: inrule/inrule-catalog-db:v5.2.0-samples
+      image: inrule/inrule-catalog-db
       environment:
           - sa_password=fqMz?xzrN1
