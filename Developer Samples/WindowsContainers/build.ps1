@@ -3,10 +3,11 @@ param(
     [string][Parameter(Mandatory= $true)] $tag,
     [string]$registryRootRepos = "inrule",
     [switch]$setLatestTag = $false,
-    [switch]$skipServerBuild = $false
+    [switch]$skipServerBuild = $false,
+    [string][Parameter(Mandatory= $false)] $reposTag
 )
 $ErrorActionPreference = "Stop"
-Write-Host "Images will be tagged $tag. Also tag them as latest? $setLatestTag"
+Write-Verbose "Images will be tagged $tag. Assets will be pulled from $reposTag. Also tag them as latest? $setLatestTag"
 
 $imagesBuild = @()
 
@@ -29,7 +30,7 @@ if ($skipServerBuild -eq $false) {
 
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog image")) {
    
-    docker build --build-arg reposTag=$tag --label "com.inrule.version=$tag" -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
+    docker build --build-arg reposTag=$reposTag --label "com.inrule.version=$reposTag" -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
     
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
@@ -38,7 +39,7 @@ if ($PSCmdlet.ShouldProcess("Building inrule-catalog image")) {
 }
 
 if ($PSCmdlet.ShouldProcess("Building inrule-runtime image")) {   
-    docker build --build-arg reposTag=$tag --label "com.inrule.version=$tag" -t ${registryRootRepos}/inrule-runtime:$tag -f $PWD\inrule-runtime\DOCKERFILE $PWD\inrule-runtime
+    docker build --build-arg reposTag=$reposTag --label "com.inrule.version=$reposTag" -t ${registryRootRepos}/inrule-runtime:$tag -f $PWD\inrule-runtime\DOCKERFILE $PWD\inrule-runtime
 
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
@@ -47,7 +48,7 @@ if ($PSCmdlet.ShouldProcess("Building inrule-runtime image")) {
 }
 
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog-manager image")) {    
-    docker build --build-arg reposTag=$tag --label "com.inrule.version=$tag" -t ${registryRootRepos}/inrule-catalog-manager:$tag -f $PWD\inrule-catalog-manager\DOCKERFILE $PWD\inrule-catalog-manager
+    docker build --build-arg reposTag=$reposTag --label "com.inrule.version=$reposTag" -t ${registryRootRepos}/inrule-catalog-manager:$tag -f $PWD\inrule-catalog-manager\DOCKERFILE $PWD\inrule-catalog-manager
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
     }

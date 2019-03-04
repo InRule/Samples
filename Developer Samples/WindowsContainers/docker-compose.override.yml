@@ -2,16 +2,18 @@ version: '2.4'
 
 services: 
     rex:
+      image: inrule/inrule-runtime:v5.3.0
       volumes:
         - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
     cat:
+      image: inrule/inrule-catalog:v5.3.0
       environment:
         - inrule:repository:service:connectionString=Server=tcp:db,1433;User ID=sa;Password=fqMz?xzrN1;Initial Catalog=InRuleCatalog;
       volumes:
         - 'c:\ProgramData\InRule\SharedLicenses:c:\ProgramData\InRule\SharedLicenses:ro'
     webcatman:
-
+      image: inrule/inrule-catalog-manager:v5.3.0
     db:
-      image: inrule/inrule-catalog-db:v5.2.0-samples
+      image: inrule/inrule-catalog-db
       environment:
           - sa_password=fqMz?xzrN1

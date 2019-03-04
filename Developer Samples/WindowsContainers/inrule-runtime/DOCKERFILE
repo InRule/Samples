@@ -6,7 +6,7 @@ ARG reposTag
 WORKDIR C:\assets\
 ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Runtime.Service.zip c:\assets
 RUN Expand-Archive -Path InRule.Runtime.Service.zip -Destination c:\assets
-RUN Remove-Item .\InRule.Runtime.Service.zip, .\InRuleLicense.xml
+RUN Remove-Item .\InRule.Runtime.Service.zip
 
 FROM inrule/inrule-server:latest as deploy
 
