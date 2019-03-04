@@ -18,7 +18,7 @@ This exception is thrown when attempting to mount a machine-specific license fil
 
 ## Image descriptions
 
-* [inrule-server](inrule-server/) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary WCF and IIS components are present and available in the target container.
+* [inrule-server](inrule-server/) image is used as a base image for the other InRule server- based container components. It exists to ensure that the necessary WCF and IIS components are present and available in the target container and to also help with efficiently pulling image layers from remote registries. Pulling this image (`docker image pull inrule/inrule-server`) before running the others is recommended to reduce overall downloads of image layers.
 
 * The [inrule-catalog](inrule-catalog/) container image encapsulates the InRule irCatalog service, providing source control facilities to rules authors and runtime services alike.
 
@@ -38,15 +38,19 @@ Here are the steps to building these images from their base assets. To build the
 
 1. Clone the repository into a working directory
 
-2. Run the [build.ps1](/build.ps1) script, passing in the name of the tag you'd like to use:
+2. Select a version of InRule from the [InRule Azure AppServices Releases](https://github.com/InRule/AzureAppServices/releases) page (e.g., `v5.3.0`)
 
-`.\build.ps1 -tag 'v5.1.1'`
+3. Run the [build.ps1](/build.ps1) script, supplying both the name of the tag you'd like to apply to the built images along with the name of the InRule Release Tag selected in the previous step:
 
-If you want to also have the images tagged as 'latest', pass `-SetLatestTag` to the script:
+`.\build.ps1 -tag myBuild -reposTag v5.3.0`
 
-`.\build.ps1 -tag 'v5.1.1' -setLatestTag`
+4. (opt.) If you want to also have the images tagged as 'latest', pass `-SetLatestTag` to the script:
 
-To skip building the `inrule-server` base image, pass the `skipServerBuild` switch to the build script.
+`.\build.ps1 -tag myBuild -reposTag v5.3.0 -setLatestTag`
+
+5. (opt.) To skip building the `inrule-server` base image, pass the `skipServerBuild` switch to the build script.
+
+6. (opt.) Specify the name of the docker registry repository to use for the images (e.g., **inrule**/inrule-server)
 
 For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment**
 
@@ -65,8 +69,10 @@ Once you've followed all of the steps in a respective setup guide and verified t
 ### About the compose file
 
 The `docker-compose.yml` file in the root of this repository describes the resources, services, that comprise a "vanilla" rule execution environment.
-It contains the following components (container alias are in parenthesis):
 
+The docker-compose file defines the following services (container alias are in parenthesis):
+
+* Web catalog manager (webcatman)
 * Rules execution service (rex)
 * Catalog service (cat)
 * SQL Express Db (db)
@@ -94,8 +100,6 @@ services:
 
 Environment-specific variables are listed below each with a short description:
 
-* TAG
-  * The image tag to use. This should correspond to either `latest` or to a specific version of InRule (e.g., `5.0.16`).
 * sa_password
   * Used by the db container to set the SA account password. The value of this is shared with the `catalogPassword` variable (TODO: consolidate variables)
   * Will be set as the **sa** SQL account's password when the **db** container is started. If an existing database is being attached, that databases' sa password will be reset to the provided value.
