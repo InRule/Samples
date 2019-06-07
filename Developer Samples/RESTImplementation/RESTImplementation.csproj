@@ -33,20 +33,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InRule.Common, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Common.dll</HintPath>
+    <Reference Include="InRule.Common, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>packages\InRule.Common.5.4.0\lib\net461\InRule.Common.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Repository, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Repository.dll</HintPath>
+    <Reference Include="InRule.Repository, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>packages\InRule.Repository.5.4.0\lib\net461\InRule.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Runtime, Version=5.0.17.69, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\irSDK\bin\net4.6.1\InRule.Runtime.dll</HintPath>
+    <Reference Include="InRule.Repository.XmlSerializers, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>packages\InRule.Repository.5.4.0\lib\net461\InRule.Repository.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Runtime, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>packages\InRule.Runtime.5.4.0\lib\net461\InRule.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
