@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Mono.Options;
 using System.IO;
 using InRule.Repository.Service;
+using Newtonsoft.Json;
 
 namespace BuildIrJsRuleApp
 {
@@ -63,7 +64,7 @@ namespace BuildIrJsRuleApp
             {
                 ShowHelp(clParams);
             }
-            else if(string.IsNullOrEmpty(irDistributionKey))
+            else if (string.IsNullOrEmpty(irDistributionKey))
             {
                 Console.WriteLine("Error: Missing required parameter DistributionKey.");
             }
@@ -83,7 +84,7 @@ namespace BuildIrJsRuleApp
                     Console.WriteLine("Error creating reference to file-based Rule App: " + ie.Message); //Rule App file not found
                 }
             }
-            else if(!string.IsNullOrEmpty(CatalogUri)
+            else if (!string.IsNullOrEmpty(CatalogUri)
                 && !string.IsNullOrEmpty(CatalogUsername)
                 && !string.IsNullOrEmpty(CatalogPassword)
                 && !string.IsNullOrEmpty(CatalogRuleAppName))
@@ -127,7 +128,7 @@ namespace BuildIrJsRuleApp
                     Console.WriteLine("Compiled and wrote out Javascript Rule App");
                     Console.WriteLine();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Error writing out compiled JavaScript file: " + ex.Message);
                 }
@@ -159,7 +160,7 @@ namespace BuildIrJsRuleApp
 
                     // Get the return package from the result
 
-                    dynamic returnPackage = result.Content.ReadAsAsync<JObject>().Result;
+                    dynamic returnPackage = JObject.Parse(result.Content.ReadAsStringAsync().Result);
                     var errors = new StringBuilder();
                     if (returnPackage.Status.ToString() == "Fail")
                     {
@@ -195,9 +196,9 @@ namespace BuildIrJsRuleApp
                     Console.WriteLine("Error retrieving Rule Application to compile: " + icex.Message);
                     return null;
                 }
-                catch (UnsupportedMediaTypeException)
+                catch (JsonReaderException)
                 {
-                    if(result != null)
+                    if (result != null)
                         Console.WriteLine("Error requesting compiled Rule Application: " + result.Content.ReadAsStringAsync().Result);
                     else
                         Console.WriteLine("Error requesting compiled Rule Application.");
