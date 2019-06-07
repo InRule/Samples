@@ -19,6 +19,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Add an existing entity to a collection | Developer Samples | AddCollectionMembers <br> CreateEntityFromXml |
 | Authoring Tutorial | Authoring Samples | irAuthor Beginner Tutorial |
 | Auto Rule Sets | Authoring Samples | Iteration |
+| Build irJS Compiled Rule App from itDistribution Service using Command Line | Developer Samples | BuildIrJsRuleApp |
 | Business Language rules | Authoring Samples | Chicago Food Tax Generator |
 | Cache depth | Developer Samples | RuleApplicationCache |
 | CacheRetention.AlwaysRetain | Developer Samples | RuleApplicationCache |
