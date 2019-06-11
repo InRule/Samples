@@ -19,7 +19,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Add an existing entity to a collection | Developer Samples | AddCollectionMembers <br> CreateEntityFromXml |
 | Authoring Tutorial | Authoring Samples | irAuthor Beginner Tutorial |
 | Auto Rule Sets | Authoring Samples | Iteration |
-| Build irJS Compiled Rule App from irDistribution Service using Command Line | Developer Samples | BuildIrJsRuleApp |
+| Build irJS Compiled Rule App from irDistribution Service using Command Line | Developer Samples | CommandLineTools\BuildIrJsRuleApp |
 | Business Language rules | Authoring Samples | Chicago Food Tax Generator |
 | Cache depth | Developer Samples | RuleApplicationCache |
 | CacheRetention.AlwaysRetain | Developer Samples | RuleApplicationCache |
@@ -55,6 +55,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Load XML state into an entity | Developer Samples | CreateRuleSession-Catalog <br>CreateRuleSession-FileSystem <br>GetChangedValues <br>GetEntityXml |
+| Promote Rule App between Catalogs using Command Line | Developer Samples | CommandLineTools\PromoteRuleApp |
 | Query value list | Authoring Samples | Chicago Food Tax Generator |
 | Windows Container Samples | Developer Samples | WindowsContainers
 | Salesforce | Developer Samples | SalesforceSamples |
