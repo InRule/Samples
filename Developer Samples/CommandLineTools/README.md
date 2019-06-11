@@ -25,7 +25,7 @@ This sample allows a Rule Application to be promoted from one Catalog instance t
 
 ### Sample Execution command:
 
-    ./PromoteRuleApp.exe -RuleAppName:"MortgageCalculator" -Label:LIVE -Comment:"Publish from command line tool" -SrcCatUri:"https://road-dgardiner-dev-envt1-ircatalog.azurewebsites.net/service.svc/core" -SrcCatUser:"admin" -SrcCatPass:"password" -DestCatUri:"http://127.0.0.1/InRuleCatalogService/Service.svc/core" -DestCatUser:"admin" -DestCatPass:"password"
+    ./PromoteRuleApp.exe -RuleAppName:"MortgageCalculator" -Label:LIVE -Comment:"Publish from command line tool" -SrcCatUri:"https://dev.ircatalog.azurewebsites.net/service.svc/core" -SrcCatUser:"username" -SrcCatPass:"password" -DestCatUri:https://stage.ircatalog.azurewebsites.net/Service.svc/core" -DestCatUser:"username" -DestCatPass:"password"
 
 
 
