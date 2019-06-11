@@ -14,13 +14,6 @@ namespace BuildIrJsRuleApp
 {
     class Program
     {
-        //Example Requests 
-        //Option 1 - requesting from a file-based Rule App
-        //  BuildIrJsRuleApp.exe -DistributionKey:00000000-0000-0000-0000-000000000000 -OutputPath:"C:\Working\MortgageCalculator_irJS.js" -RuleAppPath:"C:\Working\MortgageCalculator for irJS.ruleappx"
-
-        //Option 2 - requesting from a Catalog-based Rule App
-        //  BuildIrJsRuleApp.exe -DistributionKey:00000000-0000-0000-0000-000000000000 -OutputPath:"C:\Working\MortgageCalculator_irJS.js" -CatUri:https://ircatalog.azurewebsites.net/service.svc -CatUsername:username -CatPassword:password -CatRuleAppName:MortgageCalculator -CatLabel:LIVE
-
         static void Main(string[] args)
         {
             //Required Parameters
