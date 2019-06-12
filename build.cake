@@ -11,8 +11,7 @@ var nugetSourceFeedUrl = Argument("nugetSourceFeedUrl", EnvironmentVariable("NuG
 // GLOBALS
 //////////////////////////////////////////////////////////////////////
 
-FilePathCollection _solutionFilesThatNeedRunTimeTesting = new FilePathCollection();
-_solutionFilesThatNeedRunTimeTesting.Add(GetFiles("./Developer Samples/Wpf.ObjectAsStateInvoice/Wpf.ObjectAsStateInvoice.sln"));
+const string _nuGetOrgUrl = "https://api.nuget.org/v3/index.json";
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -21,30 +20,30 @@ _solutionFilesThatNeedRunTimeTesting.Add(GetFiles("./Developer Samples/Wpf.Objec
 Task("Clean, Restore, and Build solutions")
   .Does(() =>
 {
+  // Determine solution files.
   FilePathCollection solutionFiles = GetFiles("./**/*.sln");
-  solutionFiles.Remove(_solutionFilesThatNeedRunTimeTesting);
 
+  // Determine NuGet source feeds.
+  ICollection<string> nuGetSources;
+  if (!string.IsNullOrWhiteSpace(nugetSourceFeedUrl))
+  {
+    Warning("{0} added as an additional NuGet feed.", nugetSourceFeedUrl);
+    nuGetSources = new[] { nugetSourceFeedUrl, _nuGetOrgUrl };
+  }
+  else
+  {
+    Warning("No additional NuGet feed specified.");
+    nuGetSources = new[] { _nuGetOrgUrl };
+  }
+
+  // Clean, restore, and build.
   foreach(var solutionFile in solutionFiles)
   {
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
     Information("Building " + solutionFile);
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
     MSBuild(solutionFile, settings => settings.WithTarget("Clean"));
-    NuGetRestore(solutionFile);
-    MSBuild(solutionFile, settings => settings.WithTarget("Rebuild"));
-  }
-});
-
-Task("Clean, Restore, and Build solutions that depend on InRule.RunTime.Testing")
-  .Does(() =>
-{
-  foreach(var solutionFile in _solutionFilesThatNeedRunTimeTesting)
-  {
-    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
-    Information("Building " + solutionFile);
-    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
-    MSBuild(solutionFile, settings => settings.WithTarget("Clean"));
-    NuGetRestore(solutionFile);
+    NuGetRestore(solutionFile, new NuGetRestoreSettings { Source = nuGetSources });
     MSBuild(solutionFile, settings => settings.WithTarget("Rebuild"));
   }
 });
@@ -55,10 +54,6 @@ Task("Clean, Restore, and Build solutions that depend on InRule.RunTime.Testing"
 
 Task("Local")
   .IsDependentOn("Clean, Restore, and Build Solutions");
-
-Task("Remote")
-  .IsDependentOn("Clean, Restore, and Build Solutions")
-  .IsDependentOn("Clean, Restore, and Build Solutions that depend on InRule.RunTime.Testing");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

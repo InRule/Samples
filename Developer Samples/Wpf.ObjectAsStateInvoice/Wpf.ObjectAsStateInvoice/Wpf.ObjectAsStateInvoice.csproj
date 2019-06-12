@@ -39,20 +39,27 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="InRule.Common">
-      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Common.dll</HintPath>
+    <Reference Include="InRule.Common, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Common.5.4.0\lib\net461\InRule.Common.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Repository">
-      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Repository.dll</HintPath>
+    <Reference Include="InRule.Repository, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.4.0\lib\net461\InRule.Repository.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Runtime">
-      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Runtime.dll</HintPath>
+    <Reference Include="InRule.Runtime, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Runtime.5.4.0\lib\net461\InRule.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="InRule.Runtime.Testing">
-      <HintPath>..\..\..\irSDK\bin\net4.6.1\InRule.Runtime.Testing.dll</HintPath>
+    <Reference Include="InRule.Runtime.Testing, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\InRule.Runtime.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,6 +112,7 @@
     <None Include="ObjectAsStateInvoice.ruleappx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
