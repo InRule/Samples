@@ -38,3 +38,7 @@ bld/
 **/*/irCatalog/*
 **/*/irServer/*
 **/*/CatalogManagerWeb/*
+
+# Cake
+tools/**
+!tools/packages.config
