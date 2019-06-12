@@ -6,45 +6,93 @@
 
 var target = Argument("target", "Local");
 var nugetSourceFeedUrl = Argument("nugetSourceFeedUrl", EnvironmentVariable("NuGet_Source_Feed_Url") ?? "");
+var inruleVersion = Argument("inruleVersion", EnvironmentVariable("InRule_Version") ?? "");
 
 //////////////////////////////////////////////////////////////////////
 // GLOBALS
 //////////////////////////////////////////////////////////////////////
 
+FilePathCollection _solutionFiles = GetFiles("./**/*.sln");
+
+// Determine NuGet source feeds.
+ICollection<string> _nuGetSources;
 const string _nuGetOrgUrl = "https://api.nuget.org/v3/index.json";
+if (!string.IsNullOrWhiteSpace(nugetSourceFeedUrl))
+{
+  Warning("{0} added as an additional NuGet feed.", nugetSourceFeedUrl);
+  _nuGetSources = new[] { nugetSourceFeedUrl, _nuGetOrgUrl };
+}
+else
+{
+  Warning("No additional NuGet feed specified.");
+  _nuGetSources = new[] { _nuGetOrgUrl };
+}
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
-Task("Clean, Restore, and Build solutions")
+Task("Clean")
   .Does(() =>
 {
-  // Determine solution files.
-  FilePathCollection solutionFiles = GetFiles("./**/*.sln");
-
-  // Determine NuGet source feeds.
-  ICollection<string> nuGetSources;
-  if (!string.IsNullOrWhiteSpace(nugetSourceFeedUrl))
+  foreach(var solutionFile in _solutionFiles)
   {
-    Warning("{0} added as an additional NuGet feed.", nugetSourceFeedUrl);
-    nuGetSources = new[] { nugetSourceFeedUrl, _nuGetOrgUrl };
+    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+    Information("Cleaning " + solutionFile);
+    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+
+    try
+    {
+      MSBuild(solutionFile, settings => settings.WithTarget("Clean"));
+    }
+    catch { }
+  }
+});
+
+Task("Update")
+  .Does(() =>
+{
+  if (!string.IsNullOrWhiteSpace(inruleVersion))
+  {
+    foreach(var solutionFile in _solutionFiles)
+    {
+      Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+      Information("Updating " + solutionFile);
+      Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+
+      NuGetUpdate(solutionFile, new NuGetUpdateSettings {
+        Id = new [] { "InRule.Common", "InRule.Runtime", "InRule.Repository", "InRule.Authoring.SDK" },
+        Prerelease = true,
+        Version = inruleVersion,
+        Source = _nuGetSources,
+      });
+    }
   }
   else
-  {
-    Warning("No additional NuGet feed specified.");
-    nuGetSources = new[] { _nuGetOrgUrl };
-  }
+    Information("No update requested.");
+});
 
-  // Clean, restore, and build.
-  foreach(var solutionFile in solutionFiles)
+Task("Restore")
+  .Does(() =>
+{
+  foreach(var solutionFile in _solutionFiles)
+  {
+    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+    Information("Restoring " + solutionFile);
+    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+    NuGetRestore(solutionFile, new NuGetRestoreSettings { Source = _nuGetSources });
+  }
+});
+
+Task("Build")
+  .Does(() =>
+{
+  foreach(var solutionFile in _solutionFiles)
   {
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
     Information("Building " + solutionFile);
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
-    MSBuild(solutionFile, settings => settings.WithTarget("Clean"));
-    NuGetRestore(solutionFile, new NuGetRestoreSettings { Source = nuGetSources });
-    MSBuild(solutionFile, settings => settings.WithTarget("Rebuild"));
+    MSBuild(solutionFile, settings => settings.WithTarget("Build"));
   }
 });
 
@@ -53,7 +101,10 @@ Task("Clean, Restore, and Build solutions")
 //////////////////////////////////////////////////////////////////////
 
 Task("Local")
-  .IsDependentOn("Clean, Restore, and Build Solutions");
+  .IsDependentOn("Clean")
+  .IsDependentOn("Update")
+  .IsDependentOn("Restore")
+  .IsDependentOn("Build");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
