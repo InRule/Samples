@@ -66,6 +66,7 @@ Task("Update")
 {
   if (!string.IsNullOrWhiteSpace(inruleVersion))
   {
+    Warning("Updating to version {0} of InRule.", inruleVersion);
     foreach(var solutionFile in _solutionFiles)
     {
       Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
