@@ -64,21 +64,36 @@ Task("Restore")
 Task("Update")
   .Does(() =>
 {
+  NuGetUpdateSettings nuGetUpdateSettings;
+
   if (!string.IsNullOrWhiteSpace(inruleVersion))
   {
     Warning("Updating to version {0} of InRule.", inruleVersion);
+
+    nuGetUpdateSettings = new NuGetUpdateSettings
+    {
+      Prerelease = true,
+      Version = inruleVersion,
+      Source = _nuGetSources,
+    };
+
     foreach(var solutionFile in _solutionFiles)
     {
       Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
       Information("Updating " + solutionFile);
       Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
 
-      NuGetUpdate(solutionFile, new NuGetUpdateSettings {
-        Id = new [] { "InRule.Common", "InRule.Runtime", "InRule.Repository", "InRule.Authoring.SDK" },
-        Prerelease = true,
-        Version = inruleVersion,
-        Source = _nuGetSources,
-      });
+      nuGetUpdateSettings.Id = new [] { "InRule.Authoring.SDK" };
+      NuGetUpdate(solutionFile, nuGetUpdateSettings);
+
+      nuGetUpdateSettings.Id = new [] { "InRule.Runtime" };
+      NuGetUpdate(solutionFile, nuGetUpdateSettings);
+
+      nuGetUpdateSettings.Id = new [] { "InRule.Repository" };
+      NuGetUpdate(solutionFile, nuGetUpdateSettings);
+
+      nuGetUpdateSettings.Id = new [] { "InRule.Common" };
+      NuGetUpdate(solutionFile, nuGetUpdateSettings);
     }
   }
   else
