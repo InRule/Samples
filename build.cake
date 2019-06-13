@@ -49,6 +49,18 @@ Task("Clean")
   }
 });
 
+Task("Restore")
+  .Does(() =>
+{
+  foreach(var solutionFile in _solutionFiles)
+  {
+    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+    Information("Restoring " + solutionFile);
+    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
+    NuGetRestore(solutionFile, new NuGetRestoreSettings { Source = _nuGetSources });
+  }
+});
+
 Task("Update")
   .Does(() =>
 {
@@ -72,18 +84,6 @@ Task("Update")
     Information("No update requested.");
 });
 
-Task("Restore")
-  .Does(() =>
-{
-  foreach(var solutionFile in _solutionFiles)
-  {
-    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
-    Information("Restoring " + solutionFile);
-    Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
-    NuGetRestore(solutionFile, new NuGetRestoreSettings { Source = _nuGetSources });
-  }
-});
-
 Task("Build")
   .Does(() =>
 {
@@ -102,8 +102,8 @@ Task("Build")
 
 Task("Local")
   .IsDependentOn("Clean")
-  .IsDependentOn("Update")
   .IsDependentOn("Restore")
+  .IsDependentOn("Update")
   .IsDependentOn("Build");
 
 //////////////////////////////////////////////////////////////////////
