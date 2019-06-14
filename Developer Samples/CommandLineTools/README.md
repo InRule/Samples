@@ -33,6 +33,8 @@ This sample allows a Rule Application to be promoted from one Catalog instance t
 
 This sample allows a file-based Test Suite to be run against a file-based Rule Application from a command line.  Please note that this project requires irSDK to be installed locally, as not all referenced assemblies are available from NuGet.
 
+Please note that due some dependancies within the testing assemblies, this application is .NET Framework (rather than Core).
+
 ### Sample Execution command:
 
     ./RunTests.exe -RuleAppPath:"C:\Users\dgardiner\InRule Technology\ROAD - Documents\Training\Rule Integration\Integration Training\302.2 Unit Testing - MultiplicationApp.ruleappx" -TestSuitePath:"C:\Users\dgardiner\InRule Technology\ROAD - Documents\Training\Rule Integration\Integration Training\302.2 Unit Testing - MultiplicationApp Test Suite.testsuite"

@@ -8,7 +8,7 @@ using InRule.Runtime.Testing.Regression.Runtime;
 using System.Linq;
 using InRule.Repository;
 
-namespace RunTests
+namespace ExecuteTests
 {
     class Program
     {
@@ -79,7 +79,7 @@ namespace RunTests
                 var ruleApp = new FileSystemRuleApplicationReference(ruleAppFilePath);
                 ruleAppDef = ruleApp.GetRuleApplicationDef();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("ERROR: Unable to load Rule App: " + ex.Message);
             }
@@ -129,7 +129,7 @@ namespace RunTests
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("ERROR: Failed to execute test suite: " + ex.Message);
             }
