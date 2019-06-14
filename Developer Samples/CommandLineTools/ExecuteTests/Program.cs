@@ -12,7 +12,7 @@ namespace ExecuteTests
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             bool showHelp = false;
 
@@ -45,14 +45,17 @@ namespace ExecuteTests
             if (showHelp)
             {
                 ShowHelp(clParams);
+                return 2;
             }
             else if (string.IsNullOrEmpty(ruleAppFilePath) || string.IsNullOrEmpty(testSuiteFilePath))
             {
                 Console.WriteLine("Parameters must be specified for both the RuleAppPath as well as the TestSuitePath.");
+                return 2;
             }
             else
             {
-                RunTestSuite(ruleAppFilePath, testSuiteFilePath);
+                var result = RunTestSuite(ruleAppFilePath, testSuiteFilePath);
+                return result;
             }
         }
 
@@ -69,7 +72,7 @@ namespace ExecuteTests
             Console.WriteLine();
         }
 
-        private static void RunTestSuite(string ruleAppFilePath, string testSuiteFilePath)
+        private static int RunTestSuite(string ruleAppFilePath, string testSuiteFilePath)
         {
             RuleApplicationDef ruleAppDef = null;
             TestSuiteDef suite = null;
@@ -82,6 +85,7 @@ namespace ExecuteTests
             catch (Exception ex)
             {
                 Console.WriteLine("ERROR: Unable to load Rule App: " + ex.Message);
+                return 2;
             }
 
             try
@@ -95,6 +99,7 @@ namespace ExecuteTests
             catch (Exception ex)
             {
                 Console.WriteLine("ERROR: Unable to load Test Suite: " + ex.Message);
+                return 2;
             }
 
             try
@@ -108,11 +113,13 @@ namespace ExecuteTests
                         results = session.ExecuteAllTests();
                     }
 
+                    bool hadFailures = false;
                     foreach (var result in results)
                     {
                         if (result.RuntimeErrorMessage != null)
                         {
                             Console.WriteLine($"ERROR: Failed to execute test {result.TestDef.DisplayName}: {result.RuntimeErrorMessage}");
+                            hadFailures = true;
                         }
                         else if (result.Passed)
                         {
@@ -120,6 +127,7 @@ namespace ExecuteTests
                         }
                         else
                         {
+                            hadFailures = true;
                             Console.WriteLine($"FAIL: {result.TestDef.DisplayName}");
                             foreach (var failedAssertionResult in result.AssertionResults.Where(ar => ar.Passed == false))
                             {
@@ -127,11 +135,21 @@ namespace ExecuteTests
                             }
                         }
                     }
+
+                    if (hadFailures)
+                        return 1;
+                    else
+                        return 0;
+                }
+                else
+                {
+                    return 2;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("ERROR: Failed to execute test suite: " + ex.Message);
+                return 2;
             }
         }
     }
