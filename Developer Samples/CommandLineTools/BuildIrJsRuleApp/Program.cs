@@ -177,7 +177,7 @@ namespace BuildIrJsRuleApp
 
                     // Get the return package from the result
 
-                    dynamic returnPackage = JObject.Parse(result.Content.ReadAsStringAsync().Result);
+                    dynamic returnPackage = JObject.Parse(await result.Content.ReadAsStringAsync());
                     var errors = new StringBuilder();
                     if (returnPackage.Status.ToString() == "Fail")
                     {
@@ -199,14 +199,14 @@ namespace BuildIrJsRuleApp
                     var downloadUrl = returnPackage.PackagedApplicationDownloadUrl.ToString();
 
                     // Get the contents
-                    HttpResponseMessage resultDownload = await client.GetAsync(downloadUrl).ConfigureAwait(false);
+                    HttpResponseMessage resultDownload = await client.GetAsync(downloadUrl);
                     if (!resultDownload.IsSuccessStatusCode)
                     {
                         // Handle errors
-                        errors.AppendLine(resultDownload.Content.ReadAsStringAsync().Result);
+                        errors.AppendLine(await resultDownload.Content.ReadAsStringAsync());
                         return errors.ToString();
                     }
-                    return resultDownload.Content.ReadAsStringAsync().Result;
+                    return await resultDownload.Content.ReadAsStringAsync();
                 }
                 catch (InRuleCatalogException icex)
                 {
@@ -216,7 +216,7 @@ namespace BuildIrJsRuleApp
                 catch (JsonReaderException)
                 {
                     if (result != null)
-                        Console.WriteLine("Error requesting compiled Rule Application: " + result.Content.ReadAsStringAsync().Result);
+                        Console.WriteLine("Error requesting compiled Rule Application: " + await result.Content.ReadAsStringAsync());
                     else
                         Console.WriteLine("Error requesting compiled Rule Application.");
 
