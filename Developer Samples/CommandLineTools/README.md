@@ -8,6 +8,8 @@ These projects are designed to demonstrate various tasks that administrators may
 
 This sample allows the irDistribution service to be called from a command line to compile an irJS Rule Application into the javascript package.  It supports the Rule App being sourced either from a Catalog or the filesystem, and outputs the compiled JS to a file on the file system.
 
+Returns 0 if the process completed successfully, or 1 if an error occurred (which will have been detailed in the console log).
+
 ### Sample Execution commands:
 
     // File-based Rule App
@@ -31,6 +33,4 @@ This sample allows a Rule Application to be promoted from one Catalog instance t
 
 ## Solution Notes
 
-### To build any project's .NET Core dll assembly into a .NET Framework executable, run the following command as a post-build step:
-
-    dotnet publish -c Debug -r win10-x64
+### To build any project's .NET Core dll assembly into a .NET Framework executable, Publish the Project to the desired profile.
