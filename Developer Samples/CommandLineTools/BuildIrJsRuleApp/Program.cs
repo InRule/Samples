@@ -14,7 +14,7 @@ namespace BuildIrJsRuleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             //Required Parameters
             bool showHelp = false;
@@ -53,41 +53,63 @@ namespace BuildIrJsRuleApp
                 showHelp = true;
             }
 
+            RuleApplicationReference ruleApp = null;
             if (showHelp)
             {
                 ShowHelp(clParams);
+                return 1;
             }
             else if (string.IsNullOrEmpty(irDistributionKey))
             {
                 Console.WriteLine("Error: Missing required parameter DistributionKey.");
+                return 1;
             }
             else if (string.IsNullOrEmpty(OutputFilePath))
             {
                 Console.WriteLine("Error: Missing required parameter OutputPath.");
+                return 1;
             }
-            else if (!string.IsNullOrEmpty(RuleAppFilePath))
+
+            if (!string.IsNullOrEmpty(RuleAppFilePath))
             {
                 try
                 {
-                    var ruleApp = new FileSystemRuleApplicationReference(RuleAppFilePath);
-                    RetrieveAndWriteIrJSFromDistributionService(ruleApp, irDistributionKey, OutputFilePath);
+                    ruleApp = new FileSystemRuleApplicationReference(RuleAppFilePath);
                 }
                 catch (IntegrationException ie)
                 {
                     Console.WriteLine("Error creating reference to file-based Rule App: " + ie.Message); //Rule App file not found
                 }
             }
-            else if (!string.IsNullOrEmpty(CatalogUri)
+
+            if (!string.IsNullOrEmpty(CatalogUri)
                 && !string.IsNullOrEmpty(CatalogUsername)
                 && !string.IsNullOrEmpty(CatalogPassword)
                 && !string.IsNullOrEmpty(CatalogRuleAppName))
             {
-                var ruleApp = new CatalogRuleApplicationReference(CatalogUri, CatalogRuleAppName, CatalogUsername, CatalogPassword, CatalogRuleAppLabel);
-                RetrieveAndWriteIrJSFromDistributionService(ruleApp, irDistributionKey, OutputFilePath);
+                if (ruleApp != null)
+                {
+                    Console.WriteLine("Error: Parameters were provided for both File- and Catalog-based Rule App; only one may be specified.");
+                    return 1;
+                }
+                else
+                {
+                    ruleApp = new CatalogRuleApplicationReference(CatalogUri, CatalogRuleAppName, CatalogUsername, CatalogPassword, CatalogRuleAppLabel);
+                }
+            }
+
+            if(ruleApp == null)
+            {
+                Console.WriteLine("You must provide either RuleAppPath or all of CatalogUri, CatalogUsername, CatalogPassword, and CatalogRuleAppName (with optional CatalogRuleAppLabel)");
+                return 1;
             }
             else
             {
-                Console.WriteLine("You must provide either RuleAppPath or all of CatalogUri, CatalogUsername, CatalogPassword, and CatalogRuleAppName (with optional CatalogRuleAppLabel)");
+                var success = await RetrieveAndWriteIrJSFromDistributionService(ruleApp, irDistributionKey, OutputFilePath);
+                if (success)
+                    return 0;
+                else
+                    return 1;
             }
         }
 
@@ -105,12 +127,12 @@ namespace BuildIrJsRuleApp
             p.WriteOptionDescriptions(Console.Out);
             Console.WriteLine();
         }
-        private static void RetrieveAndWriteIrJSFromDistributionService(RuleApplicationReference ruleRef, string distroKey, string outputPath)
+        private static async Task<bool> RetrieveAndWriteIrJSFromDistributionService(RuleApplicationReference ruleRef, string distroKey, string outputPath)
         {
             Console.WriteLine();
 
             Console.WriteLine("Requesting compiled JS library from Distribution Service...");
-            var js = CallDistributionServiceAsync(ruleRef, "https://api.distribution.inrule.com/", distroKey).Result;
+            var js = await CallDistributionServiceAsync(ruleRef, "https://api.distribution.inrule.com/", distroKey);
 
             if (!string.IsNullOrEmpty(js))
             {
@@ -120,12 +142,14 @@ namespace BuildIrJsRuleApp
                     File.WriteAllText(outputPath, js);
                     Console.WriteLine("Compiled and wrote out Javascript Rule App");
                     Console.WriteLine();
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error writing out compiled JavaScript file: " + ex.Message);
                 }
             }
+            return false;
         }
         public static async Task<string> CallDistributionServiceAsync(RuleApplicationReference ruleApplicationRef, string serviceUri, string subscriptionKey)
         {
@@ -153,7 +177,7 @@ namespace BuildIrJsRuleApp
 
                     // Get the return package from the result
 
-                    dynamic returnPackage = JObject.Parse(result.Content.ReadAsStringAsync().Result);
+                    dynamic returnPackage = JObject.Parse(await result.Content.ReadAsStringAsync());
                     var errors = new StringBuilder();
                     if (returnPackage.Status.ToString() == "Fail")
                     {
@@ -175,14 +199,14 @@ namespace BuildIrJsRuleApp
                     var downloadUrl = returnPackage.PackagedApplicationDownloadUrl.ToString();
 
                     // Get the contents
-                    HttpResponseMessage resultDownload = await client.GetAsync(downloadUrl).ConfigureAwait(false);
+                    HttpResponseMessage resultDownload = await client.GetAsync(downloadUrl);
                     if (!resultDownload.IsSuccessStatusCode)
                     {
                         // Handle errors
-                        errors.AppendLine(resultDownload.Content.ReadAsStringAsync().Result);
+                        errors.AppendLine(await resultDownload.Content.ReadAsStringAsync());
                         return errors.ToString();
                     }
-                    return resultDownload.Content.ReadAsStringAsync().Result;
+                    return await resultDownload.Content.ReadAsStringAsync();
                 }
                 catch (InRuleCatalogException icex)
                 {
@@ -192,7 +216,7 @@ namespace BuildIrJsRuleApp
                 catch (JsonReaderException)
                 {
                     if (result != null)
-                        Console.WriteLine("Error requesting compiled Rule Application: " + result.Content.ReadAsStringAsync().Result);
+                        Console.WriteLine("Error requesting compiled Rule Application: " + await result.Content.ReadAsStringAsync());
                     else
                         Console.WriteLine("Error requesting compiled Rule Application.");
 
