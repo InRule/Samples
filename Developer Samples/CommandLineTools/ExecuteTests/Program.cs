@@ -7,6 +7,7 @@ using InRule.Runtime.Testing.Session;
 using InRule.Runtime.Testing.Regression.Runtime;
 using System.Linq;
 using InRule.Repository;
+using System.IO;
 
 namespace ExecuteTests
 {
@@ -72,6 +73,25 @@ namespace ExecuteTests
 
             try
             {
+                if (File.Exists(ruleAppFilePath))
+                {
+                    Console.WriteLine("Using Rule App " + ruleAppFilePath);
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: Rule App file not found at " + ruleAppFilePath);
+                    throw new FileNotFoundException("ERROR: Rule App file not found at " + ruleAppFilePath);
+                }
+                if (File.Exists(testSuiteFilePath))
+                {
+                    Console.WriteLine("Using Test Suite " + ruleAppFilePath);
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: Test Suite file not found at " + ruleAppFilePath);
+                    throw new FileNotFoundException("ERROR: Rule App file not found at " + ruleAppFilePath);
+                }
+
                 var ruleApp = new FileSystemRuleApplicationReference(ruleAppFilePath);
                 ruleAppDef = ruleApp.GetRuleApplicationDef();
             }
