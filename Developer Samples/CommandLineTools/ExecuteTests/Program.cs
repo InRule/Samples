@@ -35,13 +35,6 @@ namespace ExecuteTests
                 showHelp = true;
             }
 
-
-
-            ruleAppFilePath = @"C:\Users\dgardiner\InRule Technology\ROAD - Documents\Training\Rule Integration\Integration Training\302.2 Unit Testing - MultiplicationApp.ruleappx";
-            testSuiteFilePath = @"C:\Users\dgardiner\InRule Technology\ROAD - Documents\Training\Rule Integration\Integration Training\302.2 Unit Testing - MultiplicationApp Test Suite.testsuite";
-            showHelp = false;
-
-
             if (showHelp)
             {
                 ShowHelp(clParams);
