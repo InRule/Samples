@@ -25,6 +25,8 @@ Returns 0 if the process completed successfully, or 1 if an error occurred (whic
 
 This sample allows a Rule Application to be promoted from one Catalog instance to another from a command line.  It supports the Rule App being sourced either from a Catalog or the filesystem, and outputs the compiled JS to a file on the file system.
 
+Returns 0 if the process completed successfully, or 1 if an error occurred (which will have been detailed in the console log).
+
 ### Sample Execution command:
 
     ./PromoteRuleApp.exe -RuleAppName:"MortgageCalculator" -Label:LIVE -Comment:"Publish from command line tool" -SrcCatUri:"https://dev.ircatalog.azurewebsites.net/service.svc/core" -SrcCatUser:"username" -SrcCatPass:"password" -DestCatUri:https://stage.ircatalog.azurewebsites.net/Service.svc/core" -DestCatUser:"username" -DestCatPass:"password"
