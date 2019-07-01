@@ -26,9 +26,9 @@ namespace PromoteRuleApp
 
             var clParams = new OptionSet {
                 { "h|help", "Display Help.", k => showHelp = true },
-                { "n|RuleAppName=", "The irDistributionKey for your account.", n => ruleAppName = n },
-                { "l|Label=",  "Desired Path for the compiled output library.", l => label = l },
-                { "m|Comment=",  "Desired Path for the compiled output library.", c => comment = c },
+                { "n|RuleAppName=", "The name of the Rule App to promote.", n => ruleAppName = n },
+                { "l|Label=",  "Label assigned to the desired version of the Rule App.", l => label = l },
+                { "m|Comment=",  "Comment to be associated with the promotion commit.", c => comment = c },
                 //Source
                 { "a|SrcCatUri=",  "Web URI for the source IrCatalog Service endpoint.", c => sourceCatalogUrl = c },
                 { "b|SrcCatUser=",  "IrCatalog Username for authentication .", u => sourceCatalogUsername = u },
