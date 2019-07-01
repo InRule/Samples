@@ -16,14 +16,29 @@ namespace ExecuteTests
         static int Main(string[] args)
         {
             bool showHelp = false;
-
-            string ruleAppFilePath = null;
-            string testSuiteFilePath = null;
+            string TestSuiteFilePath = null;
+            //Option 1
+            string RuleAppFilePath = null;
+            //Option 2
+            string CatalogUri = null;
+            string CatalogUsername = null;
+            string CatalogPassword = null;
+            string CatalogRuleAppName = null;
+            string CatalogRuleAppLabel = null;
+            string CatalogRuleAppRevision = null;
 
             var clParams = new OptionSet {
                 { "h|help", "Display Help.", k => showHelp = true },
-                { "r|RuleAppPath=",  "Path to the Rule Application to be tested.", p => ruleAppFilePath = p },
-                { "n|TestSuitePath=", "The path to the .testsuite file to run.", p => testSuiteFilePath = p },
+                { "t|TestSuitePath=", "The path to the .testsuite file to run.", p => TestSuiteFilePath = p },
+                //Option 1
+                { "r|RuleAppPath=",  "Path to the Rule Application to be compiled.", p => RuleAppFilePath = p },
+                //Option 2
+                { "c|CatUri=",  "Web URI for the IrCatalog Service endpoint.", p => CatalogUri = p },
+                { "u|CatUsername=",  "IrCatalog Username for authentication.", p => CatalogUsername = p },
+                { "p|CatPassword=",  "IrCatalog Password for authentication.", p => CatalogPassword = p },
+                { "n|CatRuleAppName=",  "Name of the Rule Application.", p => CatalogRuleAppName = p },
+                { "l|CatLabel=",  "Label of the Rule Application to retrieve.", p => CatalogRuleAppLabel = p },
+                { "v|CatRevision=",  "Revision of the Rule Application to retrieve.", p => CatalogRuleAppRevision = p },
             };
 
             try
@@ -41,15 +56,72 @@ namespace ExecuteTests
                 ShowHelp(clParams);
                 return 2;
             }
-            else if (string.IsNullOrEmpty(ruleAppFilePath) || string.IsNullOrEmpty(testSuiteFilePath))
+            else if (string.IsNullOrEmpty(TestSuiteFilePath))
             {
-                Console.WriteLine("Parameters must be specified for both the RuleAppPath as well as the TestSuitePath.");
+                Console.WriteLine("Parameter must be specified for the TestSuitePath.");
                 return 2;
+            }
+            else if (!string.IsNullOrEmpty(RuleAppFilePath))
+            {
+                try
+                {
+                    if (File.Exists(RuleAppFilePath))
+                    {
+                        Console.WriteLine("Using Rule App " + RuleAppFilePath);
+                    }
+                    else
+                    {
+                        Console.WriteLine("ERROR: Rule App file not found at " + RuleAppFilePath);
+                        return 2;
+                    }
+
+                    var result = RunTestSuite(new FileSystemRuleApplicationReference(RuleAppFilePath), TestSuiteFilePath);
+                    return result;
+                }
+                catch (IntegrationException ie)
+                {
+                    Console.WriteLine("Error creating reference to file-based Rule App: " + ie.Message); //Rule App file not found
+                    return 2;
+                }
+            }
+            else if (!string.IsNullOrEmpty(CatalogUri)
+                && !string.IsNullOrEmpty(CatalogUsername)
+                && !string.IsNullOrEmpty(CatalogPassword)
+                && !string.IsNullOrEmpty(CatalogRuleAppName))
+            {
+                try
+                {
+                    RuleApplicationReference ruleApp;
+                    int ruleAppRevision;
+                    if (!string.IsNullOrEmpty(CatalogRuleAppLabel))
+                    {
+                        ruleApp = new CatalogRuleApplicationReference(CatalogUri, CatalogRuleAppName, CatalogUsername, CatalogPassword, CatalogRuleAppLabel);
+                        Console.WriteLine($"Loading Rule App {CatalogRuleAppName} with Label {CatalogRuleAppLabel} from {CatalogUri}");
+                    }
+                    else if (!string.IsNullOrEmpty(CatalogRuleAppRevision) && int.TryParse(CatalogRuleAppRevision, out ruleAppRevision))
+                    {
+                        ruleApp = new CatalogRuleApplicationReference(CatalogUri, CatalogRuleAppName, CatalogUsername, CatalogPassword, ruleAppRevision);
+                        Console.WriteLine($"Loading Rule App {CatalogRuleAppName} with Revision {ruleAppRevision} from {CatalogUri}");
+                    }
+                    else
+                    {
+                        ruleApp = new CatalogRuleApplicationReference(CatalogUri, CatalogRuleAppName, CatalogUsername, CatalogPassword);
+                        Console.WriteLine($"Loading Rule App {CatalogRuleAppName} from {CatalogUri}");
+                    }
+
+                    var result = RunTestSuite(ruleApp, TestSuiteFilePath);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error creating reference to Catalog-based Rule App: " + ex.Message);
+                    return 2;
+                }
             }
             else
             {
-                var result = RunTestSuite(ruleAppFilePath, testSuiteFilePath);
-                return result;
+                Console.WriteLine("You must provide either RuleAppPath or all of CatUri, CatUsername, CatPassword, and CatRuleAppName (with optional CatLabel or CatRevision)");
+                return 2;
             }
         }
 
@@ -66,33 +138,13 @@ namespace ExecuteTests
             Console.WriteLine();
         }
 
-        private static int RunTestSuite(string ruleAppFilePath, string testSuiteFilePath)
+        private static int RunTestSuite(RuleApplicationReference ruleApp, string testSuiteFilePath)
         {
             RuleApplicationDef ruleAppDef = null;
             TestSuiteDef suite = null;
 
             try
             {
-                if (File.Exists(ruleAppFilePath))
-                {
-                    Console.WriteLine("Using Rule App " + ruleAppFilePath);
-                }
-                else
-                {
-                    Console.WriteLine("ERROR: Rule App file not found at " + ruleAppFilePath);
-                    throw new FileNotFoundException("ERROR: Rule App file not found at " + ruleAppFilePath);
-                }
-                if (File.Exists(testSuiteFilePath))
-                {
-                    Console.WriteLine("Using Test Suite " + ruleAppFilePath);
-                }
-                else
-                {
-                    Console.WriteLine("ERROR: Test Suite file not found at " + ruleAppFilePath);
-                    throw new FileNotFoundException("ERROR: Rule App file not found at " + ruleAppFilePath);
-                }
-
-                var ruleApp = new FileSystemRuleApplicationReference(ruleAppFilePath);
                 ruleAppDef = ruleApp.GetRuleApplicationDef();
             }
             catch (Exception ex)
@@ -103,11 +155,18 @@ namespace ExecuteTests
 
             try
             {
-                if (ruleAppDef != null)
+                if (File.Exists(testSuiteFilePath))
                 {
-                    suite = TestSuiteDef.LoadFrom(new ZipFileTestSuitePersistenceProvider(testSuiteFilePath));
-                    suite.ActiveRuleApplicationDef = ruleAppDef;
+                    Console.WriteLine("Using Test Suite " + testSuiteFilePath);
                 }
+                else
+                {
+                    Console.WriteLine("ERROR: Test Suite file not found at " + testSuiteFilePath);
+                    throw new FileNotFoundException("ERROR: Test Suite file not found at " + testSuiteFilePath);
+                }
+
+                suite = TestSuiteDef.LoadFrom(new ZipFileTestSuitePersistenceProvider(testSuiteFilePath));
+                suite.ActiveRuleApplicationDef = ruleAppDef;
             }
             catch (Exception ex)
             {
@@ -117,47 +176,40 @@ namespace ExecuteTests
 
             try
             {
-                if (suite != null)
+                TestResultCollection results;
+                using (TestingSessionManager manager = new TestingSessionManager(new InProcessConnectionFactory()))
                 {
-                    TestResultCollection results;
-                    using (TestingSessionManager manager = new TestingSessionManager(new InProcessConnectionFactory()))
-                    {
-                        var session = new RegressionTestingSession(manager, suite);
-                        results = session.ExecuteAllTests();
-                    }
+                    var session = new RegressionTestingSession(manager, suite);
+                    results = session.ExecuteAllTests();
+                }
 
-                    bool hadFailures = false;
-                    foreach (var result in results)
+                bool hadFailures = false;
+                foreach (var result in results)
+                {
+                    if (result.RuntimeErrorMessage != null)
                     {
-                        if (result.RuntimeErrorMessage != null)
-                        {
-                            Console.WriteLine($"ERROR: Failed to execute test {result.TestDef.DisplayName}: {result.RuntimeErrorMessage}");
-                            hadFailures = true;
-                        }
-                        else if (result.Passed)
-                        {
-                            Console.WriteLine($"PASS: {result.TestDef.DisplayName}");
-                        }
-                        else
-                        {
-                            hadFailures = true;
-                            Console.WriteLine($"FAIL: {result.TestDef.DisplayName}");
-                            foreach (var failedAssertionResult in result.AssertionResults.Where(ar => ar.Passed == false))
-                            {
-                                Console.WriteLine($"  {failedAssertionResult.Target} was {failedAssertionResult.ActualValue}, expected value {failedAssertionResult.ExpectedValue}");
-                            }
-                        }
+                        Console.WriteLine($"ERROR: Failed to execute test {result.TestDef.DisplayName}: {result.RuntimeErrorMessage}");
+                        hadFailures = true;
                     }
-
-                    if (hadFailures)
-                        return 1;
+                    else if (result.Passed)
+                    {
+                        Console.WriteLine($"PASS: {result.TestDef.DisplayName}");
+                    }
                     else
-                        return 0;
+                    {
+                        hadFailures = true;
+                        Console.WriteLine($"FAIL: {result.TestDef.DisplayName}");
+                        foreach (var failedAssertionResult in result.AssertionResults.Where(ar => ar.Passed == false))
+                        {
+                            Console.WriteLine($"  {failedAssertionResult.Target} was {failedAssertionResult.ActualValue}, expected value {failedAssertionResult.ExpectedValue}");
+                        }
+                    }
                 }
+
+                if (hadFailures)
+                    return 1;
                 else
-                {
-                    return 2;
-                }
+                    return 0;
             }
             catch (Exception ex)
             {

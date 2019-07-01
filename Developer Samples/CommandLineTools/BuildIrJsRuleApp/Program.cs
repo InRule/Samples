@@ -87,7 +87,7 @@ namespace BuildIrJsRuleApp
             }
             else
             {
-                Console.WriteLine("You must provide either RuleAppPath or all of CatalogUri, CatalogUsername, CatalogPassword, and CatalogRuleAppName (with optional CatalogRuleAppLabel)");
+                Console.WriteLine("You must provide either RuleAppPath or all of CatUri, CatUsername, CatPassword, and CatRuleAppName (with optional CatLabel)");
             }
         }
 
