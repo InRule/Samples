@@ -36,6 +36,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Custom cache policy | Developer Samples | RuleApplicationCache |
 | Embed authoring controls in a WPF application | Developer Samples | EmbedAuthoringControl |
 | Embed authoring controls in a WinForms application | Developer Samples | EmbeddedWinFormInRule |
+| Enable LibraryLogger in WebServices | Developer Samples | LibraryLogEnabler |
 | Entity XML | Developer Samples | GetEntityXml |
 | Execute Member Rule Set | Authoring Samples | Iteration |
 | Execute Method in a .NET Assembly | Developer Samples | Wpf.ObjectAsStateInvoice |
