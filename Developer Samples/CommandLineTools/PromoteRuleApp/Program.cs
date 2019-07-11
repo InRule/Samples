@@ -8,7 +8,7 @@ namespace PromoteRuleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             bool showHelp = false;
 
@@ -52,12 +52,14 @@ namespace PromoteRuleApp
             if (showHelp)
             {
                 ShowHelp(clParams);
+                return 1;
             }
             else if (string.IsNullOrEmpty(ruleAppName) 
                 || string.IsNullOrEmpty(sourceCatalogUrl) || string.IsNullOrEmpty(sourceCatalogUsername) || string.IsNullOrEmpty(sourceCatalogPassword) 
                 || string.IsNullOrEmpty(destCatalogUrl) || string.IsNullOrEmpty(destCatalogUsername) || string.IsNullOrEmpty(destCatalogPassword))
             {
                 Console.WriteLine("Parameters must be specified for the Rule App name as well as the URI, username, and password for both the source and destination irCatalog instances.");
+                return 1;
             }
             else
             {
@@ -78,6 +80,7 @@ namespace PromoteRuleApp
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error retrieving source Rule App: " + ex.Message);
+                    return 1;
                 }
 
                 try
@@ -87,11 +90,18 @@ namespace PromoteRuleApp
                         var destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword);
                         var promotedDef = destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
                         Console.WriteLine("Success!");
+                        return 0;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Source Rule App was unable to be retrieved.");
+                        return 1;
                     }
                 }
                 catch(Exception ex)
                 {
                     Console.WriteLine("Error promoting Rule App: " + ex.Message);
+                    return 1;
                 }
             }
         }

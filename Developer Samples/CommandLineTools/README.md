@@ -25,6 +25,8 @@ Returns 0 if the process completed successfully, or 1 if an error occurred (whic
 
 This sample allows a Rule Application to be promoted from one Catalog instance to another from a command line.  It supports the Rule App being sourced either from a Catalog or the filesystem, and outputs the compiled JS to a file on the file system.
 
+Returns 0 if the process completed successfully, or 1 if an error occurred (which will have been detailed in the console log).
+
 ### Sample Execution command:
 
     ./PromoteRuleApp.exe -RuleAppName:"MortgageCalculator" -Label:LIVE -Comment:"Publish from command line tool" -SrcCatUri:"https://dev.ircatalog.azurewebsites.net/service.svc/core" -SrcCatUser:"username" -SrcCatPass:"password" -DestCatUri:https://stage.ircatalog.azurewebsites.net/Service.svc/core" -DestCatUser:"username" -DestCatPass:"password"
@@ -33,7 +35,7 @@ This sample allows a Rule Application to be promoted from one Catalog instance t
 
 ## Run Test Suite
 
-This sample allows a file-based Test Suite to be run against a file-based Rule Application from a command line.  Please note that this project requires irSDK to be installed locally, as not all referenced assemblies are available from NuGet.
+This sample allows a file-based Test Suite to be run against a file- or catalog-based Rule Application from a command line.  Please note that this project requires irSDK to be installed locally, as not all referenced assemblies are available from NuGet.
 
 Returns 0 if all tests pass, 1 if some tests fail, and 2 if it was unable to execute tests; detailed results are visible in the console output.
 
@@ -41,7 +43,11 @@ Please note that due some dependancies within the testing assemblies, this appli
 
 ### Sample Execution command:
 
-    ./RunTests.exe -RuleAppPath:"C:\Users\dgardiner\InRule Technology\ROAD - Documents\Training\Rule Integration\Integration Training\302.2 Unit Testing - MultiplicationApp.ruleappx" -TestSuitePath:"C:\Users\dgardiner\InRule Technology\ROAD - Documents\Training\Rule Integration\Integration Training\302.2 Unit Testing - MultiplicationApp Test Suite.testsuite"
+    // File-based Rule App
+    ./ExecuteTests.exe -TestSuitePath:"C:\Tests\MultiplicationApp.testsuite" -RuleAppPath:"C:\Rules\MultiplicationApp.ruleappx"
+
+    //Catalog-based Rule App
+    ./ExecuteTests.exe -TestSuitePath:"C:\Tests\MultiplicationApp.testsuite" -CatUri:"https://ircatalog.azurewebsites.net/service.svc" -CatUsername:username -CatPassword:password -CatRuleAppName:MortgageCalculator
 
 
 
