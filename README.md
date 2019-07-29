@@ -39,6 +39,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Embed authoring controls in a WinForms application | Developer Samples | EmbeddedWinFormInRule |
 | Enable LibraryLogger in WebServices | Developer Samples | LibraryLogEnabler |
 | Entity XML | Developer Samples | GetEntityXml |
+| Execute Code on irCatalog Checkin | Developer Samples | CheckinRequestListener |
 | Execute Member Rule Set | Authoring Samples | Iteration |
 | Execute Method in a .NET Assembly | Developer Samples | Wpf.ObjectAsStateInvoice |
 | Execution log settings | Developer Samples | GetChangedValues |
