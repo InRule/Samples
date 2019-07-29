@@ -51,6 +51,7 @@ If you would like to request additional samples from InRule, please write an iss
 | JavaScript: Basic Sample | Developer Samples | InRuleforJavaScriptSamples\01 Basic |
 | JavaScript: Basic Sample with Explicit Rules | Developer Samples | InRuleforJavaScriptSamples\05 BasicPlusExplicitRules |
 | JavaScript: Rule Engine Feedback | Developer Samples | InRuleforJavaScriptSamples\02 BasicPlusFeedback |
+| Large Lookup Data Table | Authoring Samples | Functional Samples\LargeLookupDataTable |
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Load XML state into an entity | Developer Samples | CreateRuleSession-Catalog <br>CreateRuleSession-FileSystem <br>GetChangedValues <br>GetEntityXml |
