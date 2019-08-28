@@ -4,8 +4,9 @@ param(
     [string]$registryRootRepos = "inrule",
     [switch]$setLatestTag = $false,
     [switch]$skipServerBuild = $false,
-    [string][Parameter(Mandatory= $false)] $reposTag,
-    [switch]$requiresHyperVIsolation = $false
+    [string][Parameter(Mandatory= $true)] $reposTag,
+    [switch]$requiresHyperVIsolation = $false,
+    [string]$baseServerTagName = "latest"
 )
 $ErrorActionPreference = "Stop"
 Write-Verbose "Images will be tagged $tag. Assets will be pulled from $reposTag. Also tag them as latest? $setLatestTag"
@@ -20,23 +21,29 @@ $imagesBuild = @()
 if ($skipServerBuild -eq $false) { 
     write-host "Building inrule-server base image."    
     if ($PSCmdlet.ShouldProcess("Building inrule-server base image")) {
-        docker build $hyperVIsolationParameter --label "com.inrule.version=$tag" -t ${registryRootRepos}/inrule-server:$tag  -f "$PWD\inrule-server\DOCKERFILE" "$PWD\inrule-server"
+        docker build $hyperVIsolationParameter -t ${registryRootRepos}/inrule-server:$baseServerTagName  -f "$PWD\inrule-server\DOCKERFILE" "$PWD\inrule-server"
         
         if ($LASTEXITCODE -ne 0) {
             throw 'non-zero return from docker build. aborting.'
             
         }
-        $imagesBuild += "${registryRootRepos}/inrule-server:${tag}"
-        if ($setLatestTag -eq $true) {
-            docker image tag ${registryRootRepos}/inrule-server:$tag ${registryRootRepos}/inrule-server:latest    
+        $imagesBuild += "${registryRootRepos}/inrule-server:${baseServerTagName}"
+        if ($setLatestTag -eq $true -and $baseServerTagName -ne "latest") {
+            docker image tag ${registryRootRepos}/inrule-server:$tag ${registryRootRepos}/inrule-server:latest
+            $imagesBuild += "${registryRootRepos}/inrule-server:latest"    
         }
-        $imagesBuild += "${registryRootRepos}/inrule-server:latest"
+        
     }    
 }
 
+$baseImageBuildArg = "baseImageTag=$baseServerTagName"
+$reposTagBuildArg = "reposTag=$reposTag"
+$baseImageBuildArg
+$reposTagBuildArg
+$versionLabelArg
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog image")) {
    
-    docker build $hyperVIsolationParameter --build-arg reposTag=$reposTag --label "com.inrule.version=$reposTag" -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
+    docker build $hyperVIsolationParameter --build-arg $reposTagBuildArg --build-arg $baseImageBuildArg -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
     
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
@@ -45,7 +52,7 @@ if ($PSCmdlet.ShouldProcess("Building inrule-catalog image")) {
 }
 
 if ($PSCmdlet.ShouldProcess("Building inrule-runtime image")) {   
-    docker build $hyperVIsolationParameter --build-arg reposTag=$reposTag --label "com.inrule.version=$reposTag" -t ${registryRootRepos}/inrule-runtime:$tag -f $PWD\inrule-runtime\DOCKERFILE $PWD\inrule-runtime
+    docker build $hyperVIsolationParameter --build-arg $reposTagBuildArg --build-arg $baseImageBuildArg -t ${registryRootRepos}/inrule-runtime:$tag -f $PWD\inrule-runtime\DOCKERFILE $PWD\inrule-runtime
 
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
@@ -54,7 +61,7 @@ if ($PSCmdlet.ShouldProcess("Building inrule-runtime image")) {
 }
 
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog-manager image")) {    
-    docker build $hyperVIsolationParameter --build-arg reposTag=$reposTag --label "com.inrule.version=$reposTag" -t ${registryRootRepos}/inrule-catalog-manager:$tag -f $PWD\inrule-catalog-manager\DOCKERFILE $PWD\inrule-catalog-manager
+    docker build $hyperVIsolationParameter --build-arg $reposTagBuildArg --build-arg $baseImageBuildArg -t ${registryRootRepos}/inrule-catalog-manager:$tag -f $PWD\inrule-catalog-manager\DOCKERFILE $PWD\inrule-catalog-manager
     if ($LASTEXITCODE -ne 0) {
         throw 'non-zero return from docker build. aborting.'
     }

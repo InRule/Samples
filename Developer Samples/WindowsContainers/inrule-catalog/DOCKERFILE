@@ -1,6 +1,6 @@
 # escape=`
-
-FROM inrule/inrule-server:ltsc2019
+ARG baseImageTag
+FROM inrule/inrule-server:${baseImageTag}
 SHELL ["powershell", "-Command"]
 
 ARG reposTag
@@ -20,7 +20,8 @@ ENV ContainerDir=${ContainerDir:-"C:\inrule-catalog"} `
     reposTag=${reposTag} `
     irLogLevel="Warn"
 
-RUN MD "$env:ContainerDir";cd "$env:ContainerDir"; `
+RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;`
+    MD "$env:ContainerDir";cd "$env:ContainerDir"; `
     wget "https://github.com/InRule/AzureAppServices/releases/download/${env:reposTag}/InRule.Catalog.Service.zip" -OutFile "${env:ContainerDir}\irservice.zip"; `
     Expand-Archive -Path "${env:ContainerDir}\irservice.zip" -Destination "${env:ContainerDir}"; `
     Remove-Item "${env:ContainerDir}\irservice.zip";
