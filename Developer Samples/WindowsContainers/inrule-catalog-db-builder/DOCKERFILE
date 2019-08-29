@@ -1,0 +1,18 @@
+#escape=`
+FROM mcr.microsoft.com/powershell:nanoserver-1903
+SHELL [ "pwsh.exe", "-Command" ]
+ARG irVersion=v5.4.1
+
+ENV irVersion=${irVersion} `
+    ConnectionString=
+# e.g., "Server=(local);Database=InRuleCatalog;Trusted_Connection=True;"
+RUN md c:\inrule; `
+    cd c:\inrule; `
+    invoke-webrequest https://github.com/InRule/AzureAppServices/releases/download/${env:irVersion}/InRule.Catalog.Service.Database.zip -outfile dbtool.zip; `
+    expand-archive dbtool.zip -destination c:\inrule; `
+    remove-item dbtool.zip
+
+#RUN chmod 775 /inrule/InRule.Catalog.Service.Database.exe
+
+WORKDIR c:\inrule
+CMD [ "/inrule/InRule.Catalog.Service.Database.exe"]

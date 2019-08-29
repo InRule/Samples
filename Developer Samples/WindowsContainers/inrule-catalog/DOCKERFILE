@@ -1,17 +1,9 @@
 # escape=`
-
-FROM inrule/inrule-server:latest AS build-stage
+ARG baseImageTag
+FROM inrule/inrule-server:${baseImageTag}
+SHELL ["powershell", "-Command"]
 
 ARG reposTag
-WORKDIR C:\assets\
-ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Catalog.Service.zip c:\assets
-RUN Expand-Archive -Path InRule.Catalog.Service.zip -Destination c:\assets
-RUN Remove-Item .\InRule.Catalog.Service.zip
-
-FROM inrule/inrule-server:latest as deploy
-EXPOSE 80:80
-EXPOSE 443:443
-EXPOSE 1433:1433
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
@@ -19,20 +11,30 @@ LABEL	maintainer="jelster@inrule.com" `
         com.inrule.product="irCatalog" `
         com.inrule.product.flavor="AppServices"
 
-ENV ContainerDir=${ContainerDir:-"C:\inrule-catalog"}
-ENV inrule:repository:service:connectionString="Server=tcp:db,1433;User ID=sa;Password=asdf1234qwerty!;Initial Catalog=InRuleCatalog;"
-COPY --from=build-stage c:\assets ${ContainerDir}\
+EXPOSE 80:80
+EXPOSE 443:443
+EXPOSE 1433:1433
+
+ENV ContainerDir=${ContainerDir:-"C:\inrule-catalog"} `
+    inrule:repository:service:connectionString="Server=tcp:db,1433;User ID=sa;Password=asdf1234qwerty!;Initial Catalog=InRuleCatalog;" `
+    reposTag=${reposTag} `
+    irLogLevel="Warn"
+
+RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;`
+    MD "$env:ContainerDir";cd "$env:ContainerDir"; `
+    wget "https://github.com/InRule/AzureAppServices/releases/download/${env:reposTag}/InRule.Catalog.Service.zip" -OutFile "${env:ContainerDir}\irservice.zip"; `
+    Expand-Archive -Path "${env:ContainerDir}\irservice.zip" -Destination "${env:ContainerDir}"; `
+    Remove-Item "${env:ContainerDir}\irservice.zip";
+
+RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
+RUN Import-Module "WebAdministration"; `
+ set-itemproperty -path 'IIS:\Sites\Default Web Site' -Name physicalPath -Value $env:ContainerDir; `
+# HACK to disable TLS in WCF bindings until SSL is supported
+(Get-Content $env:ContainerDir\web.config) | foreach { $_.Replace('Transport', 'None') } | set-content "$env:ContainerDir\web.config" -force;
 
 WORKDIR C:\temp 
 COPY *.ps1 .\
 
-RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
-
-RUN Import-Module "WebAdministration";set-itemproperty -path 'IIS:\Sites\Default Web Site' -Name physicalPath -Value $env:ContainerDir
-
-# HACK to disable TLS in WCF bindings until SSL is supported
-RUN (Get-Content C:\inrule-catalog\web.config) | foreach { $_.Replace('Transport', 'None') } | set-content "c:\inrule-catalog\web.config" -force
- 
 # HACK to add new appSettings configuration until environment variable support is added
 ENTRYPOINT .\Set-CatalogConfig.ps1 -verbose;
 CMD .\Start.ps1;
