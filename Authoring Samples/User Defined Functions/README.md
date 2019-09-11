@@ -94,3 +94,7 @@ The `UDF Examples.ruleappx` file contains a selection of sample User Defined Fun
 | Function | Description |
 |-------|------------|
 | CallExternalFunction | Calls a specific external function. This function adds the supplied numbers together and returns the result. |
+
+
+
+The `MapBetweenDifferentEntities.ruleappx` file contains a single UDF with supporting Data that demonstrates the ability to create a new Entity, setting the fields to a value from another entity with different fields based on field mappings defined in an Inline Table.
