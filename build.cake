@@ -13,6 +13,7 @@ var inruleVersion = Argument("inruleVersion", EnvironmentVariable("InRule_Versio
 //////////////////////////////////////////////////////////////////////
 
 FilePathCollection _solutionFiles = GetFiles("./**/*.sln");
+MSBuildToolVersion _msbuildVersion = MSBuildToolVersion.VS2019;
 
 // Determine NuGet source feeds.
 ICollection<string> _nuGetSources;
@@ -43,7 +44,7 @@ Task("Clean")
 
     try
     {
-      MSBuild(solutionFile, settings => settings.WithTarget("Clean"));
+      MSBuild(solutionFile, settings => settings.WithTarget("Clean").UseToolVersion(_msbuildVersion));
     }
     catch { }
   }
@@ -108,7 +109,7 @@ Task("Build")
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
     Information("Building " + solutionFile);
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
-    MSBuild(solutionFile, settings => settings.WithTarget("Build"));
+    MSBuild(solutionFile, settings => settings.WithTarget("Build").UseToolVersion(_msbuildVersion));
   }
 });
 
