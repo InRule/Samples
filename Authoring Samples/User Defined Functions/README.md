@@ -80,6 +80,7 @@ The `UDF Examples.ruleappx` file contains a selection of sample User Defined Fun
 | GetDictionaryValue | Returns the value for the supplied dictionary key. |
 | CreateEntityandAssignValues | Creates a new entity for the supplied entity name and sets the supplied value for the supplied field. |
 | IsDaylightSavingTime | Returns true if the supplied date falls within Daylight Savings Time. |
+| MapData | Create a new Entity, setting the fields to a value from another entity with different fields based on field mappings defined in an Inline Table. |
 
 ### I/O Library
 
@@ -94,7 +95,3 @@ The `UDF Examples.ruleappx` file contains a selection of sample User Defined Fun
 | Function | Description |
 |-------|------------|
 | CallExternalFunction | Calls a specific external function. This function adds the supplied numbers together and returns the result. |
-
-
-
-The `MapBetweenDifferentEntities.ruleappx` file contains a single UDF with supporting Data that demonstrates the ability to create a new Entity, setting the fields to a value from another entity with different fields based on field mappings defined in an Inline Table.
