@@ -44,4 +44,4 @@ Additionally the restriction on unique Entity RuleSet names has been removed, so
 
 # Limitations
 
-* The majority of Rule Application authoring scenarios should inter-operate between versions 5.3.1-5.4.3 and 5.5.0 of irSDK/irAuthor/irCatalog. Howevever, there are [several edge cases](known-issues.md#mix-versions-use-of-irsdk-irauthor-ircatalog).
+* The majority of Rule Application authoring scenarios should inter-operate between versions 5.3.1-5.4.3 and 5.5.0 of irSDK/irAuthor/irCatalog. Howevever, there are [several edge cases](known-issues.md#mix-version-use-of-irsdkirauthorircatalog).
