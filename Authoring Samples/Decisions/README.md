@@ -26,7 +26,7 @@ Instead of relying on an irCatalog instance for authentication, InRule's hosted 
 # Getting Started
 
 - [Authoring a Decision](author-decision.md)
-- [Testing a Decision](test-decison.md)
+- [Testing a Decision](test-decision.md)
 - [Publishing a Decision](publish-decision.md)
 - [Executing a published Decision](execute-decision.md)
 

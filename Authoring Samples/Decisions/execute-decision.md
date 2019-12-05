@@ -13,13 +13,15 @@ For example, if the base URL is:
 
     https://myorg-decisions.inrulecloud.com/
 
-The OpenAPI Specification document for publishing would be:
+The OpenAPI 2.0 and 3.0 Specification documents for publishing would be:
 
-    https://myorg-decisions.inrulecloud.com/api/openapi.json
+    https://myorg-decisions.inrulecloud.com/api/openapi_v2.0.json
+    https://myorg-decisions.inrulecloud.com/api/openapi_v3.0.json
 
-The OpenAPI Specification document for executing published Decision Services would be:
+The OpenAPI 2.0 and 3.0 Specification documents for executing published Decision Services would be:
 
-    https://myorg-decisions.inrulecloud.com/api/decisions/openapi.json
+    https://myorg-decisions.inrulecloud.com/api/decisions/openapi_v2.0.json
+    https://myorg-decisions.inrulecloud.com/api/decisions/openapi_v3.0.json
 
 These documents can be used by Swagger, Postman, or proxy generators for publishing and executing Decision Services.
 
@@ -27,7 +29,21 @@ These documents can be used by Swagger, Postman, or proxy generators for publish
 
 The Swagger test page would be accessed at the following URL:
 
-    https://myorg-decisions.inrulecloud.com/openapi/index.html
+    https://myorg-decisions.inrulecloud.com/openapi/
+
+This explicitly lists all Decision Services available for execution, along with their associated schemas and example input/output JSON.
+
+![Execute Decision Swagger Operations](images/ExecuteDecision-SwaggerExecuteDecisions.png)
+
+The Decision Runtime uses OAuth 2.0 for authentication. Before using this interface, user credentials must be authenticated using the 'Authorize' button on the page.
+
+![Execute Decision Authorize Button](images/ExecuteDecision-AuthorizeButton.png)
+
+To authorize the Swagger page, a 'client_id' will be required before the authentication window appears. Please contact [InRule Support](mailto:support@inrule.com)  for this client id.
+
+In addition to the 'Execution API', there is also a 'Publishing API' Swagger page that can be found in the drop-down menu at the top-right of the page:
+
+![Select a definition drop down](images/ExecuteDecision-PublishedDecisionsDropDown.png)
     
 The following operations are possible:
 
@@ -35,25 +51,10 @@ The following operations are possible:
 - Publish a Decision
 - Get a Decision (Only confirms the name - Does not permit download of rule application)
 - Delete a Decision
-- Execute a Decision by name (Does not provide example schema)
 
 ![Execute Decision Swagger Operations](images/ExecuteDecision-SwaggerOperations.png)
 
-The Decision Runtime uses OAuth 2.0 for authentication. Before using this interface, user credentials must be authenticated using the 'Authorize' button on the page.
-
-![Execute Decision Authorize Button](images/ExecuteDecision-AuthorizeButton.png)
-
-To authorize the Swagger page, a 'client_id' will be required before the authentication window appears. Please contact inrule for this code.
-
-An alternative to the 'Execution' section on this page is using the 'Published Decisions API' Swagger page. This can be found in the drop-down menu at the top-right of the page:
-
-![Execute Decision Published Decisions Drop Down](images/ExecuteDecision-PublishedDecisionsDropDown.png)
-
-This explicitly lists all Decision Services available for execution, along with their associated schemas and example input/output JSON.
-
 *Note: This page also requires authorization.*
-
-![Execute Decision Swagger Operations](images/ExecuteDecision-SwaggerExecuteDecisions.png)
 
 # Execution API via Postman
 
@@ -85,7 +86,7 @@ Click the 'Authorization' tab and then click the 'Get New Access Token' button. 
 - Grant Type: `Implicit`
 - Callback URL: `https://www.getpostman.com/oauth2/callback`
 - Auth URL: `https://auth.inrulecloud.com/authorize`
-- Client ID: `[Contact inrule for the Client ID to use with Postman]`
+- Client ID: `[Contact InRule Support for the Client ID to use with Postman]`
 - Scope: `[Leave empty]`
 - State: `[Leave empty]`
 - Client Authentication: `Send as Basic Auth header`
