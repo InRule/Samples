@@ -36,12 +36,12 @@ Instead of relying on an irCatalog instance for authentication, InRule's hosted 
 
 # Notes
 
-InRule v5.5.0 includes additional Def classes in irSDK® to support Decisions. To make upgrading as painless as possible, the new data structures are persisted to files or irCatalog® in Attributes of the RuleApplicationDef.
+InRule v5.5.0 includes additional classes in irSDK® to support Decisions. To make upgrading as painless as possible, the new data structures are persisted to files or irCatalog® in Attributes of the RuleApplicationDef.
 
 This removes the need to running a feature version upgrade on irCatalog to use these new features.
 
-Additionally the restriction on unique Entity RuleSet names has been removed, so long as they don't collide with existing Independent RuleSets. This allows RuleSets with the same names to exist under both Entities and Decisions.
+Additionally the restriction on unique Entity Rule Set names has been removed, so long as they don't collide with existing Independent Rule Sets. This allows Rul eSets with the same names to exist under both Entities and Decisions.
 
 # Limitations
 
-* The majority of Rule Application authoring scenarios should inter-operate between versions 5.3.1-5.4.3 and 5.5.0 of irSDK/irAuthor/irCatalog. Howevever, there are [several edge cases](known-issues.md#mix-version-use-of-irsdkirauthorircatalog).
+* The majority of Rule Application authoring scenarios should inter-operate between versions 5.3.1-5.4.3 and 5.5.0 of irSDK/irAuthor/irCatalog. Howevever, there are [several edge cases](known-issues.md#mix-version-use-of-irsdkirauthorircatalog) that are not supported at this time.
