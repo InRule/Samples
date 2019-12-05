@@ -1,11 +1,11 @@
 Decision Services
 ====
 
-Decision Services is the newest member of InRule®'s Decision Platform. It provides an improved, simpler model for authoring and executing rules, as well as an integration model that is standards-based that does not require deep knowledge of our SDK.
+Decision Services is the newest member of InRule®'s Decision Platform. It provides an improved decision-centric model for authoring and executing rules, as well as an integration model that is standards-based that does not require deep knowledge of our SDK.
 
-A decision in Decision Services is an entry point into rule exection. It consists of a set of inputs, rules that execute against those inputs, and a set of ouputs that reflect that result. Those inputs, outputs, and rules are author-defined, ultimately providing rule authors flexibility of shaping the input and output signature using during runtime execution.
+A Decision in Decision Services is an entry point into rule exection. It consists of a set of inputs, rules that execute against those inputs, and a set of ouputs that reflect the result. Those inputs, outputs, and rules are author-defined, ultimately providing rule authors flexibility of shaping the input and output signature used during runtime execution.
 
-Once authored is complete, Decisions can be tested in irVerify and subsequently published to a Decision Runtime for remote execution via a RESTful API. That Decision Runtime provides an OpenAPI (formerly known as Swagger) document which is a programming language-agnostic description on how to execute the published decisions, including each decision's required input and output result.
+Once authored is complete, Decisions can be tested in irVerify and subsequently published to a Decision Runtime for remote execution via a RESTful API. The Decision Runtime provides an OpenAPI (formerly known as Swagger) document which is a programming language-agnostic description on how to execute the published Decisions, including each Decision's required input and output result.
 
 # Prerequisites
 
