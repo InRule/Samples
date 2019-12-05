@@ -8,7 +8,7 @@ Clicking the 'Test' button on the 'Home' tab will launch irVerify if the item se
 
 Here, the input fields may be populated as if they were the values being input to the Decision.
 
-*Note: Setting the output field values is discouraged because this is not a scenario that would apply when executed as a Decision Service.*
+*Note: Setting the output field values in irVerify is discouraged because this is not a scenario that would apply when executed as a Decision Service.*
 
 To execute the Decision, either click the 'Apply' button on the 'DecisionStart' Rule Set, or click the 'Apply Rules' button in the 'Home' tab.
 
