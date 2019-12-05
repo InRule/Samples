@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("InRule Technology, Inc.")]
 [assembly: AssemblyProduct("CreateRuleSession-Catalog")]
-[assembly: AssemblyCopyright("Copyright © 2019, InRule Technology, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2020, InRule Technology, Inc.")]
 [assembly: AssemblyTrademark("InRule® is a registered trademark of InRule Technology.  All Rights Reserved.")]
 [assembly: AssemblyCulture("")]
 
