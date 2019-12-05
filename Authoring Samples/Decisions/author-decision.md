@@ -9,7 +9,9 @@ A Decision can be added from the Decisions navigation panel.
 
 Every new decision contains a single Rule Set named 'DecisionStart'. Any rules added to that Rule Set will execute automatically when the that Decision is executed.
 
-Additional explicit Rule Sets may be added to the Decision. These Rule Sets will execute only when called from the 'DecisionStart' Rule Set or from other Rule Sets within the same decision via the ExecuteRuleSet action. If an explicit Rule Set in a decision is not explictly called via ExecuteRuleSet, then that Rule Set will not execute.
+Additional explicit Rule Sets may be added to the Decision. These Rule Sets will execute only when called from the 'DecisionStart' Rule Set or from other Rule Sets within the same decision via the ExecuteRuleSet action. If an explicit Rule Set in a Decision is not explictly called via ExecuteRuleSet, then that Rule Set will not execute.
+
+Entity based Rule Sets can also be called from a Decision based rule set. This preserves the ability to author rules in the context of an Entity.
 
 # Editing a Decision
 
