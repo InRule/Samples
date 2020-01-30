@@ -1,17 +1,26 @@
 # escape=`
 
-FROM microsoft/windowsservercore:latest as builder
-ARG reposTag=v5.1.1
-WORKDIR C:\assets\
+FROM mcr.microsoft.com/powershell:nanoserver-1903 as builder
 
-ADD https://github.com/InRule/AzureAppServices/releases/download/${reposTag}/InRule.Catalog.Service.Database.zip c:\assets
+SHELL [ "pwsh.exe", "-Command" ]
+ARG irVersion=v5.5.0
 
-RUN Expand-Archive -Path InRule.Catalog.Service.Database.zip -Destination c:\assets
+ENV irVersion=${irVersion}
+# e.g., "Server=(local);Database=InRuleCatalog;Trusted_Connection=True;"
+RUN md c:\inrule; `
+    cd c:\inrule; `
+    invoke-webrequest https://github.com/InRule/AzureAppServices/releases/download/${env:irVersion}/InRule.Catalog.Service.Database.zip -outfile dbtool.zip; `
+    expand-archive dbtool.zip -destination c:\inrule; `
+    remove-item dbtool.zip
 
-FROM microsoft/microsoft/mssql-server-windows-express:latest as publish
-ENV accept_eula=Y
-ENV sa_password='_'
+#RUN chmod 775 /inrule/InRule.Catalog.Service.Database.exe
 
-COPY --from=builder C:\assets c:\temp\
-WORKDIR c:\temp
+FROM microsoft/mssql-server-windows-express:latest as runtime
+SHELL [ "powershell" ]
 
+RUN start-sleep 30;sqlcmd -S localhost -Q 'CREATE DATABASE InRuleCatalog'
+COPY --from=builder c:\inrule\ c:\inrule
+
+ENV ConnectionString="Server=(local);Database=InRuleCatalog;Trusted_Connection=True;"
+
+RUN c:\inrule\InRule.Catalog.Service.Database.exe
