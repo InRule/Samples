@@ -6,7 +6,8 @@ param(
     [string]$installPath = "$env:ContainerDir",
     [string]$restRuleApplication = "C:\RuleApps",
     [string]$catalogServiceUri = "${env:inrule:runtime:service:catalog:catalogServiceUri}",
-    [string]$endpointAssemblyPath = "EndpointAssemblies"
+    [string]$endpointAssemblyPath = "EndpointAssemblies",
+    [string]$logLevel = "$env:irLogLevel"
 )
 function Set-RuntimeConfig {    
     function New-AppSettingsEntry {
@@ -39,13 +40,28 @@ function Set-RuntimeConfig {
     $cUri = New-AppSettingsEntry -parentDoc $cfgXml -key 'inrule:runtime:service:catalog:catalogServiceUri' -value $catalogServiceUri
     $cUser = New-AppSettingsEntry -parentDoc $cfgXml -key 'inrule:runtime:service:catalog:userName' -value $catalogUser
     $cPass = New-AppSettingsEntry -parentDoc $cfgXml -key 'inrule:runtime:service:catalog:password' -value $catalogPass
-    
+    $logLevel = New-AppSettingsEntry -parentDoc $cfgXml -key 'inrule:logging:level' -value $logLevel
     $catSvc.AppendChild($cUri)
     $catSvc.AppendChild($cUser)
     $catSvc.AppendChild($cPass)
-    
-    $cfgXml.Save($configFilePath)
+    $catSvc.AppendChild($logLevel)
 
+    $inruleLogSection = $cfgXml.configuration.'inrule.logging'
+    
+    $inruleLogSection.group.logger.option.SetAttribute("value", "InRule") # ensure logs are sourced to the InRule eventSource
+
+    #$logGroup = $cfgXml.CreateElement("group") # add an additional logging group for the console logger
+    #$logGroup.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.LoggerGroup, InRule.Repository")
+    # controlled by global appsetting but still needed to properly work
+    #$logGroup.SetAttribute("level", $logLevel)
+    #$inruleLogSection.AppendChild($logGroup)
+
+    #$conLogger = $cfgXml.CreateElement("logger")
+    #$conLogger.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.ConsoleLogger, InRule.Repository")
+    #$logGroup.AppendChild($conLogger)
+
+    $cfgXml.configuration.'inrule.runtime.service'.restRuleApplication.SetAttribute("path", $restRuleApplication)
+    $cfgXml.Save($configFilePath)
 
     write-output "Saved configuration changes."
     return 0;   

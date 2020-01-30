@@ -2,7 +2,8 @@
 [CmdletBinding(SupportsShouldProcess = $true)]    
 param(
     [string]$connectionString = $env:inrule:repository:service:connectionString,
-    [string]$installPath = "$env:ContainerDir"    
+    [string]$installPath = "$env:ContainerDir",
+    [string]$logLevel = "$env:irLogLevel"    
 )
 function Set-CatalogConfig {    
     function New-AppSettingsEntry {
@@ -33,11 +34,17 @@ function Set-CatalogConfig {
     }
 
     $cs = New-AppSettingsEntry -parentDoc $cfgXml -key "inrule:repository:service:connectionString" -value $connectionString
+    $logLevel = New-AppSettingsEntry -parentDoc $cfgXml -key 'inrule:logging:level' -value $logLevel
+
+    $catSvc.AppendChild($cs)
+    $catSvc.AppendChild($logLevel)
+   
+
+    $inruleLogSection = $cfgXml.configuration.'inrule.logging'
     
-    $catSvc.AppendChild($cs)    
+    $inruleLogSection.group.logger.option.SetAttribute("value", "InRule") # ensure logs are sourced to the InRule eventSource
+
     $cfgXml.Save($configFilePath)
-
-
     write-output "Saved configuration changes."
     return 0;   
 }
