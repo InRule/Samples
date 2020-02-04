@@ -41,6 +41,17 @@ $reposTagBuildArg = "reposTag=$reposTag"
 $baseImageBuildArg
 $reposTagBuildArg
 $versionLabelArg
+
+if ($PSCmdlet.ShouldProcess("Building inrule-catalog-db image")) {
+   
+    docker build $hyperVIsolationParameter --build-arg $reposTagBuildArg --build-arg $baseImageBuildArg -t ${registryRootRepos}/inrule-catalog-db:$tag -f $PWD\inrule-catalog-db\DOCKERFILE $PWD\inrule-catalog-db
+    
+    if ($LASTEXITCODE -ne 0) {
+        throw 'non-zero return from docker build. aborting.'
+    }
+    $imagesBuild += "${registryRootRepos}/inrule-catalog-db:${tag}"
+}
+
 if ($PSCmdlet.ShouldProcess("Building inrule-catalog image")) {
    
     docker build $hyperVIsolationParameter --build-arg $reposTagBuildArg --build-arg $baseImageBuildArg -t ${registryRootRepos}/inrule-catalog:$tag -f $PWD\inrule-catalog\DOCKERFILE $PWD\inrule-catalog
