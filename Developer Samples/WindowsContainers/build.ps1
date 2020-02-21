@@ -80,6 +80,8 @@ if ($PSCmdlet.ShouldProcess("Building inrule-catalog-manager image")) {
 }
 
 if ($setLatestTag -and $PSCmdlet.ShouldProcess("Setting image $tag to latest...") ) {
+    docker image tag ${registryRootRepos}/inrule-catalog-db:$tag ${registryRootRepos}/inrule-catalog-db:latest
+    $imagesBuild += "${registryRootRepos}/inrule-catalog-db:latest"
     docker image tag ${registryRootRepos}/inrule-catalog:$tag ${registryRootRepos}/inrule-catalog:latest
     $imagesBuild += "${registryRootRepos}/inrule-catalog:latest"
     docker image tag ${registryRootRepos}/inrule-runtime:$tag ${registryRootRepos}/inrule-runtime:latest
