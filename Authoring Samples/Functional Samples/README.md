@@ -9,7 +9,7 @@ To run this Rule App, load the State from the json file and execute the Run* exp
 
 ## OAuth Token Sample
 
-This Rule App was created in concert with a blog post to demonstrate two functionalities around making complex REST requests:
+This Rule App was created in concert with a [blog post](https://www.inrule.com/resources/blog/give-it-a-rest-part-2) to demonstrate two functionalities around making complex REST requests:
 
 - Retrieve an OAuth Token during Rule Application execution (from Azure AD in this case)
 
