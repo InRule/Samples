@@ -1,6 +1,6 @@
 # escape=`
-
-FROM mcr.microsoft.com/dotnet/framework/aspnet:4.7.2-windowsservercore-1803
+ARG baseOSTag='4.7.2-windowsservercore-ltsc2019'
+FROM mcr.microsoft.com/dotnet/framework/aspnet:${baseOSTag}
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
@@ -14,3 +14,5 @@ RUN .\InRuleServerDSC.ps1 -Wait;Remove-Item c:\temp\*.* -recurse -force;
 RUN Import-module WebAdministration; `
     New-WebBinding -Name 'Default Web Site' -IP "*" -Port 443 -Protocol 'https'; ` 
     New-EventLog -LogName InRule -Source "InRule.Repository","InRule.Repository.Service","InRule.Runtime","InRule.Runtime.Service","InRule.Authoring.irAuthor","InRule.Admin.CatalogManager";
+
+ADD .\logmonitorconfig.json https://github.com/microsoft/windows-container-tools/releases/download/v1.1/LogMonitor.exe https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe c:\LogMonitor\

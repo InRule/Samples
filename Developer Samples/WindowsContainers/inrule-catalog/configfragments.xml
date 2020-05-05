@@ -1,0 +1,63 @@
+<system.serviceModel>
+    <bindings>
+        <wsHttpBinding>
+            <binding name="UnsecureWSHttp" maxReceivedMessageSize="50000000">
+                <readerQuotas maxStringContentLength="50000000" />
+                <security mode="None">
+                    <!-- **WARNING** Changes to the security binding must also be made in client binding code -->
+                    <transport clientCredentialType="None" proxyCredentialType="None" />
+                    <message clientCredentialType="None" />
+                </security>
+            </binding>
+            <binding name="SecureWSHttp" maxReceivedMessageSize="50000000">
+                <readerQuotas maxStringContentLength="50000000" />
+                <security mode="Transport">
+                    <!-- **WARNING** Changes to the security binding must also be made in client binding code -->
+                    <transport clientCredentialType="None" proxyCredentialType="None" />
+                    <message clientCredentialType="None" />
+                </security>
+            </binding>
+        </wsHttpBinding>
+        <basicHttpBinding>
+            <binding name="UnsecureBasicHttp" maxReceivedMessageSize="50000000">
+                <readerQuotas maxStringContentLength="50000000" />
+                <security mode="None">
+                    <transport clientCredentialType="None" proxyCredentialType="None" />
+                </security>
+            </binding>
+            <binding name="SecureBasicHttp" maxReceivedMessageSize="50000000">
+                <readerQuotas maxStringContentLength="50000000" />
+                <security mode="Transport">
+                    <transport clientCredentialType="None" proxyCredentialType="None" />
+                </security>
+            </binding>
+        </basicHttpBinding>
+    </bindings>
+    <services>
+        <service name="InRule.Repository.Service.RepositoryService" behaviorConfiguration="repositoryServiceBehavior">
+            <endpoint address="" binding="wsHttpBinding" bindingConfiguration="SecureWSHttp" contract="InRule.Repository.Service.ICatalogServiceContract" />
+            <endpoint address="" binding="wsHttpBinding" bindingConfiguration="UnsecureWSHttp" contract="InRule.Repository.Service.ICatalogServiceContract" />
+
+            <endpoint address="core" binding="basicHttpBinding" bindingConfiguration="UnsecureBasicHttp" contract="InRule.Repository.Service.ICatalogServiceContract" />
+            <endpoint address="core" binding="basicHttpBinding" bindingConfiguration="SecureBasicHttp" contract="InRule.Repository.Service.ICatalogServiceContract" />
+
+            <!-- ** NOTE Metadata not supported SSL at this time **-->
+            <!--<endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>-->
+        </service>
+    </services>
+    <behaviors>
+        <serviceBehaviors>
+            <behavior name="repositoryServiceBehavior">
+                <serviceDebug httpHelpPageEnabled="true" />
+                <!-- Enables the IMetadataExchange endpoint in services that -->
+                <!-- use "metadataSupport" in their behaviorConfiguration attribute. -->
+                <!-- In addition, the httpGetEnabled and httpGetUrl attributes publish -->
+                <!-- Service metadata for retrieval by HTTP/GET at the address -->
+                <!-- "http://localhost:8080/SampleService?wsdl" -->
+                <!-- ** NOTE Metadata not supported SSL at this time **-->
+                <!-- <serviceMetadata httpGetEnabled="true" httpGetUrl=""/>-->
+            </behavior>
+        </serviceBehaviors>
+    </behaviors>
+    <serviceHostingEnvironment multipleSiteBindingsEnabled="True" />
+</system.serviceModel>

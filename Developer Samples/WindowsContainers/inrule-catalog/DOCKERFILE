@@ -24,17 +24,18 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     MD "$env:ContainerDir";cd "$env:ContainerDir"; `
     wget "https://github.com/InRule/AzureAppServices/releases/download/${env:reposTag}/InRule.Catalog.Service.zip" -OutFile "${env:ContainerDir}\irservice.zip"; `
     Expand-Archive -Path "${env:ContainerDir}\irservice.zip" -Destination "${env:ContainerDir}"; `
-    Remove-Item "${env:ContainerDir}\irservice.zip";
-
-RUN $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot;(gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }
-RUN Import-Module "WebAdministration"; `
- set-itemproperty -path 'IIS:\Sites\Default Web Site' -Name physicalPath -Value $env:ContainerDir; `
-# HACK to disable TLS in WCF bindings until SSL is supported
-(Get-Content $env:ContainerDir\web.config) | foreach { $_.Replace('Transport', 'None') } | set-content "$env:ContainerDir\web.config" -force;
+    Remove-Item "${env:ContainerDir}\irservice.zip"; `
+    $acl = Get-Acl -AllCentralAccessPolicies -Path c:\inetpub\wwwroot; `
+    (gci $env:ContainerDir -Recurse) | foreach { Set-Acl -Path $_.FullName -AclObject $acl -ErrorAction SilentlyContinue }; `
+    Import-Module "WebAdministration"; `
+    set-itemproperty -path 'IIS:\Sites\Default Web Site' -Name physicalPath -Value $env:ContainerDir;
+    
 
 WORKDIR C:\temp 
 COPY *.ps1 .\
+COPY configfragments.xml .\
 
+
+SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe", ".\\Set-CatalogConfig.ps1 -wcfCfgFilePath .\\configfragments.xml -verbose;"]
 # HACK to add new appSettings configuration until environment variable support is added
-ENTRYPOINT .\Set-CatalogConfig.ps1 -verbose;
-CMD .\Start.ps1;
+ENTRYPOINT C:\LogMonitor\ServiceMonitor.exe w3svc;
