@@ -19,6 +19,19 @@ function Set-RuntimeConfig {
         return $appSetting
     }
 
+    function Configure-SslCert {    
+        $pwSecString = ConvertTo-SecureString -String $env:PfxPassword -AsPlainText -Force
+        $certPath = (gci $installPath\*.pfx -recurse)[0]
+        if ($null -eq $certPath) {
+            return
+        }
+        $cert = Import-PfxCertificate -FilePath $certPath.FullName -Password $pwSecString -CertStoreLocation cert:\LocalMachine\My
+        $certHashString = $cert.GetCertHashString()
+        Write-Verbose "Imported PFX $certHashString to 'cert:\LocalMachine\My'"
+        (Get-WebBinding -Protocol "https").AddSslCertificate($certHashString, "My")
+        Write-Verbose "Added SSL certificate with thumbprint $certHashString to HTTPS binding"
+    }
+
     write-output "Replacing supplied configuration values in web.config..."
     $configFilePath = resolve-Path -Path (Join-Path -Path $installPath -ChildPath "Web.config")
 
@@ -50,16 +63,18 @@ function Set-RuntimeConfig {
     
     $inruleLogSection.group.logger.option.SetAttribute("value", "InRule") # ensure logs are sourced to the InRule eventSource
 
-    #$logGroup = $cfgXml.CreateElement("group") # add an additional logging group for the console logger
-    #$logGroup.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.LoggerGroup, InRule.Repository")
-    # controlled by global appsetting but still needed to properly work
-    #$logGroup.SetAttribute("level", $logLevel)
-    #$inruleLogSection.AppendChild($logGroup)
+    $logGroup = $cfgXml.CreateElement("group") # add an additional logging group for the console logger
+    $logGroup.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.LoggerGroup, InRule.Repository")
+    controlled by global appsetting but still needed to properly work
+    $logGroup.SetAttribute("level", $logLevel)
+    $inruleLogSection.AppendChild($logGroup)
 
-    #$conLogger = $cfgXml.CreateElement("logger")
-    #$conLogger.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.ConsoleLogger, InRule.Repository")
-    #$logGroup.AppendChild($conLogger)
+    $conLogger = $cfgXml.CreateElement("logger")
+    $conLogger.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.ConsoleLogger, InRule.Repository")
+    $logGroup.AppendChild($conLogger)
 
+    Configure-SslCert
+    
     $cfgXml.configuration.'inrule.runtime.service'.restRuleApplication.SetAttribute("path", $restRuleApplication)
     $cfgXml.Save($configFilePath)
 
