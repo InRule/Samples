@@ -105,6 +105,16 @@ function Set-CatalogConfig {
     $inruleLogSection = $cfgXml.configuration.'inrule.logging'    
     $inruleLogSection.group.logger.option.SetAttribute("value", "InRule") # ensure logs are sourced to the InRule eventSource
 
+    $logGroup = $cfgXml.CreateElement("group") # add an additional logging group for the console logger
+    $logGroup.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.LoggerGroup, InRule.Repository")
+    #controlled by global appsetting but still needed to properly work
+    $logGroup.SetAttribute("level", $logLevel)
+    $inruleLogSection.AppendChild($logGroup)
+
+    $conLogger = $cfgXml.CreateElement("logger")
+    $conLogger.SetAttribute("typeName", "InRule.Repository.Logging.Loggers.ConsoleLogger, InRule.Repository")
+    $logGroup.AppendChild($conLogger)
+
     $cfgXml.Save($configFilePath)
     write-output "Saved configuration changes."
     return 0;   

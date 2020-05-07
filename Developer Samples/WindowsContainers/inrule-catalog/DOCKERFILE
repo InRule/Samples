@@ -1,6 +1,8 @@
 # escape=`
+ARG imageRepos='inrule' 
 ARG baseImageTag
-FROM inrule/inrule-server:${baseImageTag}
+# for using non-docker hub base images, e.g., mycontainerregistry.azurecr.io/inrule
+FROM ${imageRepos}/inrule-server:${baseImageTag}
 SHELL ["powershell", "-Command"]
 
 ARG reposTag
@@ -36,6 +38,6 @@ COPY *.ps1 .\
 COPY configfragments.xml .\
 
 
-SHELL ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe", ".\\Set-CatalogConfig.ps1 -wcfCfgFilePath .\\configfragments.xml -verbose;"]
+ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe", ".\\Set-CatalogConfig.ps1 -wcfCfgFilePath .\\configfragments.xml -verbose;"]
 # HACK to add new appSettings configuration until environment variable support is added
-ENTRYPOINT C:\LogMonitor\ServiceMonitor.exe w3svc;
+CMD ["C:\\LogMonitor\\ServiceMonitor.exe w3svc;"]
