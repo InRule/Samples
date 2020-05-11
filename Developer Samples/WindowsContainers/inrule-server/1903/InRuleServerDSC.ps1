@@ -8,7 +8,6 @@
      {
          Name = "Net-WCF-Services45"
          Ensure = "Present"
-         DependsOn = "[WindowsFeature]WebAspNet45"
      }
 
      WindowsFeature WCFHttpActivation

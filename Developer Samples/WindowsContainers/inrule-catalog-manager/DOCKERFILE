@@ -7,13 +7,14 @@ FROM ${imageRepos}/inrule-server:${baseImageTag}
 EXPOSE 80:80
 EXPOSE 443:443
 
+ARG reposTag
+
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `
         com.inrule.version="${reposTag}" `
         com.inrule.product="Web Catalog Manager"`
-        com.inrule.product.flavor="AppServices"
-     
-ARG reposTag
+        com.inrule.product.flavor="AppServices"     
+
 ENV catManDir=c:\inrule-catalog-manager
 ENV InRule:Catalog:Uri=http://cat/Service.svc
 WORKDIR C:\assets\
