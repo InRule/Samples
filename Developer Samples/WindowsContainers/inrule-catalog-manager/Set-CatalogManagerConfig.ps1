@@ -37,6 +37,8 @@ function Set-CatalogManagerConfig {
 
     $cfgXml = new-object Xml
     $cfgXml.Load($configFilePath)
+    $cfgXml.configuration.'system.web'.compilation.setAttribute("targetFramework", "4.8")
+    $cfgXml.configuration.'system.web'.httpRuntime.setAttribute("targetFramework", "4.8")
     $catSvc = $cfgXml.configuration["appSettings"]
     if ($null -eq $catSvc) {
          
