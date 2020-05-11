@@ -1,6 +1,7 @@
 # escape=`
-ARG baseOSTag='4.7.2-windowsservercore-ltsc2019'
-FROM mcr.microsoft.com/dotnet/framework/aspnet:${baseOSTag}
+ARG repos=mcr.microsoft.com/dotnet/framework/aspnet
+ARG baseOSTag=
+FROM ${repos}:4.8-windowsservercore-ltsc2019
 
 LABEL	maintainer="jelster@inrule.com" `
 		vendor="InRule Technology, Inc." `

@@ -4,19 +4,6 @@
      
    Node ($MachineName)
    {
-     WindowsFeature WebServerRole
-     {
-       Name = "Web-Server"
-       Ensure = "Present"
-     }
-
-     WindowsFeature WebAspNet45
-     {
-       Name = "Web-Asp-Net45"
-       Ensure = "Present"
-       DependsOn = "[WindowsFeature]WebServerRole"
-     }
-
      WindowsFeature WCFServices45
      {
          Name = "Net-WCF-Services45"
