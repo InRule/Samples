@@ -34,37 +34,6 @@ function Set-CatalogConfig {
         $cfgXml.configuration.AppendChild($newNode)
         
     }
-    function Install-NuGetAndPackages {
-        param([XML]$cfgXml)
-        Invoke-WebRequest -Uri 'https://dist.nuget.org/win-x86-commandline/latest/nuget.exe' -OutFile nuget.exe;
-        .\nuget install $installPath\packages.config -OutputDirectory $installPath\bin\
-
-       
-        $cfgXml.configuration.appSettings.SetAttribute("configBuilders", "EnvironmentVariables, KeyPerFile")
-        $cfgBuilderSection = $cfgXml.CreateElement("section")
-        $cfgBuilderSection.SetAttribute("name", "configBuilders")
-        $cfgBuilderSection.SetAttribute("type", "System.Configuration.ConfigurationBuildersSection, System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")
-        $cfgXml.configuration.configSections.appendChild($cfgBuilderSection)
-
-        $cfgBuilder = $cfgXml.CreateElement("configBuilders")
-        $cfgXml.configuration.appendChild($cfgBuilder)
-        
-        $builders = $cfgXml.CreateElement("builders")
-        $cfgBuilder.appendChild($builders)
-
-        $envBuilder = $cfgXml.CreateElement("add")
-        $envBuilder.SetAttribute("name", "EnvironmentVariables")
-        $envBuilder.SetAttribute("mode", "Greedy")
-        $envBuilder.SetAttribute("type", "Microsoft.Configuration.ConfigurationBuilders.EnvironmentConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.Environment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35")
-        $builders.appendChild($envBuilder)
-
-        $kpfBuilder = $cfgXml.CreateElement("add")
-        $kpfBuilder.SetAttribute("name", "KeyPerFile")
-        $kpfBuilder.SetAttribute("mode", "Greedy")
-        $kpfBuilder.SetAttribute("type", "Microsoft.Configuration.ConfigurationBuilders.KeyPerFileConfigBuilder, Microsoft.Configuration.ConfigurationBuilders.KeyPerFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-)
-        $builders.appendChild($kpfBuilder)
-    }
 
     write-output "Replacing supplied configuration values in web.config..."
     $configFilePath = resolve-Path -Path (Join-Path -Path $installPath -ChildPath "Web.config")
