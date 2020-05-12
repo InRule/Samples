@@ -14,10 +14,6 @@
 
 * The default settings specify a host name of `cat` for the catalog service; override the `CatalogUri` environment variable to use a different catalog service or if your linked container is named differently.
 
-## Building the image
-
-* The DOCKERFILE requires a build argument specifying the specific tag to use when acquiring assets from the [InRule assets repos]( https://github.com/InRule/AzureAppServices/releases/download)
-
 ## Running the image
 
 Once the container starts it will be listening on the designated ports (80 by default). Requests can be sent either to the SOAP service or the REST service using these endpoints:
@@ -59,8 +55,17 @@ docker run -d --rm --name=rex -v c:\inrule-assemblies\:c:\inrule-runtime\bin\End
 
 ```
 
+Mounting an SSL certificate:
+
+```cmd
+docker run -d -p 443:443 -v '<HOST_LICENSE_DIRECTORY>:C:\ProgramData\InRule\SharedLicenses:ro' -v '<HOST_PFX_DIRECTORY>:C:\inrule-runtime\pfx:ro' --env PfxPassword=<Password_for_cert> inrule/inrule-runtime:latest
+```
+
 ### Obtaining the IP address of the container
 
 In order to connect to the service, you'll need the IP address of the container. Get it using a command similar to the following:
 
-    `docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' rex`
+```cmd
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' rex
+
+```

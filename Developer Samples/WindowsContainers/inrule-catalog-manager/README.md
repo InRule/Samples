@@ -12,29 +12,6 @@
 * The Web Catalog Manager provides an web-based admin UI for the irCatalog service.
 * Upon startup, the container will configure the service to point at the catalog service URI specified at run-time.
 
-## Building the image
-
-### Docker build
-
-The DOCKERFILE defines a build-time argument, `catManDir` which defaults to the [CatalogManagerWeb](CatalogManagerWeb/) child folder.
-Typically, there's no need to modify this value in your builds.
-
-#### Using defaults
-
-```cmd
-
-docker build -t inrule/inrule-catalog-manager:5.0.14 .
-
-```
-
-#### Specifying an alternative path for source artifacts
-
-```cmd
-
-docker build --build-arg catManDir=c:\users\jsmith\downloads\irServer -t inrule/inrule-catalog-manager:5.0.12 .
-
-```
-
 ## Running the image
 
 Once started, you can open a web browser and navigate to the IP address of the container to access the Web Catalog Manager. Valid credentials for the irCatalog instance being accessed are required.
@@ -55,4 +32,10 @@ This will start a container running the Web Catalog Manager site using the defau
 
 docker run -d --env CatalogUri=https://acme-catalog.cloudapp.net/Service.svc inrule/inrule-catalog-manager:latest
 
+```
+
+### Access Catalog Manager with HTTPS
+
+```cmd
+docker run -d -p 443 -v '<HOST_PFX_FOLDER>:C:\inrule-catalog-manager\pfx:ro' --env PfxPassword=<PFX_PASSWORD> inrule/inrule-catalog-manager:latest
 ```
