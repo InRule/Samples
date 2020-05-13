@@ -95,11 +95,11 @@ function Invoke-ContainerBuild {
     function runDockerBuild {
         param([string]$command)
         write-verbose $cmd
-
-        if ($PSCmdlet.ShouldProcess($cmd)) {
-          $p = start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose 
-          if ($p.ExitCode -ne 0) {
-              throw
+       
+        if ($PSCmdlet.ShouldProcess($cmd) -and ($null -ne $cmd)) {
+          start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose
+          if ($LASTEXITCODE -ne 0) {
+              throw $Error[$Error.Count - 1]
           }
         }
     }
