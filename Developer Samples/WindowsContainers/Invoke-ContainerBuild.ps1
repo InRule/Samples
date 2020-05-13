@@ -21,10 +21,8 @@ function Invoke-ContainerBuild {
             Push-Location $folder
             $tag = "$registry/inrule-server:" + $folder.Name
             $cmd = "build --rm --no-cache -t $tag -f `"$folder\DOCKERFILE`" `"$folder`""
-            write-verbose $cmd
-            if ($PSCmdlet.ShouldProcess("Building Base image in $folder")) {
-                start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose 
-            }
+            runDockerBuild $cmd
+
             write-verbose "Built $tag"
         }
         finally {
@@ -36,24 +34,20 @@ function Invoke-ContainerBuild {
 
     function buildCatalogImage {
         param([string]$baseImageTag)
-        $tagTmpl = "$registry/inrule-catalog:"
+        $tagTmpl = "$registry/inrule-catalog:" + "$inruleReleaseTag-$baseImageTag"
         
         
         $imageTags | foreach {
-            $t = "$inruleReleaseTag-$baseImageTag"
+            $t = $tagTmpl
             if ([string]::IsNullOrWhiteSpace($_) -eq $false) {
                 $t += "-$_"
             }
                         
-            $catalogTags += ("-t $tagTmpl" + $t) 
+            $script:catalogTags += $t
         }
-        $cmd = "build --rm --no-cache --label com.inrule.version=$inruleReleaseTag --label com.inrule.windowsrelease=$baseImageTag $catalogTags --build-arg imageRepos=$registry --build-arg baseImageTag=$baseImageTag --build-arg reposTag=$inruleReleaseTag -f .\DOCKERFILE ."
+        $cmd = "build --rm --no-cache --label com.inrule.version=$inruleReleaseTag --label com.inrule.windowsrelease=$baseImageTag -t $($catalogTags -join ' -t ') --build-arg imageRepos=$registry --build-arg baseImageTag=$baseImageTag --build-arg reposTag=$inruleReleaseTag -f .\DOCKERFILE ."
 
-        write-verbose $cmd
-
-        if ($PSCmdlet.ShouldProcess($cmd)) {
-            start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose 
-        }
+        runDockerBuild $cmd
         write-verbose "Built $catalogTags"
         
         
@@ -61,23 +55,20 @@ function Invoke-ContainerBuild {
 
     function buildRuntimeImage {
         param([string]$baseImageTag)
-        $tagTmpl = "$registry/inrule-runtime:"
-        
+        $tagTmpl = "$registry/inrule-runtime:" + "$inruleReleaseTag-$baseImageTag"        
         
         $imageTags | foreach {
-            $t = "$inruleReleaseTag-$baseImageTag"
+            $t = $tagTmpl 
             if ([string]::IsNullOrWhiteSpace($_) -eq $false) {
                 $t += "-$_"
             }            
-            $runtimeTags += ("-t $tagTmpl" + $t) 
+            $script:runtimeTags += $t
         }
-        $cmd = "build --rm --no-cache --label com.inrule.version=$inruleReleaseTag --label com.inrule.windowsrelease=$baseImageTag $runtimeTags --build-arg imageRepos=$registry --build-arg baseImageTag=$baseImageTag --build-arg reposTag=$inruleReleaseTag -f .\DOCKERFILE ."
+        $cmd = "build --rm --no-cache --label com.inrule.version=$inruleReleaseTag --label com.inrule.windowsrelease=$baseImageTag -t $($runtimeTags -join ' -t ') --build-arg imageRepos=$registry --build-arg baseImageTag=$baseImageTag --build-arg reposTag=$inruleReleaseTag -f .\DOCKERFILE ."
 
         write-verbose $cmd
 
-        if ($PSCmdlet.ShouldProcess($cmd)) {
-            start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose 
-        }
+        runDockerBuild $cmd
         write-verbose "Built $runtimeTags"       
         
     }
@@ -85,30 +76,38 @@ function Invoke-ContainerBuild {
     
     function buildCatManImage {
         param([string]$baseImageTag)
-        $tagTmpl = "$registry/inrule-catalog-manager:"        
+        $tagTmpl = "$registry/inrule-catalog-manager:" + "$inruleReleaseTag-$baseImageTag"
         
         $imageTags | foreach {
-            $t = "$inruleReleaseTag-$baseImageTag"
+            $t = $tagTmpl
             if ([string]::IsNullOrWhiteSpace($_) -eq $false) {
                 $t += "-$_"
             }
-            $catManTags += ("-t $tagTmpl" + $t) 
+            $script:catManTags += $t
         }
-        $cmd = "build --rm --no-cache --label com.inrule.version=$inruleReleaseTag --label com.inrule.windowsrelease=$baseImageTag $catManTags --build-arg imageRepos=$registry --build-arg baseImageTag=$baseImageTag --build-arg reposTag=$inruleReleaseTag -f .\DOCKERFILE ."
+        $cmd = "build --rm --no-cache --label com.inrule.version=$inruleReleaseTag --label com.inrule.windowsrelease=$baseImageTag -t $($catManTags -join ' -t ') --build-arg imageRepos=$registry --build-arg baseImageTag=$baseImageTag --build-arg reposTag=$inruleReleaseTag -f .\DOCKERFILE ."
 
+        runDockerBuild $cmd
+        write-verbose "Built $catManTags"       
+        
+    }
+
+    function runDockerBuild {
+        param([string]$command)
         write-verbose $cmd
 
         if ($PSCmdlet.ShouldProcess($cmd)) {
-            start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose 
+          $p = start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose 
+          if ($p.ExitCode -ne 0) {
+              throw
+          }
         }
-        write-verbose "Built $catManTags"       
-        
     }
 
     # we assume that all subfolders of the ..\WindowsContainers\inrule-server\**\* are build dirs
     Get-ChildItem -Path .\inrule-server\ -Directory -Recurse | foreach {
         $baseTag = buildServerImage $_        
-        $baseImageTags += $_.Name
+        $script:baseImageTags += $baseTag
     }
 
     Write-Verbose "Base image tags: $baseImageTags"
@@ -126,6 +125,8 @@ function Invoke-ContainerBuild {
             Pop-Location
 
         }
+        $allTags = $baseImageTags + $catalogTags + $catManTags + $runtimeTags 
+        $allTags | Tee-Object .\tags-built.txt
     }
     finally {
         Pop-Location
