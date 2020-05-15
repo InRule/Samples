@@ -1,6 +1,7 @@
-# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+parameters:
+- name: inRuleReleaseTag
+  type: string
+  default: 'v5.5.1'
 
 trigger:
 - master
@@ -9,8 +10,9 @@ resources:
 - repo: self
 
 variables:
-  imageTags: null # add items to the array to use as tag suffix, e.g., 'preview' becomes v5.5.1-ltsc2019-preview
-  inRuleReleaseTag: v5.5.1
+  ${{ if ne(variables['Build.SourceBranchName'], 'master')}}:
+  imageTags: '$(Build.SourceBranchName)-$(Build.BuildId)'
+  inRuleReleaseTag: ${{ parameters.inRuleReleaseTag }}
 
 stages:
 - stage: Build
@@ -22,10 +24,21 @@ stages:
       vmImage: 'windows-2019'
     steps:
     - task: PowerShell@2
+      displayName: Run build script
       inputs:
-        targetType: 'inline'
-        script: |
-          .\Invoke-ContainerBuild.ps1 -inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) | docker push
+        filePath: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers\Invoke-ContainerBuild.ps1'
+        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags)'
         failOnStderr: true
-        workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
         pwsh: true
+        workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
+    - task: Powershell@2
+      displayName: Populate variable with tag list from build output      
+      inputs:
+        script: |
+          write-host "##vso[task.setvariable variable=imageTagsToPush]$(gc "$env:Build_SourcesDirectory\Developer Samples\WindowsContainers\tags-built.txt")"
+    - task: Docker@2 
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        tags: '$(imageTagsToPush)'
