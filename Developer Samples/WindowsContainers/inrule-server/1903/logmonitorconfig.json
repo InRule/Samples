@@ -1,0 +1,31 @@
+{
+  "LogConfig": {
+    "sources": [
+      {
+        "type": "EventLog",
+        "startAtOldestRecord": true,
+        "eventFormatMultiLine": true,
+        "channels": [
+          {
+            "name": "system",
+            "level": "Warning"
+          },
+          {
+            "name": "application",
+            "level": "Warning"
+          },
+          {
+              "name": "InRule",
+              "level": "Information"
+          }
+        ]
+      },
+      {
+        "type": "File",
+        "directory": "c:\\inetpub\\logs",
+        "filter": "*.log",
+        "includeSubdirectories": true
+      }
+    ]
+  }
+}

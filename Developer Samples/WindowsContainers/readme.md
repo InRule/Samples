@@ -2,7 +2,7 @@
 
 ## InRule Docker images
 
-### *** Important note regarding licensing ***
+### ***Important note regarding licensing***
 
 Some of the images in this repository require a valid InRule license file to be supplied on the host machine. Machine-specific (including evaluation licenses) will result in runtime errors when used for these purposes; please request and use an azure-appropriate license file. Azure license files can be obtained from your InRule Support Admin, or by contacting [support@inrule.com](mailto:support@inrule.com) with your customer information. See the individual image descriptions and README's for information on how to make this license file available to containers running on a host machine.
 
@@ -14,7 +14,7 @@ Some of the images in this repository require a valid InRule license file to be 
 
 ##### Explanation and resolution
 
-This exception is thrown when attempting to mount a machine-specific license file into a container. Contact Support or your InRule Support Admin to obtain a valid Azure license key file. 
+This exception is thrown when attempting to mount a machine-specific license file into a container. Contact Support or your InRule Support Admin to obtain a valid Azure license key file.
 
 ## Image descriptions
 
@@ -26,7 +26,7 @@ This exception is thrown when attempting to mount a machine-specific license fil
 
 * Catalog management is provided by [inrule-catalog-manager](inrule-catalog-manager/). RuleApplications can be viewed, labeled, and promoted. Users can be created and modified along with permissions.
 
-* Although most flavors of SQL are supported (SQL Server, MySQL, Oracle, etc.) irCatalog database persistence is provided by SQL Server Express and comes from [microsoft/mssql-server-windows-express](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/windows-containers/mssql-server-2016-express-sp1-windows)
+* Most flavors of SQL are supported (SQL Server, MySQL, Oracle, etc.). Ensure that you allow port 1433 access between your container network and the database server.
 
 ### Image repository and registry
 
@@ -38,27 +38,40 @@ Here are the steps to building these images from their base assets. To build the
 
 1. Clone the repository into a working directory
 
-2. Run the [build.ps1](/build.ps1) script, passing in the name of the tag you'd like to use:
+2. Run the [Invoke-ContainerBuild.ps1](/Invoke-ContainerBuild.ps1) script, passing in the name of the tag you'd like to use:
 
-`.\build.ps1 -tag 'v5.1.1'`
+`.\Invoke-ContainerBuild.ps1 -inruleReleaseTag v5.1.1 -Registry mycustomcr.azurecr.io/inrule -imageTags myawesomeTag1, myTag2`
 
-If you want to also have the images tagged as 'latest', pass `-SetLatestTag` to the script:
+Image will be built and tagged with a suffix containing the base OS build and the version of InRule, ex:
 
-`.\build.ps1 -tag 'v5.1.1' -setLatestTag`
-
-To skip building the `inrule-server` base image, pass the `skipServerBuild` switch to the build script.
-
-For instructions on building a set of images using Compose, see the section below on **Using Docker Compose to provision a rule execution environment**
-
-Please see the instructions for each respective image for information on how to build the individual images.
+> inrule/inrule-catalog:myTag2-v5.5.1-ltsc2019
 
 ## Installation and configuration
 
 All of the images in this repository are Windows-based. Depending on whether you are using Windows 10 or Windows Server,
 you can find instructions on how to get started with Containers [here](https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start).
+
+> ⚠ Note: Windows containers do not support the mounting of individual files as volumes, only directories
+
 Once you've followed all of the steps in a respective setup guide and verified things are working properly, you'll be ready to use the InRule images!
 
-> Note: make sure to switch your running Dockerd from Linux to Windows containers!
+> 👉 Note: make sure to switch your running Dockerd from Linux to Windows containers!
+
+## Configuring SSL
+
+The container images support communication over HTTPS. To configure, you'll need a PFX certificate file and its' corresponding password.
+
+1. Define a volume mount that places the PFX file into a *subfolder* of the container's application folder (`$env:ContainerDir`, e.g., `C:\inrule-catalog\PFX`)
+
+2. Populate the `PfxPassword` environment variable of the container with the password to the PFX file
+
+3. Map SSL traffic to container port 443 using `-p 443:443` (or equivalent)
+
+## Setting logging levels
+
+Containers are configured to output their logs to stdout using Microsoft's [LogMonitor](https://github.com/microsoft/windows-container-tools/tree/master/LogMonitor). This includes IIS (wc3svc), the Windows Application and System Event Logs, and irSDK logging. The LogMonitor executable and its' `logmonitorconfig.json` are located in the container's `C:\LogMonitor` folder.
+
+irSDK logging levels can be set via the irLogLevel environment variable. Possible values: `Debug`, `Info`, `Warn`, `Error`, and `Fatal`. Higher levels of verbosity incur greater runtime performance impact.
 
 ## Using Docker Compose to provision a rule execution environment
 
@@ -69,7 +82,7 @@ It contains the following components (container alias are in parenthesis):
 
 * Rules execution service (rex)
 * Catalog service (cat)
-* SQL Express Db (db)
+* SQL Express Db (db) _Note: Microsoft no longer maintains the Windows Container version of this image. Consider using the linux flavor of this container instead. You will need to manually create the database and then run the [catalog-db-builder](/inrule-catalog-db-builder/) container image (or utility).
 
 ### Setting up the container environment
 

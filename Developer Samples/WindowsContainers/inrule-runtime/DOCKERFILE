@@ -1,6 +1,8 @@
 # escape=`
+ARG imageRepos='inrule'
 ARG baseImageTag
-FROM inrule/inrule-server:${baseImageTag}
+# for using non-docker hub base images, e.g., mycontainerregistry.azurecr.io/inrule
+FROM ${imageRepos}/inrule-server:${baseImageTag}
 SHELL ["powershell", "-Command"]
 
 ARG reposTag
@@ -38,6 +40,6 @@ RUN Import-Module "WebAdministration"; `
 WORKDIR C:\temp
 COPY *.ps1 .\
 
+ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "powershell.exe", ".\\Set-RuntimeConfig.ps1 -verbose;"]
 # HACK to add new appSettings configuration until environment variable support is added
-ENTRYPOINT .\Set-RuntimeConfig.ps1 -verbose;
-CMD .\Start.ps1
+CMD ["C:\\LogMonitor\\ServiceMonitor.exe", "w3svc"];

@@ -1,6 +1,6 @@
 # escape=`
 
-FROM mcr.microsoft.com/powershell:nanoserver-1809 as builder
+FROM mcr.microsoft.com/powershell:nanoserver-1903 as builder
 
 SHELL [ "pwsh.exe", "-Command" ]
 ARG irVersion=v5.5.0

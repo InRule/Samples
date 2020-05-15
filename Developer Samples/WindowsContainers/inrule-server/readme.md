@@ -15,17 +15,9 @@ This image serves as a base image for other inrule server-based components. It e
 
 ## Usage
 
-### Docker build
-
-```docker build -t inrule-server .```
-
-
-
 ### Docker run
 
 This image should not need to be run
-
-
 
 ## Further reading
 
