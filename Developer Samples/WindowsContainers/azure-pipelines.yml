@@ -11,7 +11,7 @@ resources:
 
 variables:
   ${{ if ne(variables['Build.SourceBranchName'], 'master')}}:
-  imageTags: '$(Build.SourceBranchName)-$(Build.BuildId)'
+    imageTags: '$(Build.SourceBranchName)-$(Build.BuildId)'
   inRuleReleaseTag: ${{ parameters.inRuleReleaseTag }}
 
 stages:
