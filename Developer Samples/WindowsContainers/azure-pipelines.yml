@@ -9,8 +9,8 @@ resources:
 - repo: self
 
 variables:
-- imageTags: null # add items to the array to use as tag suffix, e.g., 'preview' becomes v5.5.1-ltsc2019-preview
-- inRuleReleaseTag: v5.5.1
+  imageTags: null # add items to the array to use as tag suffix, e.g., 'preview' becomes v5.5.1-ltsc2019-preview
+  inRuleReleaseTag: v5.5.1
 
 stages:
 - stage: Build
@@ -28,3 +28,4 @@ stages:
           .\Invoke-ContainerBuild.ps1 -inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) | docker push
         failOnStderr: true
         workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
+        pwsh: true
