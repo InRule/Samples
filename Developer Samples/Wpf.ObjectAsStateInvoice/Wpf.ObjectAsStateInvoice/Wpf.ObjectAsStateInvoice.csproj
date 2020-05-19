@@ -39,11 +39,56 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActiproSoftware.Docking.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Docking.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Editors.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Editors.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Navigation.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Navigation.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.PropertyGrid.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.PropertyGrid.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Ribbon.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Ribbon.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Shared.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Shared.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.SyntaxEditor.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.SyntaxEditor.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Text.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Text.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Themes.Metro.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Themes.Metro.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Themes.Office.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Themes.Office.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiproSoftware.Wizard.Wpf, Version=13.2.592.0, Culture=neutral, PublicKeyToken=36ff2196ab5654b9, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.SDK.5.4.0\lib\net461\ActiproSoftware.Wizard.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Authoring, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.Core.5.4.0\lib\net461\InRule.Authoring.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Authoring.Editors, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.Core.5.4.0\lib\net461\InRule.Authoring.Editors.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Authoring.Windows, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Authoring.Core.5.4.0\lib\net461\InRule.Authoring.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="InRule.Common, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <HintPath>..\packages\InRule.Common.5.4.0\lib\net461\InRule.Common.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Repository, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <HintPath>..\packages\InRule.Repository.5.4.0\lib\net461\InRule.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="InRule.Repository.XmlSerializers, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\InRule.Repository.5.4.0\lib\net461\InRule.Repository.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="InRule.Runtime, Version=5.4.0.191, Culture=neutral, PublicKeyToken=1feb8dd25b1ceb6b, processorArchitecture=MSIL">
       <HintPath>..\packages\InRule.Runtime.5.4.0\lib\net461\InRule.Runtime.dll</HintPath>
