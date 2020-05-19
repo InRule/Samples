@@ -34,6 +34,7 @@ stages:
     - task: Powershell@2
       displayName: Populate variable with tag list from build output      
       inputs:
+        targetType: 'inline'
         script: |
           write-host "##vso[task.setvariable variable=imageTagsToPush]$(gc "$env:Build_SourcesDirectory\Developer Samples\WindowsContainers\tags-built.txt")"
     - task: Docker@2 
@@ -58,6 +59,12 @@ stages:
     - task: Powershell@2
       displayName: Populate variable with tag list from build output      
       inputs:
+        targetType: 'inline'
         script: |
           write-host "##vso[task.setvariable variable=imageTagsToPush]$(gc "$env:Build_SourcesDirectory\Developer Samples\WindowsContainers\tags-built.txt")"
     - task: Docker@2 
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        tags: '$(imageTagsToPush)'
