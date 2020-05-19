@@ -21,7 +21,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: 'windows-latest'
+      vmImage: 'windows-1909'
     steps:
     - task: PowerShell@2
       displayName: Run build script
