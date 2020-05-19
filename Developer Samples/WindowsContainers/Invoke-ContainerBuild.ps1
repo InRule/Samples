@@ -3,7 +3,7 @@ param(
     [string][Parameter(Mandatory = $true)] $inruleReleaseTag,
     [string[]][Parameter(Mandatory = $false)] $imageTags = @(""),    
     [string]$registry = "inrule",
-    [string[]]$baseVersionBuildsToSkip = @("1903", "1909")
+    [string[]]$windowsServiceReleasesToUse = @("ltsc2016", "ltsc2019")
 )
 $ErrorActionPreference = "Stop"
 
@@ -17,7 +17,9 @@ function Invoke-ContainerBuild {
     
     function buildServerImage {
         param($folder)
-        
+        if ($null -eq $folder) {
+            return $null
+        }
         try {
             Push-Location $folder
             $tag = "$registry/inrule-server:" + $folder.Name
@@ -106,9 +108,11 @@ function Invoke-ContainerBuild {
     }
 
     # we assume that all subfolders of the ..\WindowsContainers\inrule-server\**\* are build dirs
-    Get-ChildItem -Path .\inrule-server\ -Directory -Exclude $baseVersionBuildsToSkip -Recurse | foreach {
-        $baseTag = buildServerImage $_        
-        $script:baseImageTags += $baseTag
+    Get-ChildItem -Path .\inrule-server\ -Directory -Include $windowsServiceReleasesToUse -Recurse | foreach {
+        $baseTag = buildServerImage $_
+        if ($null -ne $baseTag) {
+            $script:baseImageTags += $baseTag
+        }                
     }
 
     Write-Verbose "Base image tags: $baseImageTags"
