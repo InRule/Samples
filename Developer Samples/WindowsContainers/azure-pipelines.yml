@@ -18,16 +18,16 @@ stages:
 - stage: Build
   displayName: Build image
   jobs:  
-  - job: Build
-    displayName: Build
+  - job: Buildltsc2016
+    displayName: Build LTSC2016
     pool:
-      vmImage: 'windows-latest'
+      vmImage: 'vs2017-win2016'
     steps:
     - task: PowerShell@2
       displayName: Run build script
       inputs:
         filePath: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers\Invoke-ContainerBuild.ps1'
-        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags)'
+        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) -baseVersionBuildsToSkip 1903, 1909, ltsc2019'
         failOnStderr: true
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
@@ -42,3 +42,22 @@ stages:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
         tags: '$(imageTagsToPush)'
+  - job: Buildltsc2019
+    displayName: Build LTSC2019
+    pool:
+      vmImage: 'windows-2019'
+    steps:
+    - task: PowerShell@2
+      displayName: Run build script
+      inputs:
+        filePath: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers\Invoke-ContainerBuild.ps1'
+        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) -baseVersionBuildsToSkip 1903, 1909, ltsc2016'
+        failOnStderr: true
+        pwsh: true
+        workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
+    - task: Powershell@2
+      displayName: Populate variable with tag list from build output      
+      inputs:
+        script: |
+          write-host "##vso[task.setvariable variable=imageTagsToPush]$(gc "$env:Build_SourcesDirectory\Developer Samples\WindowsContainers\tags-built.txt")"
+    - task: Docker@2 
