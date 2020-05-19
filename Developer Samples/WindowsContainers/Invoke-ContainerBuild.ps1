@@ -2,7 +2,8 @@
 param(
     [string][Parameter(Mandatory = $true)] $inruleReleaseTag,
     [string[]][Parameter(Mandatory = $false)] $imageTags = @(""),    
-    [string]$registry = "inrule"
+    [string]$registry = "inrule",
+    [string[]]$baseVersionBuildsToSkip = @("1903", "1909")
 )
 $ErrorActionPreference = "Stop"
 
@@ -97,15 +98,15 @@ function Invoke-ContainerBuild {
         write-verbose $cmd
        
         if ($PSCmdlet.ShouldProcess($cmd) -and ($null -ne $cmd)) {
-          start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose
-          if ($LASTEXITCODE -ne 0) {
-              throw $Error[$Error.Count - 1]
-          }
+            start-process "docker.exe" -ArgumentList $cmd  -NoNewWindow -Wait -Verbose
+            if ($LASTEXITCODE -ne 0) {
+                throw $Error[$Error.Count - 1]
+            }
         }
     }
 
     # we assume that all subfolders of the ..\WindowsContainers\inrule-server\**\* are build dirs
-    Get-ChildItem -Path .\inrule-server\ -Directory -Recurse | foreach {
+    Get-ChildItem -Path .\inrule-server\ -Directory -Exclude $baseVersionBuildsToSkip -Recurse | foreach {
         $baseTag = buildServerImage $_        
         $script:baseImageTags += $baseTag
     }
