@@ -27,7 +27,7 @@ stages:
       displayName: Run build script
       inputs:
         filePath: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers\Invoke-ContainerBuild.ps1'
-        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) -baseVersionBuildsToSkip 1903, 1909, ltsc2019'
+        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) -windowsServiceReleasesToUse ltsc2016'
         failOnStderr: true
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
@@ -51,7 +51,7 @@ stages:
       displayName: Run build script
       inputs:
         filePath: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers\Invoke-ContainerBuild.ps1'
-        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) -baseVersionBuildsToSkip 1903, 1909, ltsc2016'
+        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -imageTags $(imageTags) -windowsServiceReleasesToUse ltsc2019'
         failOnStderr: true
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
