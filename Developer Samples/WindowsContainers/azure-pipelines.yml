@@ -1,3 +1,4 @@
+# TODO: overhaul this!
 parameters:
 - name: inRuleReleaseTag
   type: string
@@ -38,12 +39,38 @@ stages:
         script: |
           write-host "##vso[task.setvariable variable=imageTagsToPush]$(gc "$env:Build_SourcesDirectory\Developer Samples\WindowsContainers\tags-built.txt")"
     - task: Docker@2 
+      displayName: Push server image
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
       inputs:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
-        repository: 'inrule'
-        tags: '$(imageTagsToPush)'
+        repository: 'inrule/inrule-server'
+        tags: 'ltsc2016'
+    - task: Docker@2 
+      displayName: Push catalog image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        repository: 'inrule/inrule-catalog'
+        tags: '$(inRuleReleaseTag)-ltsc2016'
+    - task: Docker@2 
+      displayName: Push catalog manager image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        repository: 'inrule/inrule-catalog-manager'
+        tags: '$(inRuleReleaseTag)-ltsc2016'
+    - task: Docker@2 
+      displayName: Push runtime image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        repository: 'inrule/inrule-runtime'
+        tags: '$(inRuleReleaseTag)-ltsc2016'
+
   - job: Buildltsc2019
     displayName: Build LTSC2019
     pool:
@@ -68,5 +95,29 @@ stages:
       inputs:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
-        repository: 'inrule'
-        tags: '$(imageTagsToPush)'
+        repository: 'inrule/inrule-server'
+        tags: 'ltsc2019'
+    - task: Docker@2 
+      displayName: Push catalog image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        repository: 'inrule/inrule-catalog'
+        tags: '$(inRuleReleaseTag)-ltsc2019'
+    - task: Docker@2 
+      displayName: Push catalog manager image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        repository: 'inrule/inrule-catalog-manager'
+        tags: '$(inRuleReleaseTag)-ltsc2019'
+    - task: Docker@2 
+      displayName: Push runtime image
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
+      inputs:
+        containerRegistry: 'InRuleBuilds Docker Hub'
+        command: 'push'
+        repository: 'inrule/inrule-runtime'
+        tags: '$(inRuleReleaseTag)-ltsc2019'
