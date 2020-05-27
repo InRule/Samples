@@ -28,3 +28,5 @@ To run Demo_RunRules:
 - Update the MultiplicationProblem entity and associated constructor, mapping, and logging logic to match the schema of a Rule Application that exists in your Catalog
 - Update the RootEntity.RunRulesInternal.ExecuteRunRulesRequest (or ApplyRunRulesRequest) with appropriate information about a Rule Application that exists in your catalog
 
+## Fuzzy Match Sample
+This Rule Application demonstrates using User Defined Functions to implement fuzzy matching between names when trying to identify which candidate in a list of potential matches is the closest to the person in question, even if there are differences in spelling, using Soundex and Levenshtein Distance algorithms.  It also demonstrates using a SQL Server to retrieve the Soundex value for a string to perform similar behavior.  This logic can be extrapolated to various fields that may be used to identify potential entities representing the same object, even if they are not perfect matches.
