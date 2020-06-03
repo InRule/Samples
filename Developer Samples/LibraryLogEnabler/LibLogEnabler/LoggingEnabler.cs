@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Web;
-//LibLog References
-using TraceLogger.Logging;
-using TraceLogger.Logging.LogProviders;
 //Log4Net References (mainly for code-based configuration)
 using log4net;
 using log4net.Appender;
 using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
+using LibLogEnabler.Logging;
+using LibLogEnabler.Logging.LogProviders;
 
 namespace LibLogEnabler
 {
