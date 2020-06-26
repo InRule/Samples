@@ -1,6 +1,6 @@
 # Testing a Decision
 
-irVerify may be used to test a Decision before it is published.
+irVerify may be used to test a Decision.
 
 Clicking the 'Test' button on the 'Home' tab will launch irVerify if the item selected in the navigation panel is a Decision or a Rule Set or Rule under a Decision. If the down arrow under the 'Test' button is clicked, a specific Decision may be selected from the drop-down menu.
 
