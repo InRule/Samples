@@ -1,0 +1,15 @@
+{
+  "Applicant": {
+    "Name": "John Smith",
+    "DateOfBirth": "1972-12-31T00:00:00",
+    "Address": "123 Main Street",
+    "Employer": "ACME, Inc.",
+    "Income": 90000.0,
+    "Mortgage": 175000.0,
+    "Debt": 35000.0,
+    "NumberOfChildren": 3
+  },
+  "HealthInformation": {},
+  "RequestedCoverage": 1500000.0,
+  "Term": 10
+}

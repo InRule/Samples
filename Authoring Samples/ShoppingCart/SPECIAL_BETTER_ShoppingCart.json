@@ -1,0 +1,52 @@
+{
+  "Customer": {
+    "FirstName": "John",
+    "LastName": "Smith",
+    "MemberStatus": "Premium",
+    "BillingAddress": {
+      "Street": "2021 North Greenview",
+      "City": "Chicago",
+      "State": "IL",
+      "ZipCode": "60622"
+    },
+    "ShippingAddress": {
+      "Street": "651 West Washington",
+      "City": "Chicago",
+      "State": "IL",
+      "ZipCode": "60661"
+    },
+    "PaymentInfo": {
+      "CreditCardType": "MasterCard",
+      "CreditCardNumber": "XXXX-XXXX-9009",
+      "ExpirationDate": "2022-07-01T00:00:00"
+    }
+  },
+  "Items": [
+    {
+      "ProductID": "1",
+      "Product": "Bose® SoundSport In-Ear Headphones",
+      "Quantity": 1,
+      "PricePerUnit": 79.99
+    },
+    {
+      "ProductID": "2",
+      "Product": "Insignia Global Travel Adapter Kit",
+      "Quantity": 1,
+      "PricePerUnit": 24.99
+    },
+    {
+      "ProductID": "3",
+      "Product": "Belkin Wireless Charging Pad",
+      "Quantity": 1,
+      "PricePerUnit": 49.99
+    },
+    {
+      "ProductID": "4",
+      "Product": "Targus City Laptop Backpack",
+      "Quantity": 2,
+      "PricePerUnit": 34.99
+    }
+  ],
+  "PromotionalCode": "School",
+  "ShippingOption": "TwoDayShipping"
+}

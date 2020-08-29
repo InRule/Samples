@@ -1,0 +1,26 @@
+{
+  "Exposures": [
+    {
+      "EmployeeCount": 12,
+      "WorkStatus": "FullTime"
+    },
+    {
+      "EmployeeCount": 31,
+      "WorkStatus": "PartTime"
+    },
+    {
+      "EmployeeCount": 0,
+      "WorkStatus": "Seasonal"
+    },
+    {
+      "EmployeeCount": 0,
+      "WorkStatus": "Temporary"
+    }
+  ],
+  "StateProvince": "CA",
+  "TimeInBusiness": 8,
+  "Limit": 2000000,
+  "Deductible": 12000,
+  "BusinessClassCode": "FoodService",
+  "ExceptionFactor": 1.0
+}
