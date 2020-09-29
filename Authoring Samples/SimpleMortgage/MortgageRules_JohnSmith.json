@@ -1,0 +1,44 @@
+{
+  "LoanNumber": "742",
+  "Action": "PreQualification",
+  "Borrower": {
+    "FirstName": "John",
+    "LastName": "Smith",
+    "DateOfBirth": "1972-12-31T00:00:00",
+    "TypeOfCredit": "Individual",
+    "Employers": [
+      {
+        "Name": "ACME, Inc.",
+        "PositionTitle": "Manager",
+        "StartDate": "2015-04-25T00:00:00",
+        "GrossMonthlyIncome": 9500.0
+      }
+    ],
+    "OtherIncome": [
+      {
+        "Source": "RentalIncome",
+        "Amount": 750.0
+      }
+    ],
+    "Debts": [
+      {
+        "Source": "CarLoan",
+        "Amount": 375.0
+      },
+      {
+        "Source": "CreditCard",
+        "Amount": 600.0
+      }
+    ]
+  },
+  "Product": {
+    "TermYears": 30,
+    "InterestRate": 3.875,
+    "APR": 0.0,
+    "MoneyDownEstimate": 0.0,
+    "MonthlyPayment": 0.0,
+    "OtherFees": 100.0,
+    "EstimatedMonthlyEscrowPayment": 125.0,
+    "HomeownersInsurance": 75.0
+  }
+}
