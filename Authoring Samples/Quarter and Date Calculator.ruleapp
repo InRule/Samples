@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleApplicationDef xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Revision="1"
+  PublicRevision="1"
+  Guid="e499b4f8-2ece-4953-bd33-b0ea0525fb38"
+  Id="-1"
+  Name="QuarterandDateCalculator"
+  RepositoryAssemblyFileVersion="5.6.0.232"
+  LastValidateContentCode="-189654817"
+  IsolatedTestDomain="false"
+  SchemaGuid="c0f9f9cf-e4d8-4b68-b892-b8b74330c74c"
+  SchemaRevision="1"
+  SchemaPublicRevision="1"
+  LastValidateDateTimeUtc="2020-09-21T19:57:14.0064272Z">
+  <UpgraderMessageList xmlns="http://www.inrule.com/XmlSchema/Schema" />
+  <RuntimeEngine xmlns="http://www.inrule.com/XmlSchema/Schema">InRule</RuntimeEngine>
+  <FeatureVersion xmlns="http://www.inrule.com/XmlSchema/Schema">106</FeatureVersion>
+  <CompatibilityVersion xmlns="http://www.inrule.com/XmlSchema/Schema">1</CompatibilityVersion>
+  <AuthoringSettings xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <SelectedAuthoringItemGuid>580c9d5a-9142-4bec-8a28-b7ee9986f737</SelectedAuthoringItemGuid>
+    <UseAdvancedXmlOptions>false</UseAdvancedXmlOptions>
+    <AllowAccessToParentsInLanguageRules>true</AllowAccessToParentsInLanguageRules>
+    <TreeRuleNameVisibility>HideReserved</TreeRuleNameVisibility>
+    <CreatedDateTime>2015-12-18T10:01:41.0938499-06:00</CreatedDateTime>
+    <ModifiedDateTime>2020-09-21T14:57:14.0429283-05:00</ModifiedDateTime>
+    <TargetPlatform>InRule</TargetPlatform>
+  </AuthoringSettings>
+  <IndentUnboundCollectionXml xmlns="http://www.inrule.com/XmlSchema/Schema">true</IndentUnboundCollectionXml>
+  <AllowRuleInactivation xmlns="http://www.inrule.com/XmlSchema/Schema">true</AllowRuleInactivation>
+  <UseRuleVersions xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseRuleVersions>
+  <UseVersionCreationDates xmlns="http://www.inrule.com/XmlSchema/Schema">false</UseVersionCreationDates>
+  <HasContextVersionSettings xmlns="http://www.inrule.com/XmlSchema/Schema">false</HasContextVersionSettings>
+  <RunawayCycleCount xmlns="http://www.inrule.com/XmlSchema/Schema">100000</RunawayCycleCount>
+  <Timeout xmlns="http://www.inrule.com/XmlSchema/Schema">30000</Timeout>
+  <RuntimeErrorHandlingPolicy xmlns="http://www.inrule.com/XmlSchema/Schema">ContinueWithNextRuleSet</RuntimeErrorHandlingPolicy>
+  <Entities xmlns="http://www.inrule.com/XmlSchema/Schema">
+    <EntityDef
+      Revision="1"
+      PublicRevision="1"
+      Guid="f577667b-d749-4c23-8606-6f2180ec5daa"
+      Name="DateCalcs"
+      DisplayName="Date Calcs">
+      <RuleElements>
+        <RuleElementDef
+          xsi:type="RuleSetDef"
+          Revision="1"
+          PublicRevision="1"
+          Guid="d7759efe-fa28-46bd-b43d-7f3887310519"
+          Name="CheckDateScenarios">
+          <FireMode>Auto</FireMode>
+          <RunMode>Sequential</RunMode>
+          <Rules>
+            <RuleElementDef
+              xsi:type="LanguageRuleDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="1a8a7ac5-dd5d-4dc6-a596-80efaa838c1a"
+              Name="Within10Years">
+              <Attributes>
+                <anyType
+                  xsi:type="CollectionItem">
+                  <Key>
+                    <Name>ReservedAttributeTokenKey</Name>
+                    <Guid>60fae55a-9a45-41a5-828a-bc71a3b65013</Guid>
+                  </Key>
+                  <Collection>
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0"
+                      Value="IfThenElseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.0"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1"
+                      Value="ConditionGroupTemplateSingleCondition" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0"
+                      Value="CompareDateTime2" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0"
+                      Value="plusyearsTemplateDateTime" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0.0"
+                      Value="QuarterandDateCalculator.DateCalcs.CurrentDate.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0.1"
+                      Value="plusyearsTemplateString" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0.2"
+                      Value="NumberOfyearsTemplate" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0.2.0"
+                      Value="IntegerDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.0.2.1"
+                      Value="NumberOfyearsTemplate" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.1"
+                      Value="Comparison_beforeDate" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.1.0.2"
+                      Value="QuarterandDateCalculator.DateCalcs.TargetDate.Implicit" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.2"
+                      Value="IfThenDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0"
+                      Value="FireNotificationTemplateDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.0"
+                      Value="FireNotificationWithSettingsTemplateDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.3.0.1"
+                      Value="StringDesigner" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.4"
+                      Value="IfThenElseDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0"
+                      Value="FireNotificationTemplateDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.0"
+                      Value="FireNotificationWithSettingsTemplateDefault" />
+                    <anyType
+                      xsi:type="XmlSerializableStringDictionaryItem"
+                      Key="0.5.0.1"
+                      Value="StringDesigner" />
+                  </Collection>
+                </anyType>
+              </Attributes>
+              <RuleElement
+                xsi:type="ExclusiveRuleDef"
+                Revision="1"
+                PublicRevision="1"
+                Guid="e40ff86d-e598-43a3-b94a-20676a664450"
+                Name="Within10Years">
+                <DefaultSubRulesRoot
+                  Guid="5b57e23b-d8ce-4955-af37-ba3080b1be5f"
+                  Name="Otherwise" />
+                <Conditions>
+                  <SimpleRuleDef
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="94dac369-6827-4ce4-ba1e-71afc91224d1"
+                    Name="Rule1">
+                    <Condition>
+                      <ReturnType>Boolean</ReturnType>
+                      <FormulaText>Addyears(CurrentDate, 10) &lt; TargetDate</FormulaText>
+                    </Condition>
+                    <SubRules>
+                      <RuleElementDef
+                        xsi:type="FireNotificationActionDef"
+                        Revision="1"
+                        PublicRevision="1"
+                        Guid="f37a17a8-ab6c-4891-afce-746ac16e0907"
+                        Name="FireNotification1">
+                        <NotificationType>Informational</NotificationType>
+                        <NotificationMessage>
+                          <FormulaParseFormat>Literal</FormulaParseFormat>
+                          <FormulaText>Current Date is NOT within 10 years of Target Date.</FormulaText>
+                        </NotificationMessage>
+                      </RuleElementDef>
+                    </SubRules>
+                    <HasContextVersionSettings>false</HasContextVersionSettings>
+                  </SimpleRuleDef>
+                </Conditions>
+                <DefaultSubRules>
+                  <RuleElementDef
+                    xsi:type="FireNotificationActionDef"
+                    Revision="1"
+                    PublicRevision="1"
+                    Guid="87ffe0ce-6bc4-4152-8038-fc3879976806"
+                    Name="Fire_Notification1">
+                    <NotificationType>Informational</NotificationType>
+                    <NotificationMessage>
+                      <FormulaParseFormat>Literal</FormulaParseFormat>
+                      <FormulaText>Current Date IS within 10 years of Target Date.</FormulaText>
+                    </NotificationMessage>
+                  </RuleElementDef>
+                </DefaultSubRules>
+                <HasContextVersionSettings>false</HasContextVersionSettings>
+              </RuleElement>
+              <HasContextVersionSettings>false</HasContextVersionSettings>
+            </RuleElementDef>
+            <RuleElementDef
+              xsi:type="SetValueActionDef"
+              Revision="1"
+              PublicRevision="1"
+              Guid="580c9d5a-9142-4bec-8a28-b7ee9986f737"
+              Name="SetDateTime2_to_Midnight_on_DateTime1"
+              AuthoringUseNameForElementTreeName="true">
+              <Comments>This rule is intended to set the DateTime2 field to the date from DateTime1, and to set the time of that field to midnight. </Comments>
+              <Element>
+                <FormulaText>DateTime2</FormulaText>
+              </Element>
+              <Value>
+                <FormulaText>ToDateTime(ToDate(DateTime1))</FormulaText>
+              </Value>
+            </RuleElementDef>
+          </Rules>
+          <HasContextVersionSettings>false</HasContextVersionSettings>
+        </RuleElementDef>
+      </RuleElements>
+      <Fields>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="7d17fc71-7bed-4cfc-a8ad-5a998aef9226"
+          Name="CurrentDate"
+          DataType="Date"
+          DisplayName="Current Date">
+          <DefaultValue>#8/13/2015#</DefaultValue>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="f74f11d3-d11d-42db-953e-2d008776287d"
+          Name="TargetDate"
+          DataType="Date"
+          DisplayName="Target Date" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="e50b7016-871d-4215-9271-6269efbe846a"
+          Name="CurrentQuarterNumber"
+          DataType="Integer"
+          IsCalculated="true"
+          DisplayName="Current Quarter Number">
+          <Calc>
+            <FormulaText>RoundUp(Month(CurrentDate)/4)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="d4c018b0-18d4-42f4-b0c6-303159c83010"
+          Name="NextQuarterNumber"
+          DataType="Integer"
+          IsCalculated="true"
+          DisplayName="Next Quarter Number">
+          <Calc>
+            <FormulaText>If(Month(CurrentDate) &gt; 9, 1, RoundUp(Month(CurrentDate) / 3)+1)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="0cfb4f4a-a0f1-4d5e-b1e2-ef635f0c159a"
+          Name="FirstMonthofCurrentQuarter"
+          DataType="Integer"
+          IsCalculated="true"
+          DisplayName="First Monthof Current Quarter">
+          <Calc>
+            <FormulaText>((CurrentQuarterNumber - 1) * 3) + 1</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="7ac7003b-040f-49ad-9101-07ff96c803a1"
+          Name="LastMonthInQuarter"
+          DataType="Integer"
+          IsCalculated="true"
+          DisplayName="Last Month In Quarter">
+          <Calc>
+            <FormulaText>RoundUp(Month(CurrentDate) / 3) * 3</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="cb91282d-c5b3-49cf-b38f-4491cc345096"
+          Name="FirstDayofCurrentQuarter"
+          DataType="Date"
+          IsCalculated="true"
+          DisplayName="First Dayof Current Quarter">
+          <Calc>
+            <FormulaText>ToDate(Year(CurrentDate), ((CurrentQuarterNumber - 1) * 3) + 1, 1)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="a4700a18-c8d1-4742-8a87-9916eb920387"
+          Name="FirstDayOfThirdMonthOfQuarter"
+          DataType="Date"
+          IsCalculated="true"
+          DisplayName="First Day Of Third Month Of Quarter">
+          <Calc>
+            <FormulaText>ToDate(Year(CurrentDate), RoundUp(Month(CurrentDate) / 3) * 3, 1)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="cbc51510-709b-48b6-9598-8486510f3721"
+          Name="FirstDayofNextQuarter"
+          DataType="Date"
+          IsCalculated="true"
+          DisplayName="First Dayof Next Quarter">
+          <Calc>
+            <FormulaText>If(NextQuarterNumber = 1, ToDate(Year(CurrentDate)+1, 1, 1), ToDate(Year(CurrentDate), CurrentQuarterNumber * 3 + 1, 1))</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="1109a60b-7ee7-403c-b901-f9ba461bb827"
+          Name="BusinessDatesBetween"
+          DataType="Integer"
+          IsCalculated="true"
+          DisplayName="Business Dates Between">
+          <Calc
+            LastAuthoringView="Syntax">
+            <FormulaText>Weekdaydiff(TargetDate, CurrentDate)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="130bc2ce-f1c2-4a1c-a14f-f23660857990"
+          Name="DateInText"
+          DataType="String"
+          DisplayName="Date In Text">
+          <DefaultValue>"19701225"</DefaultValue>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="7a84fc98-dac2-45f8-8072-4d3e97fc1452"
+          Name="DateFromTextDate"
+          DataType="Date"
+          IsCalculated="true"
+          DisplayName="Date From Text Date">
+          <Calc>
+            <FormulaText>ToDate(ToInt(Left(DateInText, 4)), ToInt(Mid(DateInText, 4, 2)), ToInt(Right(DateInText, 2)))</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="0abf5e9f-da47-4d18-9e3b-844fcbd994a4"
+          Name="DateTimeField"
+          DataType="DateTime"
+          DisplayName="Date Time Field">
+          <DefaultValue>#2018-05-24T13:25:00#</DefaultValue>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="0206c6ff-2fdd-4977-9826-12dc9f7a35d7"
+          Name="DatefromDateTime"
+          DataType="Date"
+          IsCalculated="true"
+          DisplayName="Datefrom Date Time">
+          <Calc>
+            <FormulaText>ToDate(DateTimeField)</FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="b9d22a86-1c13-4242-ab26-50bba2539c0d"
+          Name="CurrentIsBeforeTarget"
+          DataType="Boolean"
+          IsCalculated="true"
+          DisplayName="Current Is Before Target">
+          <Calc>
+            <FormulaText>CurrentDate &lt; TargetDate </FormulaText>
+          </Calc>
+        </FieldDef>
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="24578723-ed20-495a-b03b-ea4f6859b0c1"
+          Name="DateTime1"
+          DataType="DateTime"
+          DisplayName="Date Time1" />
+        <FieldDef
+          Revision="1"
+          PublicRevision="1"
+          Guid="813dc476-0b95-47f8-b3f0-0b47aea9209e"
+          Name="DateTime2"
+          DataType="DateTime"
+          DisplayName="Date Time2" />
+      </Fields>
+      <HasContextVersionSettings>false</HasContextVersionSettings>
+    </EntityDef>
+  </Entities>
+</RuleApplicationDef>
