@@ -17,7 +17,7 @@ Before you get started, you'll need to make sure you have the following:
 
 - [Authoring a Decision](author-decision.md)
 - [Testing a Decision](test-decision.md)
-- [Executing a published Decision](execute-decision.md)
+- [Executing a Decision](execute-decision.md)
 
 # Notes
 
