@@ -6,6 +6,11 @@ The irServer Rule Execution Service can execute Decisions either via the SOAP or
 See the irSDK developer documentation on how to execute Decisions:
 
 - Application Integration with InRule
-    - -> irServer® - Rule Execution Service
+    - irServer® - Rule Execution Service
         - Executing a Decision on irServer SOAP endpoint using a Service Reference
         - Execute Decision Sample Request and Response Formats
+
+- Source Code Examples
+    - Runtime API Examples
+        - Executing Rules
+            - Executing Decisions
