@@ -12,7 +12,7 @@ namespace MstestWrapperForTestsuite
             "|DataDirectory|\\data\\testsuitelist.csv",
             "testsuitelist#csv",
             DataAccessMethod.Sequential)]
-        [DeploymentItem("data\\testsuitelist.csv")]
+        [DeploymentItem("data")]
         public void TestInRuleTestSuite()
         {
             var ruleAppFilePath = TestContext.DataRow["RuleaAppFilePath"].ToString();
