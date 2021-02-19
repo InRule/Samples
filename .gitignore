@@ -42,3 +42,4 @@ bld/
 # Cake
 tools/**
 !tools/packages.config
+/Developer Samples/CommandLineTools/TestResults
