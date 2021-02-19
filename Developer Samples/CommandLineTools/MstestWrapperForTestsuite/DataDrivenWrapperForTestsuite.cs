@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace MstestWrapperForTestsuite
 {
@@ -29,14 +28,9 @@ namespace MstestWrapperForTestsuite
                 {
                     TestContext.WriteLine($"ERROR: Failed to execute test {result.TestDef.DisplayName}: {result.RuntimeErrorMessage}");
                 }
-                else if (result.Passed)
-                {
-                    TestContext.WriteLine($"PASS: {result.TestDef.DisplayName}");
-                }
                 else
                 {
-                    TestContext.WriteLine($"FAIL: {result.TestDef.DisplayName}");
-                    ReportAssertionResultsToContext(result);
+                    result.ReportAssertionResultsToContext(TestContext);
                 }
 
                 Assert.AreEqual(true, result.Passed);

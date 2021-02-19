@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="DataDrivenWrapperForTestsuite.cs" />
     <Compile Include="DataDrivenWrapperForTestsuiteBase.cs" />
+    <Compile Include="helpers\InRuleReporter.cs" />
+    <Compile Include="helpers\SpacersLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,4 +77,7 @@
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y "C:\ProgramData\InRule\SharedLicenses\InRuleLicense.xml" .</PostBuildEvent>
+  </PropertyGroup>
 </Project>
