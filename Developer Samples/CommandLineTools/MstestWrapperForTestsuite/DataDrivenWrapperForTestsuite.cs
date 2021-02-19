@@ -36,10 +36,7 @@ namespace MstestWrapperForTestsuite
                 else
                 {
                     TestContext.WriteLine($"FAIL: {result.TestDef.DisplayName}");
-                    foreach (var failedAssertionResult in result.AssertionResults.Where(ar => ar.Passed == false))
-                    {
-                        TestContext.WriteLine($"  {failedAssertionResult.Target} was {failedAssertionResult.ActualValue}, expected value {failedAssertionResult.ExpectedValue}");
-                    }
+                    ReportAssertionResultsToContext(result);
                 }
 
                 Assert.AreEqual(true, result.Passed);

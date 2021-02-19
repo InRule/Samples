@@ -63,10 +63,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="data\Rectangle.testsuite">
+    <Content Include="data\testsuite\rectangleApp\Rectangle.testsuite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\RectangleApp.ruleappx">
+    <Content Include="data\ruleapp\RectangleApp.ruleappx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="data\testsuitelist.csv">

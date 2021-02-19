@@ -1,2 +1,2 @@
 RuleaAppFilePath,TestSuiteFilePath
-RectangleApp.ruleappx,Rectangle.testsuite
+ruleapp\RectangleApp.ruleappx,testsuite\rectangleApp\Rectangle.testsuite

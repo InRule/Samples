@@ -14,7 +14,7 @@ namespace MstestWrapperForTestsuite
     {
         public TestContext TestContext { get; set; }
 
-        protected static TestResultCollection RunTestSuite(string ruleAppFilePath, string testSuiteFilePath)
+        protected TestResultCollection RunTestSuite(string ruleAppFilePath, string testSuiteFilePath)
         {
             if (!File.Exists(ruleAppFilePath))
             {
@@ -39,6 +39,19 @@ namespace MstestWrapperForTestsuite
             }
 
             return results;
+        }
+
+        protected void ReportAssertionResultsToContext(InRule.Runtime.Testing.Regression.TestResult result)
+        {
+            var identSpacer = "    ";
+            foreach (var assertionResult in result.AssertionResults)
+            {
+                TestContext.WriteLine($"Target: {assertionResult.Target}");
+                TestContext.WriteLine($"{identSpacer}Assertion: {assertionResult.Target}");
+
+                var assertionResultMessage = assertionResult.Passed ? "PASSED" : "FAILED";
+                TestContext.WriteLine($"{identSpacer}{assertionResult.Target} was {assertionResult.ActualValue}, expected value {assertionResult.ExpectedValue}");
+            }
         }
     }
 }
