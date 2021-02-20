@@ -5,37 +5,29 @@ namespace MstestWrapperForTestsuite
     [TestClass]
     public class DataDrivenWrapperForTestsuite : DataDrivenWrapperForTestsuiteBase
     {
-        [TestMethod]
+        [DataTestMethod]
         [DataSource(
             "Microsoft.VisualStudio.TestTools.DataSource.CSV",
             "|DataDirectory|\\data\\testsuitelist.csv",
             "testsuitelist#csv",
             DataAccessMethod.Sequential)]
         [DeploymentItem("data")]
-        public void TestInRuleTestSuite()
+        public void TestInRuleTestSuiteFromCsvDataSource()
         {
             var ruleAppFilePath = TestContext.DataRow["RuleaAppFilePath"].ToString();
             var testSuiteFilePath = TestContext.DataRow["TestSuiteFilePath"].ToString();
 
-            var testResultCollection = RunTestSuite(ruleAppFilePath, testSuiteFilePath);
+            TestInRule(ruleAppFilePath, testSuiteFilePath);
+        }
 
-            TestContext.WriteLine("Using Rule App " + ruleAppFilePath);
-            TestContext.WriteLine("Using Test Suite " + testSuiteFilePath);
+        [DataTestMethod]
+        [FolderConventionDataSource(ruleAppPath: "ruleapp", testSuitePath: "testsuite")]
+        [DeploymentItem("data")]
+        public void TestInRuleFromFolderConvention(string ruleApp, string testSuite, string ruleAppFilePath, string testSuiteFilePath)
+        {
+            TestContext.WriteLine($"{ruleApp} - {testSuite}");
 
-            foreach (var result in testResultCollection)
-            {
-                if (result.RuntimeErrorMessage != null)
-                {
-                    TestContext.WriteLine($"ERROR: Failed to execute test {result.TestDef.DisplayName}: {result.RuntimeErrorMessage}");
-                }
-                else
-                {
-                    result.ReportAssertionResultsToContext(TestContext);
-                }
-
-                Assert.AreEqual(true, result.Passed);
-                Assert.IsNull(result.RuntimeErrorMessage);
-            }
+            TestInRule(ruleAppFilePath, testSuiteFilePath);
         }
     }
 }

@@ -41,6 +41,27 @@ namespace MstestWrapperForTestsuite
             return results;
         }
 
+        protected void TestInRule(string ruleAppFilePath, string testSuiteFilePath)
+        {
+            var testResultCollection = RunTestSuite(ruleAppFilePath, testSuiteFilePath);
 
+            TestContext.WriteLine("Using Rule App " + ruleAppFilePath);
+            TestContext.WriteLine("Using Test Suite " + testSuiteFilePath);
+
+            foreach (var result in testResultCollection)
+            {
+                if (result.RuntimeErrorMessage != null)
+                {
+                    TestContext.WriteLine($"ERROR: Failed to execute test {result.TestDef.DisplayName}: {result.RuntimeErrorMessage}");
+                }
+                else
+                {
+                    result.ReportAssertionResultsToContext(TestContext);
+                }
+
+                Assert.AreEqual(true, result.Passed);
+                Assert.IsNull(result.RuntimeErrorMessage);
+            }
+        }
     }
 }

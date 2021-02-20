@@ -1,2 +1,3 @@
 RuleaAppFilePath,TestSuiteFilePath
 ruleapp\RectangleApp.ruleappx,testsuite\rectangleApp\Rectangle.testsuite
+ruleapp\SquareApp.ruleappx,testsuite\squareApp\Square.testsuite

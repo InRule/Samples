@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DataDrivenWrapperForTestsuite.cs" />
     <Compile Include="DataDrivenWrapperForTestsuiteBase.cs" />
+    <Compile Include="helpers\CustomDataSourceAttribute.cs" />
     <Compile Include="helpers\InRuleReporter.cs" />
     <Compile Include="helpers\SpacersLimit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,7 +64,11 @@
       <Version>2.1.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="data\ruleapp\SquareApp.ruleappx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="data\testsuite\rectangleApp\Rectangle.testsuite">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -75,9 +80,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\testsuite\squareApp\Square.testsuite">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "C:\ProgramData\InRule\SharedLicenses\InRuleLicense.xml" .</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
