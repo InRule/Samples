@@ -11,7 +11,7 @@ namespace MstestWrapperForTestsuite
             "|DataDirectory|\\data\\testsuitelist.csv",
             "testsuitelist#csv",
             DataAccessMethod.Sequential)]
-        [DeploymentItem("data")]
+        [DeploymentItem("..\\..\\data")]
         public void TestInRuleTestSuiteFromCsvDataSource()
         {
             var ruleAppFilePath = TestContext.DataRow["RuleaAppFilePath"].ToString();
@@ -22,7 +22,7 @@ namespace MstestWrapperForTestsuite
 
         [DataTestMethod]
         [FolderConventionDataSource(ruleAppPath: "ruleapp", testSuitePath: "testsuite")]
-        [DeploymentItem("data")]
+        [DeploymentItem("..\\..\\data")]
         public void TestInRuleFromFolderConvention(string ruleApp, string testSuite, string ruleAppFilePath, string testSuiteFilePath)
         {
             TestContext.WriteLine($"{ruleApp} - {testSuite}");
