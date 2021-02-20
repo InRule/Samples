@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildIrJsRuleApp", "BuildIr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecuteTests", "ExecuteTests\ExecuteTests.csproj", "{9ABF0D22-46AD-49DE-B122-3180FDA2F391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MstestWrapperForTestsuite", "MstestWrapperForTestsuite\MstestWrapperForTestsuite.csproj", "{C0B8E5EA-99ED-46E9-8165-2537E4FA2034}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{9ABF0D22-46AD-49DE-B122-3180FDA2F391}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ABF0D22-46AD-49DE-B122-3180FDA2F391}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ABF0D22-46AD-49DE-B122-3180FDA2F391}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0B8E5EA-99ED-46E9-8165-2537E4FA2034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0B8E5EA-99ED-46E9-8165-2537E4FA2034}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0B8E5EA-99ED-46E9-8165-2537E4FA2034}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0B8E5EA-99ED-46E9-8165-2537E4FA2034}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

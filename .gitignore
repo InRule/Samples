@@ -42,4 +42,4 @@ bld/
 # Cake
 tools/**
 !tools/packages.config
-/Developer Samples/CommandLineTools/TestResults
+/Developer Samples/MstestWrapperForTestsuite/MstestWrapperForTestsuite/TestResults

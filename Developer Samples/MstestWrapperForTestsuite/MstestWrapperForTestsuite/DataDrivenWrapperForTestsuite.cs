@@ -14,7 +14,7 @@ namespace MstestWrapperForTestsuite
         [DeploymentItem("..\\..\\data")]
         public void TestInRuleTestSuiteFromCsvDataSource()
         {
-            var ruleAppFilePath = TestContext.DataRow["RuleaAppFilePath"].ToString();
+            var ruleAppFilePath = TestContext.DataRow["RuleAppFilePath"].ToString();
             var testSuiteFilePath = TestContext.DataRow["TestSuiteFilePath"].ToString();
 
             TestInRule(ruleAppFilePath, testSuiteFilePath);
