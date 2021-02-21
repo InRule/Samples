@@ -43,6 +43,18 @@ namespace MstestWrapperForTestsuite
 
         protected void ExecuteInRuleTestSuite(string ruleAppFilePath, string testSuiteFilePath)
         {
+            if (string.IsNullOrEmpty(testSuiteFilePath) || !File.Exists(testSuiteFilePath))
+            {
+                Assert.Inconclusive($"TestSuite does not exist for {ruleAppFilePath}");
+            }
+            else
+            {
+                RunTestSuiteAndReportToContext(ruleAppFilePath, testSuiteFilePath);
+            }
+        }
+
+        private void RunTestSuiteAndReportToContext(string ruleAppFilePath, string testSuiteFilePath)
+        {
             var testResultCollection = RunTestSuite(ruleAppFilePath, testSuiteFilePath);
 
             TestContext.WriteLine("Using Rule App " + ruleAppFilePath);

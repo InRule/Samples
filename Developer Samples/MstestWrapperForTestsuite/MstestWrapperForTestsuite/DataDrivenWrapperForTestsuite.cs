@@ -26,8 +26,14 @@ namespace MstestWrapperForTestsuite
         public void TestInRuleFromFolderConvention(string ruleApp, string testSuite, string ruleAppFilePath, string testSuiteFilePath)
         {
             TestContext.WriteLine($"{ruleApp} - {testSuite}");
-
-            ExecuteInRuleTestSuite(ruleAppFilePath, testSuiteFilePath);
+            if (string.IsNullOrEmpty(testSuite))
+            {
+                Assert.Inconclusive($"TestSuite does not exist for {ruleApp}");
+            }
+            else
+            {
+                ExecuteInRuleTestSuite(ruleAppFilePath, testSuiteFilePath);
+            }
         }
     }
 }

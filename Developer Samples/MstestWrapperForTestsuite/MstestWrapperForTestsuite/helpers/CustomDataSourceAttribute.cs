@@ -42,10 +42,16 @@ namespace MstestWrapperForTestsuite
             foreach (var ruleAppFile in ruleappDirectory.GetFiles("*.ruleappx"))
             {
                 DirectoryInfo testsuiteDirectory = GetConventionTestSuiteDirectory(ruleAppFile);
-
-                foreach (var testSuiteFile in testsuiteDirectory.GetFiles("*.testsuite"))
+                if (testsuiteDirectory.Exists)
                 {
-                    yield return new object[] { ruleAppFile.Name, testSuiteFile.Name, ruleAppFile.FullName, testSuiteFile.FullName };
+                    foreach (var testSuiteFile in testsuiteDirectory.GetFiles("*.testsuite"))
+                    {
+                        yield return new object[] { ruleAppFile.Name, testSuiteFile.Name, ruleAppFile.FullName, testSuiteFile.FullName };
+                    }
+                }
+                else
+                {
+                    yield return new object[] { ruleAppFile.Name, string.Empty, ruleAppFile.FullName, string.Empty };
                 }
             }
         }
