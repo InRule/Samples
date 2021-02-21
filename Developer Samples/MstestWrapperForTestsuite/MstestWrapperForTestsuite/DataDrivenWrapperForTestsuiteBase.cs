@@ -41,7 +41,7 @@ namespace MstestWrapperForTestsuite
             return results;
         }
 
-        protected void TestInRule(string ruleAppFilePath, string testSuiteFilePath)
+        protected void ExecuteInRuleTestSuite(string ruleAppFilePath, string testSuiteFilePath)
         {
             var testResultCollection = RunTestSuite(ruleAppFilePath, testSuiteFilePath);
 

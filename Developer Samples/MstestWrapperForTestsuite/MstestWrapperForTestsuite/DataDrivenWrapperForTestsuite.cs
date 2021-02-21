@@ -17,7 +17,7 @@ namespace MstestWrapperForTestsuite
             var ruleAppFilePath = TestContext.DataRow["RuleAppFilePath"].ToString();
             var testSuiteFilePath = TestContext.DataRow["TestSuiteFilePath"].ToString();
 
-            TestInRule(ruleAppFilePath, testSuiteFilePath);
+            ExecuteInRuleTestSuite(ruleAppFilePath, testSuiteFilePath);
         }
 
         [DataTestMethod]
@@ -27,7 +27,7 @@ namespace MstestWrapperForTestsuite
         {
             TestContext.WriteLine($"{ruleApp} - {testSuite}");
 
-            TestInRule(ruleAppFilePath, testSuiteFilePath);
+            ExecuteInRuleTestSuite(ruleAppFilePath, testSuiteFilePath);
         }
     }
 }
