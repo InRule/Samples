@@ -20,7 +20,7 @@ Executing another Rule Application via irServer during Rule Execution is not a c
 This Rule Application is intended to be used as a reference, since it relies on quite a few items in the infrastructure.  If you do want to run this Rule Application directly, you'll need to configure a number of items specific to your environment.
 
 To run Demo_GetToken:
-- Populate TennantID, Resource, ClientId, and ClientSecret in the Rule RootEntity.Demo_GetToken.SetDefaultCredentialInfoSample
+- Populate TenantId, Resource, ClientId, and ClientSecret in the Rule RootEntity.Demo_GetToken.SetDefaultCredentialInfoSample
 
 To run Demo_RunRules:
 - Update the Root URL in the End Point named IrServerRestEndpoint 

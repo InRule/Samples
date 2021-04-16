@@ -16,9 +16,9 @@ When you get to the step of "[Review authentication Type](https://docs.microsoft
 * **OAuth 2.0**
   * **Identity Provider**: `Generic Oauth 2`
   * **Client id**: `CLIENT_ID_GOES_HERE`<br />
-    This will provided to you when granted access to a Decision Runtime Service environment. Please contact [InRule Support](mailto:support@inrule.com) to request access.
+    This will be provided to you when granted access to a Decision Runtime Service environment. Please contact [InRule Support](mailto:support@inrule.com) to request access.
   * **Client secret**: `CLIENT_SECRET_GOES_HERE`<br />
-    This will provided to you when granted access to a Decision Runtime Service environment. Please contact [InRule Support](mailto:support@inrule.com) to request access.
+    This will be provided to you when granted access to a Decision Runtime Service environment. Please contact [InRule Support](mailto:support@inrule.com) to request access.
   * **Authorization URL**: `https://auth.inrulecloud.com/authorize`<br />
     The API authorization endpoint to authenticate with the service.
   * **Token URL**: `https://auth.inrulecloud.com/oauth/token`<br />
