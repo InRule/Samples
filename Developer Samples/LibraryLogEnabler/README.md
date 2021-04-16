@@ -1,6 +1,6 @@
 # InRule Sample LibraryLog Enabler
 
-InRule ships with LibraryLogger included in the IRServer REST Rule Execution Service and irCatalog Respository Service, but with no target logging frameworks activated.  This sample walks through a way to initialize a logging framework during the WCF pipeline startup to give LibLogger a log sink to write out to.
+InRule ships with LibraryLogger included in the IRServer REST Rule Execution Service and irCatalog Repository Service, but with no target logging frameworks activated.  This sample walks through a way to initialize a logging framework during the WCF pipeline startup to give LibLogger a log sink to write out to.
 
 There are a number of updates that need to be made in the app.config file to enable this behavior.  These samples add log4net logging, but LibraryLogger also supports NLog, Serilog, and Loupe.  In addition to the configuration changes, the application will also need to have deployed the custom assembly referenced in the custom WebServer module and the assemblies for whatever logging framework is referenced.
 
