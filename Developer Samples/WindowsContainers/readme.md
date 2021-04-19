@@ -55,7 +55,7 @@ you can find instructions on how to get started with Containers [here](https://m
 
 Once you've followed all of the steps in a respective setup guide and verified things are working properly, you'll be ready to use the InRule images!
 
-> 👉 Note: make sure to switch your running Dockerd from Linux to Windows containers!
+> 👉 Note: make sure to switch your running Docker from Linux to Windows containers!
 
 ## Configuring SSL
 
@@ -80,13 +80,13 @@ irSDK logging levels can be set via the irLogLevel environment variable. Possibl
 The `docker-compose.yml` file in the root of this repository describes the resources, services, that comprise a "vanilla" rule execution environment.
 It contains the following components (container alias are in parenthesis):
 
-* Rules execution service (rex)
+* Rule execution service (rex)
 * Catalog service (cat)
-* SQL Express Db (db) _Note: Microsoft no longer maintains the Windows Container version of this image. Consider using the linux flavor of this container instead. You will need to manually create the database and then run the [catalog-db-builder](/inrule-catalog-db-builder/) container image (or utility).
+* SQL Express Db (db) _Note: Microsoft no longer maintains the Windows Container version of this image. Consider using the Linux flavor of this container instead. You will need to manually create the database and then run the [catalog-db-builder](/inrule-catalog-db-builder/) container image (or utility).
 
 ### Setting up the container environment
 
-There are a lot of variables involved in configuring a rule exuection environment. Wherever possible, sensible defaults have been applied to reduce the number and locations where these variables are needed.
+There are a lot of variables involved in configuring a rule execution environment. Wherever possible, sensible defaults have been applied to reduce the number and locations where these variables are needed.
 The file `docker-compose.yml` contains information about the containers to run and also environmental information that is specific to a given instance of a container. To override these defaults or specify additional settings, create  a new file in the same directory as `docker-compose.yml` named `docker-compose.override.yml`. Any values found in the .override file will take precedence over values in the base docker-compose file.
 
 <!-- 

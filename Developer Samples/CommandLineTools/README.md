@@ -6,7 +6,7 @@ These projects are designed to demonstrate various tasks that administrators may
 
 ## Build IrJS Rule App
 
-This sample allows the irDistribution service to be called from a command line to compile an irJS Rule Application into the javascript package.  It supports the Rule App being sourced either from a Catalog or the filesystem, and outputs the compiled JS to a file on the file system.
+This sample allows the irDistribution service to be called from a command line to compile an irJS Rule Application into the JavaScript package.  It supports the Rule App being sourced either from a Catalog or the filesystem, and outputs the compiled JS to a file on the file system.
 
 Returns 0 if the process completed successfully, or 1 if an error occurred (which will have been detailed in the console log).
 

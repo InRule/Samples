@@ -11,7 +11,7 @@ Windows Server Core Base OS image
 
 ## About this image
 
-This image serves as a base image for other inrule server-based components. It ensures that the necessary pre-requisites have been fulfilled (e.g., IIS is installed, WCF is configured, etc) and that InRule event log sources are created.
+This image serves as a base image for other InRule server-based components. It ensures that the necessary pre-requisites have been fulfilled (e.g., IIS is installed, WCF is configured, etc) and that InRule event log sources are created.
 
 ## Usage
 

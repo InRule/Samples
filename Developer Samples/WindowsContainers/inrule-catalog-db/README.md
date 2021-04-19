@@ -1,4 +1,4 @@
-# Inrule Catalog Database Image
+# InRule Catalog Database Image
 
 This image provides a blank irCatalog database, initialized with default credentials and ready to be hooked up to a cat service.
 

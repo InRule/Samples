@@ -9,7 +9,7 @@ A Decision can be added from the Decisions navigation panel.
 
 Every new decision contains a single Rule Set named 'DecisionStart'. Any rules added to that Rule Set will execute automatically when the that Decision is executed.
 
-Additional explicit Rule Sets may be added to the Decision. These Rule Sets will execute only when called from the 'DecisionStart' Rule Set or from other Rule Sets within the same decision via the ExecuteRuleSet action. If an explicit Rule Set in a Decision is not explictly called via ExecuteRuleSet, then that Rule Set will not execute.
+Additional explicit Rule Sets may be added to the Decision. These Rule Sets will execute only when called from the 'DecisionStart' Rule Set or from other Rule Sets within the same decision via the ExecuteRuleSet action. If an explicit Rule Set in a Decision is not explicitly called via ExecuteRuleSet, then that Rule Set will not execute.
 
 Entity based Rule Sets can also be called from a Decision based rule set. This preserves the ability to author rules in the context of an Entity.
 
@@ -23,7 +23,7 @@ When a Decision is selected in the Decisions navigation panel, the irAuthor cont
 
 Inputs and outputs may be added or removed using the ![Add](images/AuthorDecision-DecisionInputOutputAddButton.png) and ![Remove](images/AuthorDecision-DecisionInputOutputRemoveButton.png) buttons next to their data grids.
 
-When an input or output is added to the Decision, its 'Name' and 'Data Type' may be assigned. The Data Type may be any primitive data type inrule supports (Boolean, Data, DateTime, Decimal, Integer, Text), or an Entity previously authored in the Rule Application. An Entity input or output may be defined as an Entity Collection by checking the 'Is Collection' checkbox in the right-hand column.
+When an input or output is added to the Decision, its 'Name' and 'Data Type' may be assigned. The Data Type may be any primitive data type InRule supports (Boolean, Data, DateTime, Decimal, Integer, Text), or an Entity previously authored in the Rule Application. An Entity input or output may be defined as an Entity Collection by checking the 'Is Collection' checkbox in the right-hand column.
 
 ## Vocabulary
 
