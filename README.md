@@ -59,6 +59,7 @@ If you would like to request additional samples from InRule, please write an iss
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Launch irVerify from code | Developer Samples | LaunchIrVerify |
 | Load XML state into an entity | Developer Samples | CreateRuleSession-Catalog <br>CreateRuleSession-FileSystem <br>GetChangedValues <br>GetEntityXml |
+| MsTest wrapper for testsuite | Developer Samples | MstestWrapperForTestsuite |
 | OAuth Token Sample | Authoring Samples | Functional Samples\OAuthTokenSample |
 | Promote Rule App between Catalogs using Command Line | Developer Samples | CommandLineTools\PromoteRuleApp |
 | Query value list | Authoring Samples | Chicago Food Tax Generator |
