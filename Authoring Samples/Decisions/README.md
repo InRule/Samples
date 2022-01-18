@@ -3,7 +3,7 @@ Decision Services
 
 Decision Services is the newest member of InRule®'s Decision Platform. It provides an improved decision-centric model for authoring and executing rules, as well as an integration model that is standards-based that does not require deep knowledge of our SDK.
 
-A Decision is an entry point into rule exection. It consists of a set of inputs, rules that execute against those inputs, and a set of ouputs that reflect the result. Those inputs, outputs, and rules are author-defined, ultimately providing rule authors flexibility of shaping the input and output signature used during runtime execution.
+A Decision is an entry point into rule execution. It consists of a set of inputs, rules that execute against those inputs, and a set of outputs that reflect the result. Those inputs, outputs, and rules are author-defined, ultimately providing rule authors flexibility of shaping the input and output signature used during runtime execution.
 
 Once authored is complete, Decisions can be tested in irVerify and subsequently consumed by the Rule Execution Service for remote execution via a RESTful API.
 
@@ -29,4 +29,4 @@ Additionally the restriction on unique Entity Rule Set names has been removed, s
 
 # Limitations
 
-* The majority of Rule Application authoring scenarios should inter-operate between versions 5.3.1-5.4.3 and 5.5.0 of irSDK/irAuthor/irCatalog. Howevever, there are [several edge cases](known-issues.md#mix-version-use-of-irsdkirauthorircatalog) that are not supported at this time.
+* The majority of Rule Application authoring scenarios should inter-operate between versions 5.3.1-5.4.3 and 5.5.0 of irSDK/irAuthor/irCatalog. However, there are [several edge cases](known-issues.md#mix-version-use-of-irsdkirauthorircatalog) that are not supported at this time.
