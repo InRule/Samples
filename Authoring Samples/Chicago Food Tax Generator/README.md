@@ -7,3 +7,4 @@ The calculations for sales tax on food and drink prepared and served in the city
 In addition, these calculations are subject to change when the city and county ordinances and regulations change. This makes for a good business rule application to demonstrate the calculation.
 
 This sample contains a Rule Application that encodes this calculation. The included file *Chicago Food Tax Generator Rule Application Notes.pdf* contains a detailed explanation of the sample Rule Application, along with a link to the original InRule blog post on the subject.
+
