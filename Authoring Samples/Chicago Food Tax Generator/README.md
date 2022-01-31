@@ -2,8 +2,6 @@
 
 ## Chicago Food Tax Generator
 
-![001-man](https://user-images.githubusercontent.com/56549684/149968696-6c3eab90-d4c6-448e-98bb-3fc2bff3d930.png)
-
 The calculations for sales tax on food and drink prepared and served in the city of Chicago are fairly complex. There is a base rate for food, but soft drinks have a different rate. Well, not quite; bottled soft drinks and fountain soft drinks have different rates. Oh, and bottled water is different still. Plus, there is an additional tax on food if the location has seating for customers, but only within certain zip codes.
 
 In addition, these calculations are subject to change when the city and county ordinances and regulations change. This makes for a good business rule application to demonstrate the calculation.
