@@ -55,7 +55,7 @@ For example:
 
 This illustrates the equivalent of the irSDK override example listed above.
 
-#### Key Format
+### Key Format
 The appSetting key follows the following format:
 
 `inrule:runtime:overrides:<name>:<type>:<property>`
@@ -70,7 +70,7 @@ The `<name>` component is **case-sensitive**.
 
 The `<type>` and `<property>` components are **not case-sensitive**. The combination of type/property may be selected from the following:
 
-#### End Points
+### End Points
 | Type | Property |
 | ---- | -------- |
 | DatabaseConnection | ConnectionString |
@@ -90,7 +90,7 @@ The `<type>` and `<property>` components are **not case-sensitive**. The combina
 | | X509CertificatePath |
 | | X509CertificatePassword |
 
-#### Data Elements
+### Data Elements
 
 | Name | Property |
 | ---- | -------- |
@@ -122,7 +122,7 @@ Unencoded Value: <InlineXml><Value1>This is a "test" & should be encoded</Value1
 Encoded Value: &lt;InlineXml&gt;&lt;Value1&gt;This is a &quot;test&quot; &amp; should be encoded&lt;/Value1&gt;&lt;/InlineXml&gt;
 ```
 
-##### ValueListItems Serialization
+#### ValueListItems Serialization
 The value for ValueListItems uses a custom XML format, which must be HTML encoded for use as the value.
 
 For example:
@@ -145,7 +145,7 @@ const string valueListItems =
 var value = System.Net.WebUtility.HtmlEncode(valueListItems);
 ```
 
-##### TableSettings Serialization
+#### TableSettings Serialization
 The value of TableSettings configuration must use irSDK to XML Serialize an instance of `InRule.Repository.TableSettings`. This must then be HTML encoded for use as the value.
 
 For example:
@@ -162,8 +162,8 @@ using (var writer = new StringWriter(sb))
 var value = System.Net.WebUtility.HtmlEncode(sb.ToString());
 ```
 
-##### REST Operation Headers
-The Headers are a collection of name/value pairs. Any number of headers may be applied. To simulate a collection, the `<appSetting/>` key is extended to include the header name.
+#### REST Operation Headers
+The Headers are a collection of name/value pairs. Any number of headers may be applied. To simulate a collection, the appSetting key is extended to include the header name.
 
 For example:
 ```
