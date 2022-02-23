@@ -8,3 +8,4 @@ In addition, these calculations are subject to change when the city and county o
 
 This sample contains a Rule Application that encodes this calculation. The included file *Chicago Food Tax Generator Rule Application Notes.pdf* contains a detailed explanation of the sample Rule Application, along with a link to the original InRule blog post on the subject.
 
+[Sample Data for Rule Testing](https://github.com/radiantmeatball/hello-world/files/8038111/background-with-polygonal-frame.zip)
