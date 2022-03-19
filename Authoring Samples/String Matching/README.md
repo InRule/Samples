@@ -1,6 +1,4 @@
-# InRule Samples
-
-## String Matching
+## String Matching Samples
 
 Any operation that processes data almost certainly needs to handle strings. This sample provides two Rule Applications that demonstrate InRule's string manipulation capabilities.
 
