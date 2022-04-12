@@ -1,11 +1,11 @@
-Decision Services
+Decisions
 ====
 
-Decision Services is the newest member of InRule®'s Decision Platform. It provides an improved decision-centric model for authoring and executing rules, as well as an integration model that is standards-based that does not require deep knowledge of our SDK.
+Decisions are the newest members of InRule®'s Decision Platform. They provide a different, decision-centric model for authoring and executing rules, as well as an integration model that does not require deep knowledge of our SDK.
 
 A Decision is an entry point into rule execution. It consists of a set of inputs, rules that execute against those inputs, and a set of outputs that reflect the result. Those inputs, outputs, and rules are author-defined, ultimately providing rule authors flexibility of shaping the input and output signature used during runtime execution.
 
-Once authored is complete, Decisions can be tested in irVerify and subsequently consumed by the Rule Execution Service for remote execution via a RESTful API.
+Once authoring is complete, Decisions can be tested in irVerify and subsequently consumed by the Rule Execution Service for remote execution via a RESTful API.
 
 # Prerequisites
 

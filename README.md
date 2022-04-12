@@ -9,10 +9,9 @@ Here you will find a collection of samples to demonstrate some InRule features. 
 
 These are samples only; please refer to the InRule documentation for full information.
 
-Of course, feel free to visit the  <a href="http://support.inrule.com/cs/forums/5.aspx">irSDK and Development forum</a> on the <a href="http://support.inrule.com">InRule Support website</a> (login required) to request additional samples.
-
 If you would like to contribute to the samples library, you may fork this repository and make your changes in the fork. To submit your changes for consideration, create a pull request for your fork.
-If you would like to request additional samples from InRule, please write an issue on this repository.
+
+If you would like to request additional samples from InRule Technology, please write an issue on this repository or please visit our <a href="http://support.inrule.com/hc/en-us">Help Center</a> (login required) for more information or to request additional samples or examples.
 
 | Topic | Start here | Look here |
 |-------|------------|-----------|
@@ -72,4 +71,3 @@ If you would like to request additional samples from InRule, please write an iss
 | Value of a field | Developer Samples | AddCollectionMembers <br>CreateRuleSession-InMemory |
 | Vocabulary Templates | Authoring Samples | Chicago Food Tax Generator<br>Vocabulary Templates |
 | While loop | Authoring Samples | Iteration |
-| Windows Container Samples | Developer Samples | WindowsContainers
