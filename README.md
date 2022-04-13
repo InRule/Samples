@@ -61,7 +61,7 @@ If you would like to request additional samples from InRule Technology, please w
 | OAuth Token Sample | Authoring Samples | Functional Samples\OAuthTokenSample |
 | Promote Rule App between Catalogs using Command Line | Developer Samples | CommandLineTools\PromoteRuleApp |
 | Query value list | Authoring Samples | Chicago Food Tax Generator |
-| Windows Container Samples | Developer Samples | WindowsContainers
+| Runtime Overrides | Developer Samples | RuntimeOverrides |
 | Salesforce | Developer Samples | SalesforceSamples |
 | String operations | Authoring Samples | String Matching |
 | Unbound entities | Developer Samples | AddCollectionMembers <br>CreateEntityFromXml <br>CreateRuleSession-Catalog <br>CreateRuleSession-FileSystem <br>CreateRuleSession-InMemory <br>DynamicValueAccess <br>GetChangedValues <br>GetEntityXml <br>LaunchIrVerify <br>RulesInCode |
