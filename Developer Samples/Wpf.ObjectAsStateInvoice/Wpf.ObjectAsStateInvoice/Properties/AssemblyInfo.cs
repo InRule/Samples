@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("InRule Technology, Inc.")]
 [assembly: AssemblyProduct("Wpf.ObjectAsStateInvoice")]
-[assembly: AssemblyCopyright("Copyright © 2021, InRule Technology, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2022, InRule Technology, Inc.")]
 [assembly: AssemblyTrademark("InRule® is a registered trademark of InRule Technology.  All Rights Reserved.")]
 [assembly: AssemblyCulture("")]
 
