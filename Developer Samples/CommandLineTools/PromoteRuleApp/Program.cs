@@ -1,12 +1,13 @@
-﻿using System;
-using InRule.Runtime;
-using InRule.Repository.Client;
-using Mono.Options;
+﻿using InRule.Repository.Client;
 using InRule.Repository;
+using System;
+using Mono.Options;
+using InRule.Runtime;
 
-namespace PromoteRuleApp
+
+namespace PromoteRuleApp_4._7._2
 {
-    class Program
+    internal class Program
     {
         static int Main(string[] args)
         {
@@ -54,8 +55,8 @@ namespace PromoteRuleApp
                 ShowHelp(clParams);
                 return 1;
             }
-            else if (string.IsNullOrEmpty(ruleAppName) 
-                || string.IsNullOrEmpty(sourceCatalogUrl) || string.IsNullOrEmpty(sourceCatalogUsername) || string.IsNullOrEmpty(sourceCatalogPassword) 
+            else if (string.IsNullOrEmpty(ruleAppName)
+                || string.IsNullOrEmpty(sourceCatalogUrl) || string.IsNullOrEmpty(sourceCatalogUsername) || string.IsNullOrEmpty(sourceCatalogPassword)
                 || string.IsNullOrEmpty(destCatalogUrl) || string.IsNullOrEmpty(destCatalogUsername) || string.IsNullOrEmpty(destCatalogPassword))
             {
                 Console.WriteLine("Parameters must be specified for the Rule App name as well as the URI, username, and password for both the source and destination irCatalog instances.");
@@ -98,7 +99,7 @@ namespace PromoteRuleApp
                         return 1;
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Error promoting Rule App: " + ex.Message);
                     return 1;
