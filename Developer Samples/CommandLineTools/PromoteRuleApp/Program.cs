@@ -5,7 +5,7 @@ using Mono.Options;
 using InRule.Runtime;
 
 
-namespace PromoteRuleApp_4._7._2
+namespace PromoteRuleApp
 {
     internal class Program
     {
