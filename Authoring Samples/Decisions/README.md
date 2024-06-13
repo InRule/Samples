@@ -21,7 +21,7 @@ Before you get started, you'll need to make sure you have the following:
 
 # Notes
 
-InRule v5.5.0 includes additional classes in irSDK® to support Decisions. To make upgrading as painless as possible, the new data structures are persisted to files or irCatalog® in Attributes of the RuleApplicationDef.
+Since v5.5.0 InRule includes additional classes in irSDK® to support Decisions. To make upgrading as painless as possible, the new data structures are persisted to files or irCatalog® in Attributes of the RuleApplicationDef.
 
 This removes the need to running a feature version upgrade on irCatalog to use these new features.
 
