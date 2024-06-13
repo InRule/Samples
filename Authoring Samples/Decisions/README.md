@@ -11,7 +11,7 @@ Once authoring is complete, Decisions can be tested in irVerify and subsequently
 
 Before you get started, you'll need to make sure you have the following:
 
-* For authoring and testing Decisions, [irAuthor 5.5.0](https://support.inrule.com/downloads.aspx) or greater.
+* For authoring and testing Decisions, latest [irAuthor](https://support.inrule.com/hc/en-us/categories/360005068551-Downloads).
 
 # Getting Started
 
