@@ -1,4 +1,5 @@
 #addin "Cake.Incubator&version=8.0.0"
+#tool nuget:?package=NuGet.CommandLine&version=6.10.1
 
 //////////////////////////////////////////////////////////////////////
 // PARAMETERS
