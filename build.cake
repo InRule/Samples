@@ -1,4 +1,4 @@
-#addin "Cake.Incubator&version=5.0.1"
+#addin "Cake.Incubator&version=8.0.0"
 
 //////////////////////////////////////////////////////////////////////
 // PARAMETERS
@@ -13,7 +13,7 @@ var inruleVersion = Argument("inruleVersion", EnvironmentVariable("InRule_Versio
 //////////////////////////////////////////////////////////////////////
 
 FilePathCollection _solutionFiles = GetFiles("./**/*.sln");
-MSBuildToolVersion _msbuildVersion = MSBuildToolVersion.VS2019;
+MSBuildToolVersion _msbuildVersion = MSBuildToolVersion.VS2022;
 
 // Determine NuGet source feeds.
 ICollection<string> _nuGetSources;
