@@ -31,7 +31,7 @@ Task("Clean")
 {
   try
   {
-    DotNetCoreClean(solution);
+    DotNetClean(solution);
   }
   catch { }
 
@@ -67,17 +67,17 @@ Task("Restore .NET Dependencies")
     sources = new[] { nuGetOrgUrl };
   }
 
-  DotNetCoreRestore(solution, new DotNetCoreRestoreSettings { Sources = sources });
+  DotNetRestore(solution, new DotNetRestoreSettings { Sources = sources });
 });
 
 Task("Build and Publish Metrics Adapter Libraries")
   .Does(() =>
 {
-  var settings = new DotNetCorePublishSettings
+  var settings = new DotNetPublishSettings
   {
     Configuration = releaseConfiguration,
     VersionSuffix = versionSuffix,
-    MSBuildSettings = new DotNetCoreMSBuildSettings().WithProperty(versionPrefixProperty, versionPrefix),
+    MSBuildSettings = new DotNetMSBuildSettings().WithProperty(versionPrefixProperty, versionPrefix),
   };
 
   Warning("Publishing for netstandard2.0");
@@ -87,29 +87,28 @@ Task("Build and Publish Metrics Adapter Libraries")
   netStandardProjectFiles.Remove(GetFiles("./Samples/**/*.csproj"));
   foreach (FilePath file in netStandardProjectFiles)
   {
-    DotNetCorePublish(file.ToString(), settings);
+    DotNetPublish(file.ToString(), settings);
   }
-
-  Warning("Publishing for net472");
-  settings.Framework = "net472";
-  DotNetCorePublish(solution, settings);
 });
 
 Task("Test SQL Adapter")
   .Does(() =>
 {
-  var settings = new DotNetCoreTestSettings
+  var settings = new DotNetTestSettings
   {
-    Logger = "console;verbosity=normal",
+    Loggers = new List<string>
+    {
+      "console;verbosity=normal",
+    }
   };
 
-  DotNetCoreTest("./InRule.Runtime.Metrics.SqlServer.IntegrationTests/InRule.Runtime.Metrics.SqlServer.IntegrationTests.csproj", settings);
+  DotNetTest("./InRule.Runtime.Metrics.SqlServer.IntegrationTests/InRule.Runtime.Metrics.SqlServer.IntegrationTests.csproj", settings);
 });
 
 Task("Create Metrics Adapter NuGet Packages")
   .Does(() =>
 {
-  var settings = new DotNetCorePackSettings
+  var settings = new DotNetPackSettings
   {
     NoBuild = true,
     Configuration = releaseConfiguration,
@@ -119,14 +118,14 @@ Task("Create Metrics Adapter NuGet Packages")
   if(isPrereleasePackage)
   {
     settings.VersionSuffix = versionSuffix;
-    settings.MSBuildSettings = new DotNetCoreMSBuildSettings().WithProperty(versionPrefixProperty, versionPrefix);
+    settings.MSBuildSettings = new DotNetMSBuildSettings().WithProperty(versionPrefixProperty, versionPrefix);
   }
   else
   {
-    settings.MSBuildSettings = new DotNetCoreMSBuildSettings().WithProperty("Version", versionPrefix + "." + versionSuffix);
+    settings.MSBuildSettings = new DotNetMSBuildSettings().WithProperty("Version", versionPrefix + "." + versionSuffix);
   }
 
-  DotNetCorePack(solution, settings);
+  DotNetPack(solution, settings);
 });
 
 Task("Publish to NuGet Feed")
@@ -142,14 +141,14 @@ Task("Publish to NuGet Feed")
     Error("nugetPushApiKey argument is required.");
   }
 
-  var settings = new DotNetCoreNuGetPushSettings
+  var settings = new DotNetNuGetPushSettings
   {
     Source = nugetPushFeedUrl,
     ApiKey = nugetPushApiKey,
     WorkingDirectory = nugetPackagesFolder,
   };
 
-  DotNetCoreNuGetPush("*.nupkg", settings);
+  DotNetNuGetPush("*.nupkg", settings);
 });
 
 //////////////////////////////////////////////////////////////////////

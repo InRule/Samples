@@ -1,3 +1,5 @@
+// Usage: dotnet cake build.cake --target=Local --nugetSourceFeedUrl=https://www.myget.org/F/inrule/api/v3/index.json --inruleVersion=8.0.0
+
 #addin "Cake.Incubator&version=8.0.0"
 #tool nuget:?package=NuGet.CommandLine&version=6.10.1
 
@@ -37,6 +39,7 @@ else
 Task("Clean")
   .Does(() =>
 {
+  Information($"Cleaning all solutions. {_solutionFiles.Count} found.");
   foreach(var solutionFile in _solutionFiles)
   {
     Information("-+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+- -+-");
