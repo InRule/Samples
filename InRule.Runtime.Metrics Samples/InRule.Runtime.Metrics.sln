@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InRule.Runtime.Metrics.AzureTableStorage", "InRule.Runtime.Metrics.AzureTableStorage\InRule.Runtime.Metrics.AzureTableStorage.csproj", "{2DD0F337-9322-439A-8157-65F39980D169}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InRule.Runtime.Metrics.SqlServer", "InRule.Runtime.Metrics.SqlServer\InRule.Runtime.Metrics.SqlServer.csproj", "{A47E0A35-E2A7-495B-AE1B-68F82C28D2B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InRule.Runtime.Metrics.SqlServer.IntegrationTests", "InRule.Runtime.Metrics.SqlServer.IntegrationTests\InRule.Runtime.Metrics.SqlServer.IntegrationTests.csproj", "{F8B17BAE-F0C5-43B9-8676-FB718905E6FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.Runtime.Metrics.Csv", "InRule.Runtime.Metrics.Csv\InRule.Runtime.Metrics.Csv.csproj", "{2A94C6AA-5A09-4DDE-AC45-BB3D97A5DEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InRule.Runtime.Metrics.TestHarness", "InRule.Runtime.Metrics.TestHarness\InRule.Runtime.Metrics.TestHarness.csproj", "{BAAFE31A-B7C7-4256-8628-87401BCE383D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD0F337-9322-439A-8157-65F39980D169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD0F337-9322-439A-8157-65F39980D169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD0F337-9322-439A-8157-65F39980D169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD0F337-9322-439A-8157-65F39980D169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A47E0A35-E2A7-495B-AE1B-68F82C28D2B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47E0A35-E2A7-495B-AE1B-68F82C28D2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47E0A35-E2A7-495B-AE1B-68F82C28D2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47E0A35-E2A7-495B-AE1B-68F82C28D2B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B17BAE-F0C5-43B9-8676-FB718905E6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B17BAE-F0C5-43B9-8676-FB718905E6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B17BAE-F0C5-43B9-8676-FB718905E6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B17BAE-F0C5-43B9-8676-FB718905E6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A94C6AA-5A09-4DDE-AC45-BB3D97A5DEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A94C6AA-5A09-4DDE-AC45-BB3D97A5DEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A94C6AA-5A09-4DDE-AC45-BB3D97A5DEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A94C6AA-5A09-4DDE-AC45-BB3D97A5DEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAAFE31A-B7C7-4256-8628-87401BCE383D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAAFE31A-B7C7-4256-8628-87401BCE383D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAAFE31A-B7C7-4256-8628-87401BCE383D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAAFE31A-B7C7-4256-8628-87401BCE383D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {323E4397-D30F-4456-B536-8E188BD3B49F}
+	EndGlobalSection
+EndGlobal

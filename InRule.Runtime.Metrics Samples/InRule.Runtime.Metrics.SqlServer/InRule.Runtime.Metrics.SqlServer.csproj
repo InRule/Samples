@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>InRule Technology, Inc.</Authors>
+    <Company>InRule Technology, Inc.</Company>
+    <Copyright>Copyright 2024</Copyright>
+    <Description>An InRule® Metric logger for the InRule Rule Engine that can log to Microsoft SQL Server.</Description>
+    <PackageProjectUrl>http://www.inrule.com</PackageProjectUrl>
+    <PackageIconUrl>http://www.inrule.com/globalassets/nuget-packages/inrule_basic_64_x_64.png</PackageIconUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageTags>InRule irSDK</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\01-CreateMetricSchemaStore.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\01-CreateMetricSchemaStore.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-sqlserver" Version="5.0.40" />
+    <PackageReference Include="InRule.Runtime" Version="5.8.1" />
+    <PackageReference Include="LibLog" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+    <PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="171.30.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,12 @@
+assembly-versioning-scheme: MajorMinorPatch
+mode: ContinuousDelivery
+tag-prefix: release-
+branches:
+  develop:
+    tag: develop
+    increment: Patch
+  issue?[/-]:
+    tag: useBranchName
+    increment: Patch
+ignore:
+  commits-before: 2019-06-30T00:00:00
