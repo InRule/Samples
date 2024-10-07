@@ -3,7 +3,7 @@ param(
     [string][Parameter(Mandatory = $true)] $inruleReleaseTag,
     [string[]][Parameter(Mandatory = $false)] $imageTags = @(""),    
     [string]$registry = "inrule",
-    [string[]]$windowsServiceReleasesToUse = @("ltsc2016", "ltsc2019")
+    [string[]]$windowsServiceReleasesToUse = @("ltsc2022", "ltsc2019")
 )
 $ErrorActionPreference = "Stop"
 

@@ -2,7 +2,7 @@
 parameters:
 - name: inRuleReleaseTag
   type: string
-  default: 'v5.5.1'
+  default: 'v5.8.1'
 
 trigger:
 - master
