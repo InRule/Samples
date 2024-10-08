@@ -2,7 +2,7 @@
 parameters:
 - name: inRuleReleaseTag
   type: string
-  default: 'v5.5.1'
+  default: 'v5.8.1'
 
 trigger:
 - master
@@ -19,20 +19,20 @@ stages:
 - stage: Build
   displayName: Build image
   jobs:  
-  - job: Buildltsc2016
-    displayName: Build LTSC2016
+  - job: Buildltsc2022
+    displayName: Build LTSC2022
     pool:
-      vmImage: 'vs2017-win2016'
+      vmImage: 'windows-2022'
     steps:
     - task: PowerShell@2
       displayName: Run build script
       inputs:
         filePath: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers\Invoke-ContainerBuild.ps1'
-        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -windowsServiceReleasesToUse ltsc2016'
+        arguments: '-inRuleReleaseTag $(inRuleReleaseTag) -windowsServiceReleasesToUse ltsc2022'
         failOnStderr: true
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
-    - task: Powershell@2
+    - task: PowerShell@2
       displayName: Populate variable with tag list from build output      
       inputs:
         targetType: 'inline'
@@ -45,7 +45,7 @@ stages:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
         repository: 'inrule/inrule-server'
-        tags: 'ltsc2016'
+        tags: 'ltsc2022'
     - task: Docker@2 
       displayName: Push catalog image
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
@@ -53,7 +53,7 @@ stages:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
         repository: 'inrule/inrule-catalog'
-        tags: '$(inRuleReleaseTag)-ltsc2016'
+        tags: '$(inRuleReleaseTag)-ltsc2022'
     - task: Docker@2 
       displayName: Push catalog manager image
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
@@ -61,7 +61,7 @@ stages:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
         repository: 'inrule/inrule-catalog-manager'
-        tags: '$(inRuleReleaseTag)-ltsc2016'
+        tags: '$(inRuleReleaseTag)-ltsc2022'
     - task: Docker@2 
       displayName: Push runtime image
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master')) 
@@ -69,7 +69,7 @@ stages:
         containerRegistry: 'InRuleBuilds Docker Hub'
         command: 'push'
         repository: 'inrule/inrule-runtime'
-        tags: '$(inRuleReleaseTag)-ltsc2016'
+        tags: '$(inRuleReleaseTag)-ltsc2022'
 
   - job: Buildltsc2019
     displayName: Build LTSC2019
@@ -84,7 +84,7 @@ stages:
         failOnStderr: true
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)\Developer Samples\WindowsContainers'
-    - task: Powershell@2
+    - task: PowerShell@2
       displayName: Populate variable with tag list from build output      
       inputs:
         targetType: 'inline'
