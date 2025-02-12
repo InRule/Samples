@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromoteRuleApp", "PromoteRu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildIrJsRuleApp", "BuildIrJsRuleApp\BuildIrJsRuleApp.csproj", "{085122EE-AEC5-4415-9753-BA33E0EC2D96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverwriteRuleAppFromUrl", "OverwriteRuleAppFromGit\OverwriteRuleAppFromUrl.csproj", "{F429041D-7186-4D8B-AC1A-195D8BEDEA2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{085122EE-AEC5-4415-9753-BA33E0EC2D96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{085122EE-AEC5-4415-9753-BA33E0EC2D96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{085122EE-AEC5-4415-9753-BA33E0EC2D96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F429041D-7186-4D8B-AC1A-195D8BEDEA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F429041D-7186-4D8B-AC1A-195D8BEDEA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F429041D-7186-4D8B-AC1A-195D8BEDEA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F429041D-7186-4D8B-AC1A-195D8BEDEA2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
