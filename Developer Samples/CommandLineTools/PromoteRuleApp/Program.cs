@@ -2,7 +2,6 @@
 using InRule.Repository;
 using System;
 using Mono.Options;
-using InRule.Runtime;
 
 
 namespace PromoteRuleApp
@@ -14,8 +13,10 @@ namespace PromoteRuleApp
             bool showHelp = false;
 
             string ruleAppName = null;
-            string label = "LIVE";
-            string comment = "";
+            string label = null;
+            string comment = null;
+            string applyLabelToSource = null;
+            string removeLabelFromSource = null;
 
             string sourceCatalogUrl = null;
             string sourceCatalogUsername = null;
@@ -30,9 +31,11 @@ namespace PromoteRuleApp
                 { "n|RuleAppName=", "The name of the Rule App to promote.", n => ruleAppName = n },
                 { "l|Label=",  "Label assigned to the desired version of the Rule App.", l => label = l },
                 { "m|Comment=",  "Comment to be associated with the promotion commit.", c => comment = c },
+                { "g|ApplyLabelToSource=", "Label to apply to source Rule App.", l => applyLabelToSource = l },
+                { "j|RemoveLabelFromSource=", "Label to remove from source Rule App.", j => removeLabelFromSource = j},
                 //Source
                 { "a|SrcCatUri=",  "Web URI for the source IrCatalog Service endpoint.", c => sourceCatalogUrl = c },
-                { "b|SrcCatUser=",  "IrCatalog Username for authentication .", u => sourceCatalogUsername = u },
+                { "b|SrcCatUser=",  "IrCatalog Username for authentication.", u => sourceCatalogUsername = u },
                 { "c|SrcCatPass=",  "IrCatalog Password for authentication.", p => sourceCatalogPassword = p },
                 //Dest
                 { "d|DestCatUri=",  "Web URI for the target IrCatalog Service endpoint.", c => destCatalogUrl = c },
@@ -64,19 +67,48 @@ namespace PromoteRuleApp
             }
             else
             {
+                RuleCatalogConnection sourceCatCon = null;
+                RuleCatalogConnection destCatCon = null;
+
+                try
+                {
+                    sourceCatCon = new RuleCatalogConnection(new Uri(sourceCatalogUrl), TimeSpan.FromSeconds(60), sourceCatalogUsername, sourceCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error connecting to source catalog: " + ex.Message);
+                    return 1;
+                }
+
+                try
+                {
+                    destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error connecting to destination catalog: " + ex.Message);
+                    return 1;
+                }
+
                 RuleApplicationDef sourceRuleAppDef = null;
                 try
                 {
-                    CatalogRuleApplicationReference sourceRuleApp;
                     if (string.IsNullOrEmpty(label))
                     {
-                        sourceRuleApp = new CatalogRuleApplicationReference(sourceCatalogUrl, ruleAppName, sourceCatalogUsername, sourceCatalogPassword);
+                        sourceRuleAppDef = sourceCatCon.GetLatestRuleAppRevision(ruleAppName);
                     }
                     else
                     {
-                        sourceRuleApp = new CatalogRuleApplicationReference(sourceCatalogUrl, ruleAppName, sourceCatalogUsername, sourceCatalogPassword, label);
+                        var sourceRuleAppRef = sourceCatCon.GetRuleAppRef(ruleAppName);
+                        sourceRuleAppDef = sourceCatCon.GetRuleAppByLabel(sourceRuleAppRef.Guid, label);
                     }
-                    sourceRuleAppDef = sourceRuleApp.GetRuleApplicationDef();
+
+                    if (sourceRuleAppDef == null)
+                    {
+                        Console.WriteLine("Source Rule App was unable to be retrieved.");
+                        return 1;
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -86,24 +118,42 @@ namespace PromoteRuleApp
 
                 try
                 {
-                    if (sourceRuleAppDef != null)
-                    {
-                        var destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword);
-                        var promotedDef = destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
-                        Console.WriteLine("Success!");
-                        return 0;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Source Rule App was unable to be retrieved.");
-                        return 1;
-                    }
+                    destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error promoting Rule App: " + ex.Message);
                     return 1;
                 }
+
+                if (!string.IsNullOrEmpty(applyLabelToSource))
+                {
+                    try
+                    {
+                        sourceCatCon.ApplyLabel(sourceRuleAppDef, applyLabelToSource);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error applying label to source Rule App: " + ex.Message);
+                        return 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(removeLabelFromSource))
+                {
+                    try
+                    {
+                        sourceCatCon.RemoveLabel(sourceRuleAppDef.Guid, removeLabelFromSource);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error removing label from source Rule App: " + ex.Message);
+                        return 1;
+                    }
+                }
+
+                Console.WriteLine("Success!");
+                return 0;
             }
         }
 
@@ -114,6 +164,7 @@ namespace PromoteRuleApp
             Console.WriteLine("Promotes a Rule Application from one catalog into another.");
             Console.WriteLine();
             Console.WriteLine("All requests must contain RuleAppName and connection information for both source and destination Catalogs.");
+            Console.WriteLine("Omitting -Label will result in the latest Rule App revision being promoted.");
             Console.WriteLine();
             Console.WriteLine("Options:");
             p.WriteOptionDescriptions(Console.Out);
