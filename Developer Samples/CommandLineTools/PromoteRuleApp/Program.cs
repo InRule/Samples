@@ -164,6 +164,7 @@ namespace PromoteRuleApp
             Console.WriteLine("Promotes a Rule Application from one catalog into another.");
             Console.WriteLine();
             Console.WriteLine("All requests must contain RuleAppName and connection information for both source and destination Catalogs.");
+            Console.WriteLine("Omitting -Label will result in the latest Rule App revision being promoted.");
             Console.WriteLine();
             Console.WriteLine("Options:");
             p.WriteOptionDescriptions(Console.Out);
