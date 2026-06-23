@@ -1,6 +1,7 @@
 ﻿using InRule.Repository.Client;
 using InRule.Repository;
 using System;
+using InRule.Repository.Service.Data;
 using Mono.Options;
 using InRule.Runtime;
 
@@ -14,8 +15,10 @@ namespace PromoteRuleApp
             bool showHelp = false;
 
             string ruleAppName = null;
-            string label = "LIVE";
-            string comment = "";
+            string label = null;
+            string comment = null;
+            string applyLabelToSource = null;
+            string removeLabelFromSource = null;
 
             string sourceCatalogUrl = null;
             string sourceCatalogUsername = null;
@@ -30,6 +33,8 @@ namespace PromoteRuleApp
                 { "n|RuleAppName=", "The name of the Rule App to promote.", n => ruleAppName = n },
                 { "l|Label=",  "Label assigned to the desired version of the Rule App.", l => label = l },
                 { "m|Comment=",  "Comment to be associated with the promotion commit.", c => comment = c },
+                { "g|ApplyLabelToSource=", "Label to apply to source Rule App", l => applyLabelToSource = l },
+                { "j|RemoveLabelFromSource=", "Label to remove from source Rule App", j => removeLabelFromSource = j},
                 //Source
                 { "a|SrcCatUri=",  "Web URI for the source IrCatalog Service endpoint.", c => sourceCatalogUrl = c },
                 { "b|SrcCatUser=",  "IrCatalog Username for authentication .", u => sourceCatalogUsername = u },
@@ -64,19 +69,20 @@ namespace PromoteRuleApp
             }
             else
             {
+                var sourceCatCon = new RuleCatalogConnection(new Uri(sourceCatalogUrl), TimeSpan.FromSeconds(60), sourceCatalogUsername, sourceCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+
                 RuleApplicationDef sourceRuleAppDef = null;
                 try
                 {
-                    CatalogRuleApplicationReference sourceRuleApp;
                     if (string.IsNullOrEmpty(label))
                     {
-                        sourceRuleApp = new CatalogRuleApplicationReference(sourceCatalogUrl, ruleAppName, sourceCatalogUsername, sourceCatalogPassword);
+                        sourceRuleAppDef = sourceCatCon.GetLatestRuleAppRevision(ruleAppName);
                     }
                     else
                     {
-                        sourceRuleApp = new CatalogRuleApplicationReference(sourceCatalogUrl, ruleAppName, sourceCatalogUsername, sourceCatalogPassword, label);
+                        var sourceRuleAppRef = sourceCatCon.GetRuleAppRef(ruleAppName);
+                        sourceRuleAppDef = sourceCatCon.GetRuleAppByLabel(sourceRuleAppRef.Guid, label);
                     }
-                    sourceRuleAppDef = sourceRuleApp.GetRuleApplicationDef();
                 }
                 catch (Exception ex)
                 {
@@ -88,8 +94,20 @@ namespace PromoteRuleApp
                 {
                     if (sourceRuleAppDef != null)
                     {
-                        var destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword);
-                        var promotedDef = destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
+                        var destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+
+                        destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
+
+                        if (!string.IsNullOrEmpty(applyLabelToSource))
+                        {
+                            sourceCatCon.ApplyLabel(sourceRuleAppDef, applyLabelToSource);
+                        }
+
+                        if (!string.IsNullOrEmpty(removeLabelFromSource))
+                        {
+                            sourceCatCon.RemoveLabel(sourceRuleAppDef.Guid, removeLabelFromSource);
+                        }
+
                         Console.WriteLine("Success!");
                         return 0;
                     }
