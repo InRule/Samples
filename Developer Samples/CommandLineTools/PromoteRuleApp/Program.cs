@@ -1,9 +1,7 @@
 ﻿using InRule.Repository.Client;
 using InRule.Repository;
 using System;
-using InRule.Repository.Service.Data;
 using Mono.Options;
-using InRule.Runtime;
 
 
 namespace PromoteRuleApp
