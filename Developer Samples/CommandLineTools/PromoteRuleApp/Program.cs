@@ -69,7 +69,28 @@ namespace PromoteRuleApp
             }
             else
             {
-                var sourceCatCon = new RuleCatalogConnection(new Uri(sourceCatalogUrl), TimeSpan.FromSeconds(60), sourceCatalogUsername, sourceCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+                RuleCatalogConnection sourceCatCon = null;
+                RuleCatalogConnection destCatCon = null;
+
+                try
+                {
+                    sourceCatCon = new RuleCatalogConnection(new Uri(sourceCatalogUrl), TimeSpan.FromSeconds(60), sourceCatalogUsername, sourceCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error connecting to source catalog: " + ex.Message);
+                    return 1;
+                }
+
+                try
+                {
+                    destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error connecting to destination catalog: " + ex.Message);
+                    return 1;
+                }
 
                 RuleApplicationDef sourceRuleAppDef = null;
                 try
@@ -83,6 +104,13 @@ namespace PromoteRuleApp
                         var sourceRuleAppRef = sourceCatCon.GetRuleAppRef(ruleAppName);
                         sourceRuleAppDef = sourceCatCon.GetRuleAppByLabel(sourceRuleAppRef.Guid, label);
                     }
+
+                    if (sourceRuleAppDef == null)
+                    {
+                        Console.WriteLine("Source Rule App was unable to be retrieved.");
+                        return 1;
+                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -92,36 +120,42 @@ namespace PromoteRuleApp
 
                 try
                 {
-                    if (sourceRuleAppDef != null)
-                    {
-                        var destCatCon = new RuleCatalogConnection(new Uri(destCatalogUrl), TimeSpan.FromSeconds(60), destCatalogUsername, destCatalogPassword, RuleCatalogAuthenticationType.BuiltIn);
-
-                        destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
-
-                        if (!string.IsNullOrEmpty(applyLabelToSource))
-                        {
-                            sourceCatCon.ApplyLabel(sourceRuleAppDef, applyLabelToSource);
-                        }
-
-                        if (!string.IsNullOrEmpty(removeLabelFromSource))
-                        {
-                            sourceCatCon.RemoveLabel(sourceRuleAppDef.Guid, removeLabelFromSource);
-                        }
-
-                        Console.WriteLine("Success!");
-                        return 0;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Source Rule App was unable to be retrieved.");
-                        return 1;
-                    }
+                    destCatCon.PromoteRuleApplication(sourceRuleAppDef, comment);
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("Error promoting Rule App: " + ex.Message);
                     return 1;
                 }
+
+                if (!string.IsNullOrEmpty(applyLabelToSource))
+                {
+                    try
+                    {
+                        sourceCatCon.ApplyLabel(sourceRuleAppDef, applyLabelToSource);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error applying label to source rule app: " + ex.Message);
+                        return 1;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(removeLabelFromSource))
+                {
+                    try
+                    {
+                        sourceCatCon.RemoveLabel(sourceRuleAppDef.Guid, removeLabelFromSource);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error removing label from source rule app: " + ex.Message);
+                        return 1;
+                    }
+                }
+
+                Console.WriteLine("Success!");
+                return 0;
             }
         }
 
