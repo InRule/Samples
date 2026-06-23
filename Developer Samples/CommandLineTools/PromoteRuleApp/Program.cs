@@ -31,11 +31,11 @@ namespace PromoteRuleApp
                 { "n|RuleAppName=", "The name of the Rule App to promote.", n => ruleAppName = n },
                 { "l|Label=",  "Label assigned to the desired version of the Rule App.", l => label = l },
                 { "m|Comment=",  "Comment to be associated with the promotion commit.", c => comment = c },
-                { "g|ApplyLabelToSource=", "Label to apply to source Rule App", l => applyLabelToSource = l },
-                { "j|RemoveLabelFromSource=", "Label to remove from source Rule App", j => removeLabelFromSource = j},
+                { "g|ApplyLabelToSource=", "Label to apply to source Rule App.", l => applyLabelToSource = l },
+                { "j|RemoveLabelFromSource=", "Label to remove from source Rule App.", j => removeLabelFromSource = j},
                 //Source
                 { "a|SrcCatUri=",  "Web URI for the source IrCatalog Service endpoint.", c => sourceCatalogUrl = c },
-                { "b|SrcCatUser=",  "IrCatalog Username for authentication .", u => sourceCatalogUsername = u },
+                { "b|SrcCatUser=",  "IrCatalog Username for authentication.", u => sourceCatalogUsername = u },
                 { "c|SrcCatPass=",  "IrCatalog Password for authentication.", p => sourceCatalogPassword = p },
                 //Dest
                 { "d|DestCatUri=",  "Web URI for the target IrCatalog Service endpoint.", c => destCatalogUrl = c },
@@ -134,7 +134,7 @@ namespace PromoteRuleApp
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error applying label to source rule app: " + ex.Message);
+                        Console.WriteLine("Error applying label to source Rule App: " + ex.Message);
                         return 1;
                     }
                 }
@@ -147,7 +147,7 @@ namespace PromoteRuleApp
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error removing label from source rule app: " + ex.Message);
+                        Console.WriteLine("Error removing label from source Rule App: " + ex.Message);
                         return 1;
                     }
                 }
